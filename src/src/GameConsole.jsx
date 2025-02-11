@@ -17,7 +17,7 @@ function GameConsole({ gameRef, onClose }) {
         } catch (error) {
             setOutput(`Error: ${error.message}`);
         }
-    };g
+    };
 
     return (
         <div className='console'>
