@@ -15,7 +15,7 @@ function App ()
             <PhaserGame ref={phaserRef} />
             <div>
                 <div>
-                    <button className="button" onClick={() => setShowConsole(true)}>
+                    <button className="button" onClick={() => setShowConsole(prev => !prev)}>
                         Code Editor
                     </button>
                 </div>

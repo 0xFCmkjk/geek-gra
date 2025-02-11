@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function GameConsole({ gameRef, onClose }) {
     const [command, setCommand] = useState('');
@@ -6,6 +6,13 @@ function GameConsole({ gameRef, onClose }) {
     const [position, setPosition] = useState({ x: 400, y: 450 });
     const [isDragging, setIsDragging] = useState(false);
     const dragRef = useRef(null);
+
+    useEffect(() => {
+        const savedPosition = localStorage.getItem('consolePosition');
+        if (savedPosition) {
+            setPosition(JSON.parse(savedPosition)); // Restore saved position
+        }
+    }, []);
 
     const runCommand = () => {
         try {
@@ -32,12 +39,15 @@ function GameConsole({ gameRef, onClose }) {
 
     const onDrag = (e) => {
         if (isDragging) {
-            setPosition({
+            const newPosition = {
                 x: e.clientX - dragRef.current.startX,
                 y: e.clientY - dragRef.current.startY
-            });
+            };
+            setPosition(newPosition);
+            localStorage.setItem('consolePosition', JSON.stringify(newPosition)); // Save position
+            }
         }
-    };
+    
 
     const stopDrag = () => setIsDragging(false);
 
@@ -50,7 +60,7 @@ function GameConsole({ gameRef, onClose }) {
             onMouseLeave={stopDrag}
             onMouseDown={startDrag}
         >
-                <button onMouseDown={startDrag}  onClick={onClose} className='consoleBtn'></button>
+                <button onClick={onClose} className='consoleBtn'></button>
                 
                 <div className='terminal'>
                     <h3>Runtime editor</h3>
