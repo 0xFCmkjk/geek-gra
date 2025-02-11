@@ -1,9 +1,14 @@
+@font-face {
+    font-family: 'Pixelon';
+    src: url('/assets/fonts/Pixelon-OGALo.ttf') format('truetype');
+}
+
 body {
     margin: 0;
     padding: 0;
     color: rgba(255, 255, 255, 0.87);
     background-color: #000000; 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Pixelon, Helvetica, sans-serif;
 }
 
 #app {
@@ -21,6 +26,7 @@ body {
 }
 
 .button {
+    font-family: 'Pixelon';
     width: 140px;
     margin: 10px;
     padding: 10px;
