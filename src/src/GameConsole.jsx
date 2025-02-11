@@ -17,28 +17,21 @@ function GameConsole({ gameRef, onClose }) {
         } catch (error) {
             setOutput(`Error: ${error.message}`);
         }
-    };
+    };g
 
     return (
-        <div style={{
-            position: 'absolute', top: '50px', left: '50px', 
-            width: '450px', height: '350px',
-            background: 'black', color: 'lime', padding: '10px', border: '2px solid lime',
-            zIndex: 1000, fontFamily: 'Pixelon',
-        }}>
-            <button  onClick={onClose} style={{ float: 'right', background: 'red', color: 'white' }}>X</button>
-            
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', content: 'align'}}>
-                <h3>Game code editor</h3>
+        <div className='console'>
+            <button  onClick={onClose} className='consoleBtn'></button>
+            <div className='terminal'>
+                <h3>Runtime editor</h3>
                 <textarea 
                     value={command} 
                     onChange={(e) => setCommand(e.target.value)}
-                    style={{ width: '100%', height: '100px', background: 'black', color: 'lime', fontFamily: 'monospace' }}
                 />
-                <button className='button' onClick={runCommand} style={{width: '50%', textAlign: 'center'}}>Run</button>
+                <button className='button terminalBtn' onClick={runCommand}>Run</button>
             </div>
             
-            <div style={{ marginTop: '10px', whiteSpace: 'pre-wrap'}}>
+            <div className='output'>
                 <strong>Output:</strong>
                 <pre>{output}</pre>
             </div>
