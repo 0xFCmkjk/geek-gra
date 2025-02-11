@@ -57,7 +57,7 @@ body {
 
 /*CONSOLE STYLES*/
 :root {
-    --text-color: #70c977;
+    --text-color: white;
 }
 .console{
     position: absolute; 
@@ -68,7 +68,8 @@ body {
     width: 380px; 
     height: 350px;
     background-color: #161616; 
-    color: var(--text-color); padding: 10px; 
+    color: var(--text-color); 
+    padding: 10px; 
     border: none;
     border-radius: 5px;
     z-index: 1000;
@@ -95,7 +96,7 @@ textarea{
     width: 95%;
     height: 150px; 
     background-color: black; 
-    color: #70c977; 
+    color: var(--text-color); 
     font-family: monospace;
     resize: none;
     background-color: #303030;
