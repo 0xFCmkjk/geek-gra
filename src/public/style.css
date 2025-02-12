@@ -75,6 +75,9 @@ body {
     z-index: 1000;
     font-family: 'Pixelon';
     padding: 0 20px 20px 20px;
+    -webkit-box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
+    box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
 }
 .terminal{
     display: flex; 
@@ -128,4 +131,6 @@ pre{
     border-radius: 5px;
     margin-top: 15px;
     padding: 10px;
+    text-wrap: wrap;
+    text-align: justify;
 }
