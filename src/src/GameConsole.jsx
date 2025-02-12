@@ -54,7 +54,7 @@ function GameConsole({ gameRef, onClose }) {
     return (
         <div 
             className='console'
-            style = {{top: `${position.y}px`, left: `${position.x}px`, cursor: isDragging ? 'grabbing' : 'default'}}
+            style = {{top: `${position.y}px`, left: `${position.x}px`, cursor: isDragging ? 'grabbing' : 'default', userSelect: 'none'}}
             onMouseMove={onDrag}
             onMouseUp={stopDrag}
             onMouseLeave={stopDrag}
