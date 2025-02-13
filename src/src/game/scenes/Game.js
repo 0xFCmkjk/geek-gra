@@ -13,7 +13,7 @@ export class Game extends Scene
         
         this.load.image('star', 'star.png');
         this.load.image('background', 'bg.png');
-        this.load.image('logo', 'logo.png');
+        this.load.image('ground', 'ground.png');
     }
 
     create ()
@@ -28,7 +28,45 @@ export class Game extends Scene
             }).setOrigin(0.5);
         });
         
-        EventBus.emit('current-scene-ready', this);
+        var platforms;
+        platforms = this.physics.add.staticGroup();
+        platforms.create(500, 500, 'ground').setScale(2).refreshBody();
 
+        this.player = this.physics.add.sprite(450, 300, 'star');
+        this.player.setBounce(0.2);
+        this.player.setCollideWorldBounds(true);
+
+        this.player.body.setGravityY(300);
+        this.physics.add.collider(this.player, platforms);
+        
+        this.cursors = this.input.keyboard.createCursorKeys();
+    }
+
+    update (){
+        if (this.cursors.left.isDown)
+        {
+            this.player.setVelocityX(-260);
+        
+            this.player.anims.play('left', true);
+        }
+        
+        else if (this.cursors.right.isDown)
+        {
+            this.player.setVelocityX(260);
+        
+            this.player.anims.play('right', true);
+        }
+        
+        else
+        {
+            this.player.setVelocityX(0);
+        
+            this.player.anims.play('turn');
+        }
+        
+        if (this.cursors.up.isDown && this.player.body.touching.down)
+        {
+            this.player.setVelocityY(-530);
+        }
     }
 }
