@@ -33,10 +33,15 @@ export class Game extends Scene
         platforms.create(500, 500, 'ground').setScale(2).refreshBody();
 
         this.player = this.physics.add.sprite(450, 300, 'star');
-        this.player.setBounce(0.2);
+        //this.player.setBounce(0.2);
         this.player.setCollideWorldBounds(true);
 
-        this.player.body.setGravityY(300);
+        this.player.body.setGravity(0, 0);
+        this.physics.world.gravity.y = 0;
+        //this.player.allowGravity(false);
+        this.player.setDamping(true);
+        this.player.setDrag(1000);
+
         this.physics.add.collider(this.player, platforms);
         
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -45,21 +50,22 @@ export class Game extends Scene
     }
 
     update (){
-        if (this.cursors.left.isDown)
-        {
-            this.player.setVelocityX(-260);
+        let speed = 300; // Movement speed
+        // Reset velocity before applying movement
+        this.player.setVelocity(0);
+
+        if (this.cursors.left.isDown) {
+            this.player.setVelocityX(-speed);
+        } 
+        else if (this.cursors.right.isDown) {
+            this.player.setVelocityX(speed);
         }
-        else if (this.cursors.right.isDown)
-        {
-            this.player.setVelocityX(260);
-        }
-        else
-        {
-            this.player.setVelocityX(0);
-        }
-        if (this.cursors.up.isDown && this.player.body.touching.down)
-        {
-            this.player.setVelocityY(-330);
+
+        if (this.cursors.up.isDown) {
+            this.player.setVelocityY(-speed);
+        } 
+        else if (this.cursors.down.isDown) {
+            this.player.setVelocityY(speed);
         }
     }
 }
