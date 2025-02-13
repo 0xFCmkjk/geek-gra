@@ -40,6 +40,8 @@ export class Game extends Scene
         this.physics.add.collider(this.player, platforms);
         
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        EventBus.emit('current-scene-ready', this);
     }
 
     update (){
