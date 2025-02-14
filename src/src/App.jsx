@@ -12,7 +12,7 @@ function App ()
 
     return (
         <div id="app">
-            <PhaserGame ref={phaserRef} />
+            <PhaserGame ref={phaserRef} isConsoleOpen={showConsole} />
             <div>
                 <div>
                     <button className="button" onClick={() => setShowConsole(prev => !prev)}>
