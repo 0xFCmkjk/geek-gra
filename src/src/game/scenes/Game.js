@@ -58,12 +58,38 @@ export class Game extends Scene
         
         // create cursors for keyboard input
         this.cursors = this.input.keyboard.createCursorKeys();
+        
+        // New variable to track pause state
+        this.isPaused = false; 
+
+        // Listen for the pause event from the console
+        this.events.on('toggle-pause', (shouldPause) => {
+            if (shouldPause) {
+                this.physics.pause();
+                this.input.keyboard.enabled = false;
+                window.addEventListener('keydown', preventPhaserInput, true);
+            } else {
+                this.physics.resume();
+                this.input.keyboard.enabled = true;
+                window.removeEventListener('keydown', preventPhaserInput, true);
+            }
+        });
+
+        function preventPhaserInput(event) {
+            // Allow arrow keys and backspace for the text input
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Enter'].includes(event.key)) {
+                event.stopPropagation(); // Stop Phaser from capturing the event
+            }
+        }
 
         // pass on the scene????
         EventBus.emit('current-scene-ready', this);
     }
 
     update (){
+        // if the game is paused dont update anything
+        if(this.isPaused) return;
+
         let speed = 300; // Movement speed
         // Reset velocity before applying movement
         this.player.setVelocity(0);
