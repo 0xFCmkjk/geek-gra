@@ -18,7 +18,12 @@ export class Game extends Scene
 
     create ()
     {
-        this.add.image(512, 384, 'background');
+        // add bg
+        this.add.image(600, 781, 'background');
+        // make sure the fonts are ready, then add the game title 
+        // TODO: make the title above the game contener not in the game contener
+        
+        /*
         document.fonts.ready.then(() => {
             this.add.text(512, 30, 'NAME OF THE GAME', {
                 fontFamily: '"Pixelon"',
@@ -26,26 +31,35 @@ export class Game extends Scene
                 color: '#ffffff',
                 align: 'center'
             }).setOrigin(0.5);
-        });
+        }); */
         
+        // add platforms, they have to be declared first
         var platforms;
         platforms = this.physics.add.staticGroup();
         platforms.create(500, 500, 'ground').setScale(2).refreshBody();
 
+        // add a player
         this.player = this.physics.add.sprite(450, 300, 'star');
-        //this.player.setBounce(0.2);
+        
+        // set world borders and collisions
+        this.physics.world.setBounds(0,0,1200,1562);
         this.player.setCollideWorldBounds(true);
+        this.physics.add.collider(this.player, platforms);
 
+        // make the character walk like in undertale
         this.player.body.setGravity(0, 0);
         this.physics.world.gravity.y = 0;
-        //this.player.allowGravity(false);
         this.player.setDamping(true);
         this.player.setDrag(1000);
 
-        this.physics.add.collider(this.player, platforms);
+        // enable camera following (background moves dynamically)
+        this.cameras.main.startFollow(this.player);
+        this.cameras.main.setLerp(0.1, 0.1);
         
+        // create cursors for keyboard input
         this.cursors = this.input.keyboard.createCursorKeys();
 
+        // pass on the scene????
         EventBus.emit('current-scene-ready', this);
     }
 
