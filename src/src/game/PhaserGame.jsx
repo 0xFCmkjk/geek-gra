@@ -3,7 +3,7 @@ import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
 import StartGame from './main';
 import { EventBus } from './EventBus';
 
-export const PhaserGame = forwardRef(function PhaserGame ({ currentActiveScene }, ref)
+export const PhaserGame = forwardRef(function PhaserGame ({ currentActiveScene, isConsoleOpen }, ref)
 {
     const game = useRef();
 
@@ -29,27 +29,26 @@ export const PhaserGame = forwardRef(function PhaserGame ({ currentActiveScene }
             }
 
         }
-    }, [ref]);
+    }, []);
 
     useEffect(() => {
-
         EventBus.on('current-scene-ready', (currentScene) => {
-
-            if (currentActiveScene instanceof Function)
-            {
-                currentActiveScene(currentScene);
+            if (ref.current) {  // Ensure ref.current is defined
+                ref.current.scene = currentScene;
             }
-            ref.current.scene = currentScene;
-            
         });
-
+    
         return () => {
-
             EventBus.removeListener('current-scene-ready');
+        };
+    
+    }, [currentActiveScene, ref]);
 
+    useEffect(() => {
+        if (ref.current?.scene) {
+            ref.current.scene.events.emit('toggle-pause', isConsoleOpen);
         }
-        
-    }, [currentActiveScene, ref])
+    }, [isConsoleOpen]);
 
     return (
         <div id="game-container"></div>

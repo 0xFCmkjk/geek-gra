@@ -7,6 +7,14 @@ const config = {
     type: AUTO,
     width: 1024,
     height: 768,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            fixedStep: false,
+            debug: false
+        }
+    },
     parent: 'game-container',
     backgroundColor: '#028af8',
     scene: [
