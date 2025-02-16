@@ -6,11 +6,25 @@ function GameConsole({ gameRef, onClose }) {
     const [position, setPosition] = useState({ x: 400, y: 450 });
     const [isDragging, setIsDragging] = useState(false);
     const dragRef = useRef(null);
+    const textAreaRef = useRef(null);
 
     useEffect(() => {
         const savedPosition = localStorage.getItem('consolePosition');
         if (savedPosition) {
             setPosition(JSON.parse(savedPosition)); // Restore saved position
+        }
+    }, []);
+
+    useEffect(() => {
+        window.isConsoleOpen = true;
+        return () => {
+            window.isConsoleOpen = false;
+        };
+    }, []);
+    
+    useEffect(() => {
+        if (textAreaRef.current) {
+            textAreaRef.current.focus(); // Auto-focus when the console opens
         }
     }, []);
 
@@ -65,6 +79,7 @@ function GameConsole({ gameRef, onClose }) {
                 <div className='terminal'>
                     <h3>Runtime editor</h3>
                     <textarea 
+                        ref={textAreaRef}
                         value={command} 
                         onChange={(e) => setCommand(e.target.value)}
                     />

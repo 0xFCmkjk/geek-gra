@@ -76,8 +76,8 @@ export class Game extends Scene
         });
 
         function preventPhaserInput(event) {
-            // Allow arrow keys and backspace for the text input
-            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Enter'].includes(event.key)) {
+            // Allow these keys inside the console
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Enter', ' '].includes(event.key)) {
                 event.stopPropagation(); // Stop Phaser from capturing the event
             }
         }
