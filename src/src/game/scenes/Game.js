@@ -11,7 +11,7 @@ export class Game extends Scene
     {
         this.load.setPath('assets');
         
-        this.load.image('star', 'star.png');
+        this.load.spritesheet('robot', 'robot.png', { frameWidth: 64, frameHeight: 64 });
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
     }
@@ -44,7 +44,57 @@ export class Game extends Scene
         taskFields.create(100, 100, 'ground').setScale(0.5).refreshBody();
 
         // add a player
-        this.player = this.physics.add.sprite(450, 300, 'star');
+        this.player = this.physics.add.sprite(450, 300, 'robot');
+
+        // add player animations
+
+        this.anims.create({
+            key: 'leftUp',
+            frames: this.anims.generateFrameNumbers('robot', { start: 9, end: 11 }),
+            frameRate: 10
+        });
+
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('robot', { start: 3, end: 5 }),
+            frameRate: 10
+        });
+        
+        this.anims.create({
+            key: 'rightAndDown',
+            frames: this.anims.generateFrameNumbers('robot', { start: 0, end: 2 }),
+            frameRate: 10
+        });
+
+        this.anims.create({
+            key: 'up',
+            frames: this.anims.generateFrameNumbers('robot', { start: 6, end: 8 }),
+            frameRate: 10
+        });
+
+        this.anims.create({
+            key: 'staticLeftUp',
+            frames: [ { key: 'robot', frame: 9 } ],
+            frameRate: 10
+        });
+        
+        this.anims.create({
+            key: 'staticRightUp',
+            frames: [ { key: 'robot', frame: 6 } ],
+            frameRate: 10
+        });
+
+        this.anims.create({
+            key: 'staticLeftDown',
+            frames: [ { key: 'robot', frame: 3 } ],
+            frameRate: 10
+        });
+        
+        this.anims.create({
+            key: 'staticRightDown',
+            frames: [ { key: 'robot', frame: 0 } ],
+            frameRate: 10
+        });
         
         this.sceneChanging = false;
         // Detecting intersections with taskFields
@@ -112,18 +162,46 @@ export class Game extends Scene
         // Reset velocity before applying movement
         this.player.setVelocity(0);
 
+        if (this.cursors.left.isDown && this.cursors.up.isDown) {
+            this.player.setVelocityX(-speed);
+            this.player.setVelocityY(-speed);
+            this.player.anims.play('leftUp', true);
+            return;
+        }
+        else if (this.cursors.right.isDown && this.cursors.up.isDown){
+            this.player.setVelocityX(speed);
+            this.player.setVelocityY(-speed);
+            this.player.anims.play('up', true);
+            return;
+        }
+        else if (this.cursors.right.isDown && this.cursors.down.isDown){
+            this.player.setVelocityX(speed);
+            this.player.setVelocityY(speed);
+            this.player.anims.play('rightAndDown', true);
+            return;
+        }
+        else if (this.cursors.left.isDown && this.cursors.down.isDown){
+            this.player.setVelocityX(-speed);
+            this.player.setVelocityY(speed);
+            this.player.anims.play('left', true);
+            return;
+        }
+        
         if (this.cursors.left.isDown) {
             this.player.setVelocityX(-speed);
+            this.player.anims.play('left', true);
         } 
         else if (this.cursors.right.isDown) {
             this.player.setVelocityX(speed);
+            this.player.anims.play('rightAndDown', true);
         }
-
-        if (this.cursors.up.isDown) {
+        else if (this.cursors.up.isDown) {
             this.player.setVelocityY(-speed);
+            this.player.anims.play('up', true);
         } 
         else if (this.cursors.down.isDown) {
             this.player.setVelocityY(speed);
+            this.player.anims.play('rightAndDown', true);
         }
     }
 }
