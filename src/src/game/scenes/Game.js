@@ -45,6 +45,7 @@ export class Game extends Scene
 
         // add a player
         this.player = this.physics.add.sprite(450, 300, 'robot');
+        this.player.speed = 300; // Movement speed
 
         // add player animations
 
@@ -158,49 +159,48 @@ export class Game extends Scene
         // if the game is paused dont update anything
         if(this.isPaused) return;
 
-        let speed = 300; // Movement speed
         // Reset velocity before applying movement
         this.player.setVelocity(0);
 
         if (this.cursors.left.isDown && this.cursors.up.isDown) {
-            this.player.setVelocityX(-speed);
-            this.player.setVelocityY(-speed);
+            this.player.setVelocityX(-this.player.speed);
+            this.player.setVelocityY(-this.player.speed);
             this.player.anims.play('leftUp', true);
             return;
         }
         else if (this.cursors.right.isDown && this.cursors.up.isDown){
-            this.player.setVelocityX(speed);
-            this.player.setVelocityY(-speed);
+            this.player.setVelocityX(this.player.speed);
+            this.player.setVelocityY(-this.player.speed);
             this.player.anims.play('up', true);
             return;
         }
         else if (this.cursors.right.isDown && this.cursors.down.isDown){
-            this.player.setVelocityX(speed);
-            this.player.setVelocityY(speed);
+            this.player.setVelocityX(this.player.speed);
+            this.player.setVelocityY(this.player.speed);
             this.player.anims.play('rightAndDown', true);
             return;
         }
         else if (this.cursors.left.isDown && this.cursors.down.isDown){
-            this.player.setVelocityX(-speed);
-            this.player.setVelocityY(speed);
+            this.player.setVelocityX(-this.player.speed);
+            this.player.setVelocityY(this.player.speed);
             this.player.anims.play('left', true);
             return;
         }
         
         if (this.cursors.left.isDown) {
-            this.player.setVelocityX(-speed);
+            this.player.setVelocityX(-this.player.speed);
             this.player.anims.play('left', true);
         } 
         else if (this.cursors.right.isDown) {
-            this.player.setVelocityX(speed);
+            this.player.setVelocityX(this.player.speed);
             this.player.anims.play('rightAndDown', true);
         }
         else if (this.cursors.up.isDown) {
-            this.player.setVelocityY(-speed);
+            this.player.setVelocityY(-this.player.speed);
             this.player.anims.play('up', true);
         } 
         else if (this.cursors.down.isDown) {
-            this.player.setVelocityY(speed);
+            this.player.setVelocityY(this.player.speed);
             this.player.anims.play('rightAndDown', true);
         }
     }
