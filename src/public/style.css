@@ -28,6 +28,8 @@ body {
 }
 
 .button {
+    display: inline-block;
+    vertical-align: top;
     font-family: 'Pixelon';
     width: 140px;
     margin: 10px;
