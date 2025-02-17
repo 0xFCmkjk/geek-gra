@@ -1,4 +1,5 @@
 import { Game as MainGame } from './scenes/Game';
+import { Task1} from './scenes/Task1';
 import { AUTO, Game } from 'phaser';
 
 //  Find out more information about the Game Config at:
@@ -18,7 +19,8 @@ const config = {
     parent: 'game-container',
     backgroundColor: '#028af8',
     scene: [
-        MainGame
+        MainGame,
+        Task1
     ]
 };
 

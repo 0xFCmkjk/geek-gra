@@ -35,12 +35,30 @@ export class Game extends Scene
         
         // add platforms, they have to be declared first
         var platforms;
+        var taskFields;
+
         platforms = this.physics.add.staticGroup();
+        taskFields = this.physics.add.staticGroup();
+        
         platforms.create(500, 500, 'ground').setScale(2).refreshBody();
+        taskFields.create(100, 100, 'ground').setScale(0.5).refreshBody();
 
         // add a player
         this.player = this.physics.add.sprite(450, 300, 'star');
         
+        this.sceneChanging = false;
+        // Detecting intersections with taskFields
+        this.physics.add.overlap(this.player, taskFields, () => {
+            if (!this.sceneChanging) {  // Check if transition is already happening
+                this.sceneChanging = true; // Set flag to prevent multiple triggers
+                
+                this.cameras.main.fadeOut(500, 0, 0, 0);
+                this.time.delayedCall(500, () => {
+                    this.scene.start('Task1');
+                });
+            }
+        }, null, this);
+
         // set world borders and collisions
         this.physics.world.setBounds(0,0,1200,1562);
         this.player.setCollideWorldBounds(true);
