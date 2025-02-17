@@ -16,7 +16,7 @@ function App ()
     return (
         <div id="app">
             {showMenu && <StartingMenu onStart={()=>setShowMenu(false)}/>}
-            <PhaserGame ref={phaserRef} isConsoleOpen={showConsole} />
+            {!showMenu && <PhaserGame ref={phaserRef} isConsoleOpen={showConsole} />}
             <div>
                 <button className="button" onClick={() => setShowConsole(prev => !prev)}>
                     Code Editor
