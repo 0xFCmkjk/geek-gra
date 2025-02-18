@@ -6,7 +6,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css';
 
 function GameConsole({ gameRef, onClose }) {
-    const [command, setCommand] = useState('Your code goes here!');
+    const [command, setCommand] = useState('Your code goes here');
     const [output, setOutput] = useState('');
     const [position, setPosition] = useState({ x: 400, y: 450 });
     const [isDragging, setIsDragging] = useState(false);

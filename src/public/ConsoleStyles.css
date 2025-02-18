@@ -1,8 +1,15 @@
 /*CONSOLE STYLES*/
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fira+Mono:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 :root {
     --text-color: white;
 }
+
+.token.operator,
+.token.punctuation {
+  background: transparent !important;
+  text-decoration: none !important;
+}
+
 .console{
     position: absolute; 
     display: flex;
@@ -17,7 +24,7 @@
     border: none;
     border-radius: 5px;
     z-index: 1000;
-    font-family: 'Fira Code';
+    font-family: "Fira code";
     padding: 0 20px 20px 20px;
     -webkit-box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
     -moz-box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
@@ -45,7 +52,7 @@
     border-radius: 5px;
     display: inline-block;
     vertical-align: top;
-    font-family: 'Fira Code';
+    font-family: "Fira code";
     margin: 10px;
     padding: 10px;
     color: rgba(255, 255, 255, 0.87);
@@ -69,6 +76,6 @@ pre{
     text-wrap: wrap;
     text-align: justify;
     min-height: 15px;
-    font-family: 'Fira Code';
+    font-family: "Fira code";
     font-size: 14px;
 }
