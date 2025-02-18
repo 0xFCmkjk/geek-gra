@@ -21,7 +21,6 @@ export class Game extends Scene
         // add bg
         this.add.image(600, 781, 'background');
         // make sure the fonts are ready, then add the game title 
-        // TODO: make the title above the game contener not in the game contener
         
         /*
         document.fonts.ready.then(() => {
@@ -98,6 +97,7 @@ export class Game extends Scene
         //     frameRate: 10
         // });
         
+        // TODO: fix the warning about creating anims again
         this.sceneChanging = false;
         // Detecting intersections with taskFields
         this.physics.add.overlap(this.player, taskFields, () => {
