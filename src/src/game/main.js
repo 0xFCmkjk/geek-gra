@@ -6,7 +6,6 @@ import { AUTO, Game } from 'phaser';
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
     type: AUTO,
-    // TODO: change game resolution to a bigger one
     width: 1700,
     height: 850,
     physics: {

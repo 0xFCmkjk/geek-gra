@@ -28,8 +28,11 @@ export class Task1 extends Scene
         }).setOrigin(0.5)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                this.scene.start('Game');
-                this.scene.stop('Task1');
+                this.cameras.main.fadeOut(500, 0, 0, 0);
+                this.time.delayedCall(500, () => {
+                    this.scene.start('Game');
+                    this.scene.stop('Task1');
+                });
             })
         
         /*
