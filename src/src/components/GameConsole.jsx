@@ -84,13 +84,20 @@ function GameConsole({ gameRef, onClose }) {
                 <div className='terminal'>
                     <h3>Runtime editor</h3>
                     <Editor
-                        textareaClassName='editor'
                         ref={textAreaRef}
-                        value={command} 
+                        value={command}
+                        padding={10}
                         onValueChange={command => setCommand(command)}
                         highlight={command => highlight(command, languages.js)}
+                        style={{resize: 'none', 
+                            backgroundColor: '#303030',
+                            fontFamily: '"Fira code", "Fira Mono", monospace',
+                            width: '100%',
+                            minHeight: '100px',
+                            borderRadius: '5px',
+                            fontSize: '14px',}}
                     />
-                    <button className='button terminalBtn' onClick={runCommand}>Run</button>
+                    <button className='terminalBtn' onClick={runCommand}>Run</button>
                 
                 </div>
 
