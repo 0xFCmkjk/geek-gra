@@ -18,12 +18,11 @@ export class Task1 extends Scene
 
     create ()
     {
-        const taskInfo = `Welcome to the first task of this game!
-        In this task you have to make a program doing XYZ!
+        const taskInfo = `Welcome to the first task of this game!~In this task you have to make a program doing XYZ!
         Good luck! Click me to close.`;
 
-        this.add.image(600, 781, 'background');
-        this.add.text(200, 50, 'BACK TO THE MAP', {
+        this.add.image(512, 364, 'background');
+        this.add.text(100, 50, 'Back', {
             fontFamily: '"Pixelon"',
             fontSize: '36px',
             color: '#ffffff',
@@ -39,7 +38,7 @@ export class Task1 extends Scene
                 });
             })
         
-        this.add.text(1000, 50, 'Task Info', {
+        this.add.text(1550, 50, 'Task Info', {
             fontFamily: '"Pixelon"',
             fontSize: '36px',
             color: '#ffffff',
@@ -91,15 +90,20 @@ export class Task1 extends Scene
             let i = 0;
             this.narrator.typingEvent = this.time.addEvent({
                 callback: () => {
-                    this.narrator.text += text[i];
-                    ++i;
-    
-                    if (i === length) {
-                        this.narrator.isTyping = false; // Mark typing as finished inside the callback function
+                    if (text[i] != "~"){
+                        this.narrator.text += text[i];
+                        ++i;
+                        if (i === length) {
+                            this.narrator.isTyping = false; // Mark typing as finished inside the callback function
+                        }
+                    }
+                    else {
+                        this.narrator.text = "";
+                        ++i;
                     }
                 },
                 repeat: length - 1,
-                delay: 100
+                delay: 75
             });
         }
     }
