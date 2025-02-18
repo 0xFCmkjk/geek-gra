@@ -18,6 +18,10 @@ export class Task1 extends Scene
 
     create ()
     {
+        const taskInfo = `Welcome to the first task of this game!
+        In this task you have to make a program doing XYZ!
+        Good luck! Click me to close.`;
+
         this.add.image(600, 781, 'background');
         this.add.text(200, 50, 'BACK TO THE MAP', {
             fontFamily: '"Pixelon"',
@@ -35,17 +39,68 @@ export class Task1 extends Scene
                 });
             })
         
-        /*
-        document.fonts.ready.then(() => {
-            this.add.text(512, 30, 'NAME OF THE GAME', {
-                fontFamily: '"Pixelon"',
-                fontSize: '38px',
-                color: '#ffffff',
-                align: 'center'
-            }).setOrigin(0.5);
-        }); */
+        this.add.text(1000, 50, 'Task Info', {
+            fontFamily: '"Pixelon"',
+            fontSize: '36px',
+            color: '#ffffff',
+            align: 'center',
+            backgroundColor: '#3F414F'
+        }).setOrigin(0.5)
+            .setInteractive()
+            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                this.narrator.text = "";
+                this.narrator.setVisible(true);
+                this.typewriteText(taskInfo);
+            })
+
+        this.narrator = this.add.text(1000, 200, "", {
+            fontFamily: '"Pixelon"',
+            fontSize: '36px',
+            color: '#ffffff',
+            align: 'center',
+            backgroundColor: '#3F414F'
+        }).setOrigin(0.5)
+            .setInteractive()
+            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                this.narrator.setVisible(false);
+                this.time.removeEvent(this.narrator.typingEvent);
+                this.narrator.text = "";
+                this.narrator.isTyping = false;
+            })
+        
+        this.narrator.isTyping = false;
 
         // pass on the scene????
         EventBus.emit('current-scene-ready', this);
+    }
+
+    typewriteText(text) {
+        const length = text.length;
+        
+        // Stop any ongoing typing effect
+        if (this.narrator.isTyping) {
+            this.time.removeEvent(this.narrator.typingEvent);
+            this.narrator.isTyping = false;
+            return; 
+        }
+    
+        if (!this.narrator.isTyping) {
+            this.narrator.isTyping = true;
+            this.narrator.text = ""; 
+    
+            let i = 0;
+            this.narrator.typingEvent = this.time.addEvent({
+                callback: () => {
+                    this.narrator.text += text[i];
+                    ++i;
+    
+                    if (i === length) {
+                        this.narrator.isTyping = false; // Mark typing as finished inside the callback function
+                    }
+                },
+                repeat: length - 1,
+                delay: 100
+            });
+        }
     }
 }
