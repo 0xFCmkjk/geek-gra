@@ -1,7 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
+import Editor from 'react-simple-code-editor';
+import { highlight, languages } from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/themes/prism.css';
 
 function GameConsole({ gameRef, onClose }) {
-    const [command, setCommand] = useState('');
+    const [command, setCommand] = useState('Your code goes here!');
     const [output, setOutput] = useState('');
     const [position, setPosition] = useState({ x: 400, y: 450 });
     const [isDragging, setIsDragging] = useState(false);
@@ -22,11 +27,11 @@ function GameConsole({ gameRef, onClose }) {
         };
     }, []);
     
-    useEffect(() => {
-        if (textAreaRef.current) {
-            textAreaRef.current.focus(); // Auto-focus when the console opens
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (textAreaRef.current) {
+    //         textAreaRef.current.focus(); // Auto-focus when the console opens
+    //     }
+    // }, []);
 
     const runCommand = () => {
         try {
@@ -78,10 +83,12 @@ function GameConsole({ gameRef, onClose }) {
                 
                 <div className='terminal'>
                     <h3>Runtime editor</h3>
-                    <textarea 
+                    <Editor
+                        textareaClassName='editor'
                         ref={textAreaRef}
                         value={command} 
-                        onChange={(e) => setCommand(e.target.value)}
+                        onValueChange={command => setCommand(command)}
+                        highlight={command => highlight(command, languages.js)}
                     />
                     <button className='button terminalBtn' onClick={runCommand}>Run</button>
                 

@@ -16,7 +16,7 @@
     border: none;
     border-radius: 5px;
     z-index: 1000;
-    font-family: 'Pixelon';
+    font-family: 'monospace';
     padding: 0 20px 20px 20px;
     -webkit-box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
     -moz-box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
@@ -36,7 +36,7 @@
     border-radius: 20px;
     top: 22px;
 }
-textarea{
+.editor{
     margin-left: auto;
     margin-right: auto;
     width: 95%;
@@ -50,7 +50,7 @@ textarea{
     border-radius: 5px;
     padding: 10px;
 }
-textarea:focus{
+.editor:focus{
     outline:none;
 }
 .terminalBtn{
