@@ -45,7 +45,7 @@ export class Game extends Scene
 
         // add a player
         this.player = this.physics.add.sprite(450, 300, 'robot');
-        this.player.speed = 300; // Movement speed
+        this.player.speed = 250; // Movement speed
 
         // add player animations
 
@@ -73,29 +73,30 @@ export class Game extends Scene
             frameRate: 10
         });
 
-        this.anims.create({
-            key: 'staticLeftUp',
-            frames: [ { key: 'robot', frame: 9 } ],
-            frameRate: 10
-        });
+        // TODO: make the robot take static position after a move
+        // this.anims.create({
+        //     key: 'staticLeftUp',
+        //     frames: [ { key: 'robot', frame: 9 } ],
+        //     frameRate: 10
+        // });
         
-        this.anims.create({
-            key: 'staticRightUp',
-            frames: [ { key: 'robot', frame: 6 } ],
-            frameRate: 10
-        });
+        // this.anims.create({
+        //     key: 'staticRightUp',
+        //     frames: [ { key: 'robot', frame: 6 } ],
+        //     frameRate: 10
+        // });
 
-        this.anims.create({
-            key: 'staticLeftDown',
-            frames: [ { key: 'robot', frame: 3 } ],
-            frameRate: 10
-        });
+        // this.anims.create({
+        //     key: 'staticLeftDown',
+        //     frames: [ { key: 'robot', frame: 3 } ],
+        //     frameRate: 10
+        // });
         
-        this.anims.create({
-            key: 'staticRightDown',
-            frames: [ { key: 'robot', frame: 0 } ],
-            frameRate: 10
-        });
+        // this.anims.create({
+        //     key: 'staticRightDown',
+        //     frames: [ { key: 'robot', frame: 0 } ],
+        //     frameRate: 10
+        // });
         
         this.sceneChanging = false;
         // Detecting intersections with taskFields
@@ -124,6 +125,7 @@ export class Game extends Scene
         // enable camera following (background moves dynamically)
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setLerp(0.1, 0.1);
+        this.cameras.main.setZoom(1.5, 1.5)
         
         // create cursors for keyboard input
         this.cursors = this.input.keyboard.createCursorKeys();
