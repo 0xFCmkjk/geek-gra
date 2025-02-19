@@ -18,8 +18,7 @@ export class Task1 extends Scene
 
     create ()
     {
-        const taskInfo = `Welcome to the first task of this game!~In this task you have to make a program doing XYZ!
-        Good luck! Click me to close.`;
+        const taskInfo = `Welcome to the first task of this game! In this task you have to make a program that prints out `;
 
         this.add.image(512, 364, 'background');
         this.add.text(100, 50, 'Back', {
@@ -37,6 +36,25 @@ export class Task1 extends Scene
                     this.scene.stop('Task1');
                 });
             })
+
+        this.events.on('toggle-pause', (shouldPause) => {
+            if (shouldPause) {
+                this.physics.pause();
+                this.input.keyboard.enabled = false;
+                window.addEventListener('keydown', preventPhaserInput, true);
+            } else {
+                this.physics.resume();
+                this.input.keyboard.enabled = true;
+                window.removeEventListener('keydown', preventPhaserInput, true);
+            }
+        });
+
+        function preventPhaserInput(event) {
+            // Allow these keys inside the console
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Enter', ' '].includes(event.key)) {
+                event.stopPropagation(); // Stop Phaser from capturing the event
+            }
+        }
 
         // pass on the scene????
         EventBus.emit('task-info-updated', taskInfo);
