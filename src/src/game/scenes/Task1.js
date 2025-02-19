@@ -22,6 +22,7 @@ export class Task1 extends Scene
         const taskInfo = `Welcome to the first task of this game! In this task you have to make a program that prints out name of the texture used to render the background.\n\nHint: In the Phaser API reference you should check "Phaser.Scene", also you can access the scene object via "scene" variable in the console. Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command.`;
 
         this.add.image(512, 364, 'background');
+        
         this.add.text(100, 50, 'Back', {
             fontFamily: '"Pixelon"',
             fontSize: '36px',
@@ -41,7 +42,14 @@ export class Task1 extends Scene
                 });
             })
         
-
+        this.narrator = this.add.text(800, 50, '', {
+            fontFamily: '"Pixelon"',
+            fontSize: '36px',
+            color: '#ffffff',
+            align: 'center',
+            backgroundColor: '#3F414F'
+        }).setOrigin(0.5).setInteractive()
+        
         // CONSOLE ARROWS FIX
         this.events.on('toggle-pause', (shouldPause) => {
             if (shouldPause) {
@@ -68,8 +76,46 @@ export class Task1 extends Scene
     }
 
     answer(params) {
-        const answer = "sss";
-        console.log(params == answer);    
+        const answer = "background";
+        const narratorText = `Congrats! This is your first big step into our game!~Click the "Back" button to go to the main lobby.`;
+        if (params == answer) {
+            this.narrator.text = this.typewriteText(narratorText);
+        }    
+    }
+
+    typewriteText(text) {
+        const length = text.length;
+        
+        // Stop any ongoing typing effect
+        if (this.narrator.isTyping) {
+            this.time.removeEvent(this.narrator.typingEvent);
+            this.narrator.isTyping = false;
+            return; 
+        }
+    
+        if (!this.narrator.isTyping) {
+            this.narrator.isTyping = true;
+            this.narrator.text = ""; 
+    
+            let i = 0;
+            this.narrator.typingEvent = this.time.addEvent({
+                callback: () => {
+                    if (text[i] != "~"){
+                        this.narrator.text += text[i];
+                        ++i;
+                        if (i === length) {
+                            this.narrator.isTyping = false; // Mark typing as finished inside the callback function
+                        }
+                    }
+                    else {
+                        this.narrator.text = "";
+                        ++i;
+                    }
+                },
+                repeat: length - 1,
+                delay: 75
+            });
+        }
     }
 }
 
