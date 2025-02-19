@@ -4,6 +4,7 @@ import { PhaserGame } from './game/PhaserGame';
 import GameConsole from './components/GameConsole';
 import StartingMenu from './components/StartingMenu';
 import TaskInfo from './components/TaskInfo';
+import { EventBus } from './game/EventBus';
 
 function App ()
 {
@@ -14,6 +15,10 @@ function App ()
     const [showMenu, setShowMenu] = useState(true);
     const phaserDocsUrl = "https://docs.phaser.io/phaser/getting-started/what-is-phaser";
     const reactDocsUrl = "https://react.dev/reference/react";
+
+    EventBus.on("back-button-pressed", () => {
+        setShowConsole(false);
+    })
 
     return (
         <div id="app">
