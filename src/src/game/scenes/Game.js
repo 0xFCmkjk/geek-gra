@@ -37,12 +37,15 @@ export class Game extends Scene
         // add platforms, they have to be declared first
         var platforms;
         var taskFields;
+        var taskField_one;
+        var taskField_two;
 
         platforms = this.physics.add.staticGroup();
         taskFields = this.physics.add.staticGroup();
         
         platforms.create(500, 500, 'ground').setScale(2).refreshBody();
-        taskFields.create(100, 100, 'ground').setScale(0.5).refreshBody();
+        taskField_one = taskFields.create(100, 100, 'ground').setScale(0.5).refreshBody();
+        taskField_two = taskFields.create(400, 400, 'ground').setScale(0.5).refreshBody();
 
         // add a player
         this.player = this.physics.add.sprite(450, 300, 'robot');
@@ -102,13 +105,24 @@ export class Game extends Scene
         // TODO: fix the warning about creating anims again
         this.sceneChanging = false;
         // Detecting intersections with taskFields
-        this.physics.add.overlap(this.player, taskFields, () => {
+        this.physics.add.overlap(this.player, taskField_one, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening
                 this.sceneChanging = true; // Set flag to prevent multiple triggers
                 
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     this.scene.start('Task1');
+                });
+            }
+        }, null, this);
+
+        this.physics.add.overlap(this.player, taskField_two, () => {
+            if (!this.sceneChanging) {  // Check if transition is already happening
+                this.sceneChanging = true; // Set flag to prevent multiple triggers
+                
+                this.cameras.main.fadeOut(500, 0, 0, 0);
+                this.time.delayedCall(500, () => {
+                    this.scene.start('Task2');
                 });
             }
         }, null, this);

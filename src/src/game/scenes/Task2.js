@@ -1,10 +1,10 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
-export class Task1 extends Scene
+export class Task2 extends Scene
 {
     constructor ()
     {
-        super('Task1');
+        super('Task2');
     }
 
     preload ()
@@ -17,8 +17,9 @@ export class Task1 extends Scene
 
     create ()
     {
-        const taskInfo = `Welcome to the first task of this game! In this task you have to make a program that prints out name of the texture used to render the background.\n\nHint: In the Phaser API reference you should check "Phaser.Scene", also you can access the scene object via "scene" variable in the console. Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command.`;
-        
+        const taskInfo = `This time you have to use a for loop to add 5 to all the values in scene.taskData. Good luck! Pass the array to the scene.answer()`;
+        this.taskData = [1, 3, 5, 7, 13, 19];
+
         this.add.image(512, 364, 'background');
         
         this.add.text(100, 50, 'Back', {
@@ -74,11 +75,15 @@ export class Task1 extends Scene
     }
 
     answer(params) {
-        const answer = "background";
-        const narratorText = `Congrats! This is your first big step into our game!~Click the "Back" button to go to the main lobby.`;
-        if (params == answer) {
+        const answer = [6, 8, 10, 12, 18, 24];
+        const narratorText = `Congrats! Another task completed!`;
+        if (params.toString() == answer.toString()) {
             this.narrator.text = this.typewriteText(narratorText);
-        }    
+            console.log("Correct answer!");
+        }
+        else {
+            console.log("Wrong answer!");
+        }
     }
 
     typewriteText(text) {

@@ -14,7 +14,6 @@ function App ()
     const [showInfo, setShowInfo] = useState(false);
     const [showMenu, setShowMenu] = useState(true);
     const phaserDocsUrl = "https://docs.phaser.io/phaser/getting-started/what-is-phaser";
-    const reactDocsUrl = "https://react.dev/reference/react";
 
     EventBus.on("back-button-pressed", () => {
         setShowConsole(false);
@@ -33,9 +32,6 @@ function App ()
                 </button>
                 <button className="button" onClick={() => window.open(phaserDocsUrl, '_blank').focus()}>
                     Phaser Docs
-                </button>
-                <button className="button" onClick={() => window.open(reactDocsUrl, '_blank').focus()}>
-                    React Docs
                 </button>
             </div>
             {showConsole && <GameConsole gameRef={phaserRef} onClose={() => setShowConsole(false)} />}
