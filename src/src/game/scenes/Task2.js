@@ -13,6 +13,7 @@ export class Task2 extends Scene
         
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
+        this.load.image('ziom', 'ziom.png');
     }
 
     create ()
@@ -21,6 +22,7 @@ export class Task2 extends Scene
         this.taskData = [1, 3, 5, 7, 13, 19];
 
         this.add.image(512, 364, 'background');
+        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(100, 50, 'Back', {
             fontFamily: '"Pixelon"',
@@ -41,12 +43,11 @@ export class Task2 extends Scene
                 });
             })
         
-        this.narrator = this.add.text(800, 50, '', {
+        this.narrator = this.add.text(260, 480, '', {
             fontFamily: '"Pixelon"',
-            fontSize: '36px',
-            color: '#ffffff',
-            align: 'center',
-            backgroundColor: '#3F414F'
+            fontSize: '28px',
+            color: '#000000',
+            align: 'center'
         }).setOrigin(0.5).setInteractive()
         
         // CONSOLE ARROWS FIX
@@ -78,6 +79,7 @@ export class Task2 extends Scene
         const answer = [6, 8, 10, 12, 18, 24];
         const narratorText = `Congrats! Another task completed!`;
         if (params.toString() == answer.toString()) {
+            this.ziom.setVisible(true);
             this.narrator.text = this.typewriteText(narratorText);
             console.log("Correct answer!");
         }

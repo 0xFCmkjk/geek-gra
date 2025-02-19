@@ -13,13 +13,15 @@ export class Task1 extends Scene
         
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
+        this.load.image('ziom', 'ziom.png');
     }
 
     create ()
     {
         const taskInfo = `Welcome to the first task of this game! In this task you have to make a program that prints out name of the texture used to render the background.\n\nHint: In the Phaser API reference you should check "Phaser.Scene", also you can access the scene object via "scene" variable in the console. Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command.`;
         
-        this.add.image(512, 364, 'background');
+        //this.add.image(512, 364, 'background');
+        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(100, 50, 'Back', {
             fontFamily: '"Pixelon"',
@@ -40,12 +42,11 @@ export class Task1 extends Scene
                 });
             })
         
-        this.narrator = this.add.text(800, 50, '', {
+        this.narrator = this.add.text(260, 480, '', {
             fontFamily: '"Pixelon"',
-            fontSize: '36px',
-            color: '#ffffff',
-            align: 'center',
-            backgroundColor: '#3F414F'
+            fontSize: '28px',
+            color: '#000000',
+            align: 'center'
         }).setOrigin(0.5).setInteractive()
         
         // CONSOLE ARROWS FIX
@@ -75,10 +76,15 @@ export class Task1 extends Scene
 
     answer(params) {
         const answer = "background";
-        const narratorText = `Congrats! This is your first big step into our game!~Click the "Back" button to go to the main lobby.`;
-        if (params == answer) {
+        const narratorText = `Congrats! Task completed!\nGo back to the main menu\nwith the "Back" button.`;
+        if (params.toString() == answer) {
+            this.ziom.setVisible(true);
             this.narrator.text = this.typewriteText(narratorText);
-        }    
+            console.log("Correct answer!");
+        }
+        else {
+            console.log("Wrong answer!");
+        }
     }
 
     typewriteText(text) {
@@ -86,6 +92,7 @@ export class Task1 extends Scene
         
         // Stop any ongoing typing effect
         if (this.narrator.isTyping) {
+            this.ziom.setVisible(true);
             this.time.removeEvent(this.narrator.typingEvent);
             this.narrator.isTyping = false;
             return; 
