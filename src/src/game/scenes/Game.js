@@ -18,6 +18,8 @@ export class Game extends Scene
 
     create ()
     {
+        const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with all the tasks.`;
+
         // add bg
         this.add.image(600, 781, 'background');
         // make sure the fonts are ready, then add the game title 
@@ -154,6 +156,7 @@ export class Game extends Scene
         }
 
         // pass on the scene????
+        EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
     }
 

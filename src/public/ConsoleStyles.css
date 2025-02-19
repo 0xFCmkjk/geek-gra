@@ -30,6 +30,26 @@
     -moz-box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
     box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
 }
+.taskInfo{
+    position: absolute; 
+    display: flex;
+    flex-direction: column;
+    top: 50%; 
+    left: 50%;
+    width: 450px; 
+    min-height: 420px;
+    background-color: #161616; 
+    color: var(--text-color); 
+    padding: 10px; 
+    border: none;
+    border-radius: 5px;
+    z-index: 1000;
+    font-family: "Fira code";
+    padding: 0 20px 20px 20px;
+    -webkit-box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
+    box-shadow: 10px 9px 0px 0px rgba(66, 68, 90, 1);
+}
 .terminal{
     display: flex; 
     flex-direction: column; 
