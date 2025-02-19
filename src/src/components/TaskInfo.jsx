@@ -62,15 +62,18 @@ function TaskInfo({ onClose }) {
     //TODO: CSS @mikolajjkrol <3
     return (
         <div 
-            className='console'
+            className='taskInfo'
             style = {{top: `${position.y}px`, left: `${position.x}px`, cursor: isDragging ? 'grabbing' : 'default', userSelect: 'none'}}
             onMouseMove={onDrag}
             onMouseUp={stopDrag}
             onMouseLeave={stopDrag}
             onMouseDown={startDrag}
         >
-                <button onClick={onClose} className='consoleBtn'></button>
-                {taskInfo && <p>{taskInfo}</p>}
+                <button onClick={onClose} className='consoleBtn' style={{margin: `6px 0 0 0`}}></button>
+                <h3 style={{padding: `0 0 0 164px`}}>Task Info</h3>
+                <div className='output' style={{padding: '0px 0 0 0'}}>
+                    <pre>{taskInfo}</pre>
+                </div>
         </div>
     );
 }
