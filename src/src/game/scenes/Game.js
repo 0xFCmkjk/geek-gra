@@ -44,6 +44,7 @@ export class Game extends Scene
         var taskField_three;
         var taskField_four;
         var taskField_five;
+        var taskField_six;
 
         platforms = this.physics.add.staticGroup();
         taskFields = this.physics.add.staticGroup();
@@ -54,8 +55,8 @@ export class Game extends Scene
         taskField_three = taskFields.create(600, 600, 'ground').setScale(0.5).refreshBody();
         taskField_four = taskFields.create(400, 50, 'ground').setScale(0.5).refreshBody();
         taskField_five = taskFields.create(600, 50, 'ground').setScale(0.5).refreshBody();
-
-
+        taskField_six = taskFields.create(800, 50, 'ground').setScale(0.5).refreshBody();
+        
         // add a player
         this.player = this.physics.add.sprite(450, 300, 'robot');
         this.player.speed = 250; // Movement speed
@@ -165,6 +166,17 @@ export class Game extends Scene
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     this.scene.start('Task5');
+                });
+            }
+        }, null, this);
+        
+        this.physics.add.overlap(this.player, taskField_six, () => {
+            if (!this.sceneChanging) {  // Check if transition is already happening
+                this.sceneChanging = true; // Set flag to prevent multiple triggers
+                
+                this.cameras.main.fadeOut(500, 0, 0, 0);
+                this.time.delayedCall(500, () => {
+                    this.scene.start('Task6');
                 });
             }
         }, null, this);
