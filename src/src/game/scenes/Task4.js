@@ -28,7 +28,7 @@ export class Task4 extends Scene
         
         var platforms;
         platforms = this.physics.add.staticGroup();
-        platforms.create(150, 728, "ground").setScale(6, 1).refreshBody();
+        platforms.create(300, 728, "ground").setScale(6, 1).refreshBody();
         platforms.create(500, 500, "ground").refreshBody();
         platforms.create(800, 300, "ground").refreshBody();
         platforms.create(350, 250, "ground").refreshBody();
@@ -45,17 +45,20 @@ export class Task4 extends Scene
         this.player.body.setGravityY(300);
         this.player.setBounce(0.2);
 
-        this.cameras.main.setPosition(380, 0);
+        this.cameras.main.setZoom(1.3);
+        this.cameras.main.setScroll(-330, 0);
+        //this.cameras.main.setPosition(380, 0);
+        //this.cameras.main.centerOn(425, 425);
         
         this.physics.add.overlap(this.player, this.star, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening
                 this.sceneChanging = true; // Set flag to prevent multiple triggers
-                
-                this.time.delayedCall(500, () => {
+                //this.cameras.main.fadeOut(500, 0, 0, 0);
+                //this.time.delayedCall(500, () => {
                     EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
                     this.scene.stop('Task1');
-                });
+                //});
             }
         }, null, this);
 
@@ -68,14 +71,14 @@ export class Task4 extends Scene
         }).setOrigin(0.5)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                this.cameras.main.fadeOut(500, 0, 0, 0);
-                this.time.delayedCall(500, () => {
+                //this.cameras.main.fadeOut(500, 0, 0, 0);
+                //this.time.delayedCall(500, () => {
                     // App.jsx listens to this event, when emited it closes the console, so when the character gets back to the main map 
                     // it can walk etc. (physics are resumed)
                     EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
                     this.scene.stop('Task1');
-                });
+                //});
             })
 
         // create cursors for keyboard input
