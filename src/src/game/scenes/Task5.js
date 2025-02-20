@@ -1,11 +1,11 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 import { typewriteText } from '../TypeWriter';
-export class Task4 extends Scene
+export class Task5 extends Scene
 {
     constructor ()
     {
-        super('Task4');
+        super('Task5');
     }
 
     preload ()
@@ -21,19 +21,18 @@ export class Task4 extends Scene
 
     create ()
     {
-        const taskInfo = `You have to reach the top, but your character doesn't jump high enough. Change proper parameter. Remember that you can use Phaser Documentation and API Reference. Hint: Which physical phenomenon attracts bodies to the ground?\nAs usually, you have to reference Phaser.Scene as scene.`;
+        const taskInfo = `This time, you have to get past this wall. Your objective is to disable it (so you can move past it), and grab the star. Good luck!`;
 
         this.add.image(512, 364, 'background').setScale(2, 1);
-        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         var platforms;
         platforms = this.physics.add.staticGroup();
         platforms.create(300, 728, "ground").setScale(6, 1).refreshBody();
-        platforms.create(500, 500, "ground").refreshBody();
-        platforms.create(800, 300, "ground").refreshBody();
-        platforms.create(350, 250, "ground").refreshBody();
+        this.wall = platforms.create(500, 400, "ground").setScale(6, 1).refreshBody();
+        this.wall.name = "wall";
 
-        this.star = this.physics.add.image(350, 190, 'star');
+        this.star = this.physics.add.image(512, 170, 'star');
+        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
 
         this.player = this.physics.add.sprite(300, 500, 'robot')
         this.player.speed = 200;
@@ -42,13 +41,14 @@ export class Task4 extends Scene
         this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, platforms);
         this.physics.add.collider(this.star, platforms);
-        this.player.body.setGravityY(300);
-        this.player.setBounce(0.2);
+        
+        this.player.body.setGravity(0, 0);
+        this.physics.world.gravity.y = 0;
+        this.player.setDamping(true);
+        this.player.setDrag(1000);
 
         this.cameras.main.setZoom(1.3);
         this.cameras.main.setScroll(-330, 0);
-        //this.cameras.main.setPosition(380, 0);
-        //this.cameras.main.centerOn(425, 425);
         
         this.physics.add.overlap(this.player, this.star, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening
@@ -114,18 +114,30 @@ export class Task4 extends Scene
         if(this.isPaused) return;
 
         // Reset velocity before applying movement
-        //this.player.setVelocity(0);
+        this.player.setVelocity(0);
 
-        if (this.cursors.left.isDown && this.cursors.up.isDown && this.player.body.touching.down) {
+        if (this.cursors.left.isDown && this.cursors.up.isDown) {
             this.player.setVelocityX(-this.player.speed);
-            this.player.setVelocityY(-this.player.speed * 2);
+            this.player.setVelocityY(-this.player.speed);
             this.player.anims.play('leftUp', true);
             return;
         }
-        else if (this.cursors.right.isDown && this.cursors.up.isDown && this.player.body.touching.down){
+        else if (this.cursors.right.isDown && this.cursors.up.isDown){
             this.player.setVelocityX(this.player.speed);
-            this.player.setVelocityY(-this.player.speed * 2);
+            this.player.setVelocityY(-this.player.speed);
             this.player.anims.play('up', true);
+            return;
+        }
+        else if (this.cursors.right.isDown && this.cursors.down.isDown){
+            this.player.setVelocityX(this.player.speed);
+            this.player.setVelocityY(this.player.speed);
+            this.player.anims.play('rightAndDown', true);
+            return;
+        }
+        else if (this.cursors.left.isDown && this.cursors.down.isDown){
+            this.player.setVelocityX(-this.player.speed);
+            this.player.setVelocityY(this.player.speed);
+            this.player.anims.play('left', true);
             return;
         }
         
@@ -137,11 +149,13 @@ export class Task4 extends Scene
             this.player.setVelocityX(this.player.speed);
             this.player.anims.play('rightAndDown', true);
         }
-        else if (this.cursors.up.isDown && this.player.body.touching.down) {
-            this.player.setVelocityY(-this.player.speed * 2);
-        }
-        else {
-            this.player.setVelocityX(0);
+        else if (this.cursors.up.isDown) {
+            this.player.setVelocityY(-this.player.speed);
+            this.player.anims.play('up', true);
+        } 
+        else if (this.cursors.down.isDown) {
+            this.player.setVelocityY(this.player.speed);
+            this.player.anims.play('rightAndDown', true);
         }
     }
 }
