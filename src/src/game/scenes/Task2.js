@@ -1,5 +1,6 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
+import { typewriteText } from '../TypeWriter';
 export class Task2 extends Scene
 {
     constructor ()
@@ -80,46 +81,11 @@ export class Task2 extends Scene
         const narratorText = `Congrats! Another task completed!`;
         if (params.toString() == answer.toString()) {
             this.ziom.setVisible(true);
-            this.narrator.text = this.typewriteText(narratorText);
+            this.narrator.text = typewriteText(this, narratorText, this.narrator);
             console.log("Correct answer!");
         }
         else {
             console.log("Wrong answer!");
-        }
-    }
-
-    typewriteText(text) {
-        const length = text.length;
-        
-        // Stop any ongoing typing effect
-        if (this.narrator.isTyping) {
-            this.time.removeEvent(this.narrator.typingEvent);
-            this.narrator.isTyping = false;
-            return; 
-        }
-    
-        if (!this.narrator.isTyping) {
-            this.narrator.isTyping = true;
-            this.narrator.text = ""; 
-    
-            let i = 0;
-            this.narrator.typingEvent = this.time.addEvent({
-                callback: () => {
-                    if (text[i] != "~"){
-                        this.narrator.text += text[i];
-                        ++i;
-                        if (i === length) {
-                            this.narrator.isTyping = false; // Mark typing as finished inside the callback function
-                        }
-                    }
-                    else {
-                        this.narrator.text = "";
-                        ++i;
-                    }
-                },
-                repeat: length - 1,
-                delay: 75
-            });
         }
     }
 }
