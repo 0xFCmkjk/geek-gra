@@ -19,9 +19,11 @@ export class Task1 extends Scene
 
     create ()
     {
-        const taskInfo = `Welcome to the first task of this game! In this task you have to make a program that prints out name of the texture used to render the background.\n\nHint: In the Phaser API reference you should check "Phaser.Scene", also you can access the scene object via "scene" variable in the console. Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command.`;
+        const taskInfo = `Welcome to the first task of this game! In this task you have to find out name of the texture used to render the narrator.\n\nHint: In the Phaser API reference you should check "Phaser.Scene", also you can access the scene object via "scene" variable in the console. Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command.`;
         
         //this.add.image(512, 364, 'background');
+
+        // add the narrator as an image
         this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(100, 50, 'Back', {
@@ -43,6 +45,7 @@ export class Task1 extends Scene
                 });
             })
         
+        // add text for the narrator (ziom)
         this.narrator = this.add.text(260, 480, '', {
             fontFamily: '"Pixelon"',
             fontSize: '28px',
@@ -76,7 +79,7 @@ export class Task1 extends Scene
     }
 
     answer(params) {
-        const answer = "background";
+        const answer = "ziom";
         const narratorText = `Congrats! Task completed!\nGo back to the main menu\nwith the "Back" button.`;
         if (params.toString() == answer) {
             this.ziom.setVisible(true);

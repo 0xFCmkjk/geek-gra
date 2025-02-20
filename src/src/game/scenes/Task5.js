@@ -28,25 +28,27 @@ export class Task5 extends Scene
         var platforms;
         platforms = this.physics.add.staticGroup();
         platforms.create(300, 728, "ground").setScale(6, 1).refreshBody();
+        // the wall that you have to delete (it is in the platforms group)
         this.wall = platforms.create(500, 400, "ground").setScale(6, 1).refreshBody();
         this.wall.name = "wall";
 
+        // star
         this.star = this.physics.add.image(512, 170, 'star');
+        // narrator
         this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
-
+        // player
         this.player = this.physics.add.sprite(300, 500, 'robot')
         this.player.speed = 200;
-
+        // physics settings
         this.physics.world.setBounds(0, 0);
         this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, platforms);
         this.physics.add.collider(this.star, platforms);
-        
         this.player.body.setGravity(0, 0);
         this.physics.world.gravity.y = 0;
         this.player.setDamping(true);
         this.player.setDrag(1000);
-
+        // camera settings
         this.cameras.main.setZoom(1.3);
         this.cameras.main.setScroll(-330, 0);
         

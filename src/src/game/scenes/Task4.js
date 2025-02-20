@@ -38,6 +38,7 @@ export class Task4 extends Scene
         this.player = this.physics.add.sprite(300, 500, 'robot')
         this.player.speed = 200;
 
+        // physics
         this.physics.world.setBounds(0, 0);
         this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, platforms);
@@ -45,10 +46,9 @@ export class Task4 extends Scene
         this.player.body.setGravityY(300);
         this.player.setBounce(0.2);
 
+        // camera
         this.cameras.main.setZoom(1.3);
         this.cameras.main.setScroll(-330, 0);
-        //this.cameras.main.setPosition(380, 0);
-        //this.cameras.main.centerOn(425, 425);
         
         this.physics.add.overlap(this.player, this.star, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening

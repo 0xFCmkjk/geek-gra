@@ -25,7 +25,7 @@ export class Task3 extends Scene
         this.isLeap = [false, true, true, true, true, false]
         const taskInfo = `Welcome to another task, you have to make a isYearLeap function which checks if the year is leap. In JavaScript functions are usually defined with a function keyword, for example:\n\nfunction abc(parameter) {\n\tlogic here\n}\n\nFunctions can use parameters that are given to them.\nHint: Years that are divisible by 4, are leap, BUT if the year is divisible by 100 it also has to be divisible by 400.\nIf you find the solution, pass function name: scene.asnwer(isYearLeap)`;
 
-        this.add.image(512, 364, 'background');
+        //this.add.image(512, 364, 'background');
         this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(100, 50, 'Back', {

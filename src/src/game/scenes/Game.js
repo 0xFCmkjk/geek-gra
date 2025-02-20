@@ -23,32 +23,22 @@ export class Game extends Scene
 
         // add bg
         this.add.image(600, 781, 'background');
-        // make sure the fonts are ready, then add the game title 
-        
-        /*
-        document.fonts.ready.then(() => {
-            this.add.text(512, 30, 'NAME OF THE GAME', {
-                fontFamily: '"Pixelon"',
-                fontSize: '38px',
-                color: '#ffffff',
-                align: 'center'
-            }).setOrigin(0.5);
-        }); */
-        
-        // add platforms, they have to be declared first
+
+        // define platforms, taskFields (groups)
         var platforms;
         var taskFields;
-        
+        // define taskFields - (single objects)
         var taskField_one;
         var taskField_two;
         var taskField_three;
         var taskField_four;
         var taskField_five;
         var taskField_six;
-
+        // add static groups
         platforms = this.physics.add.staticGroup();
         taskFields = this.physics.add.staticGroup();
         
+        // create taskfields and the ground
         platforms.create(500, 500, 'ground').setScale(2).refreshBody();
         taskField_one = taskFields.create(100, 100, 'ground').setScale(0.5).refreshBody();
         taskField_two = taskFields.create(400, 400, 'ground').setScale(0.5).refreshBody();
@@ -62,7 +52,6 @@ export class Game extends Scene
         this.player.speed = 250; // Movement speed
 
         // add player animations
-
         this.anims.create({
             key: 'leftUp',
             frames: this.anims.generateFrameNumbers('robot', { start: 9, end: 11 }),
@@ -114,7 +103,8 @@ export class Game extends Scene
         
         // TODO: fix the warning about creating anims again
         this.sceneChanging = false;
-        // Detecting intersections with taskFields
+        
+        // INTERSECTIONS WITH TASKFIELDS
         this.physics.add.overlap(this.player, taskField_one, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening
                 this.sceneChanging = true; // Set flag to prevent multiple triggers
@@ -127,8 +117,8 @@ export class Game extends Scene
         }, null, this);
 
         this.physics.add.overlap(this.player, taskField_two, () => {
-            if (!this.sceneChanging) {  // Check if transition is already happening
-                this.sceneChanging = true; // Set flag to prevent multiple triggers
+            if (!this.sceneChanging) {  
+                this.sceneChanging = true; 
                 
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
@@ -138,8 +128,8 @@ export class Game extends Scene
         }, null, this);
 
         this.physics.add.overlap(this.player, taskField_three, () => {
-            if (!this.sceneChanging) {  // Check if transition is already happening
-                this.sceneChanging = true; // Set flag to prevent multiple triggers
+            if (!this.sceneChanging) {  
+                this.sceneChanging = true; 
                 
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
@@ -149,8 +139,8 @@ export class Game extends Scene
         }, null, this);
 
         this.physics.add.overlap(this.player, taskField_four, () => {
-            if (!this.sceneChanging) {  // Check if transition is already happening
-                this.sceneChanging = true; // Set flag to prevent multiple triggers
+            if (!this.sceneChanging) {  
+                this.sceneChanging = true; 
                 
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
@@ -160,8 +150,8 @@ export class Game extends Scene
         }, null, this);
 
         this.physics.add.overlap(this.player, taskField_five, () => {
-            if (!this.sceneChanging) {  // Check if transition is already happening
-                this.sceneChanging = true; // Set flag to prevent multiple triggers
+            if (!this.sceneChanging) {  
+                this.sceneChanging = true; 
                 
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
@@ -171,8 +161,8 @@ export class Game extends Scene
         }, null, this);
         
         this.physics.add.overlap(this.player, taskField_six, () => {
-            if (!this.sceneChanging) {  // Check if transition is already happening
-                this.sceneChanging = true; // Set flag to prevent multiple triggers
+            if (!this.sceneChanging) {  
+                this.sceneChanging = true; 
                 
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
@@ -186,7 +176,7 @@ export class Game extends Scene
         this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, platforms);
 
-        // make the character walk like in undertale
+        // turn gravity to 0, add drag to eliminate freaky behaviour
         this.player.body.setGravity(0, 0);
         this.physics.world.gravity.y = 0;
         this.player.setDamping(true);
@@ -200,7 +190,7 @@ export class Game extends Scene
         // create cursors for keyboard input
         this.cursors = this.input.keyboard.createCursorKeys();
         
-        // New variable to track pause state
+        // Track pause state
         this.isPaused = false; 
 
         // Listen for the pause event from the console
@@ -224,8 +214,8 @@ export class Game extends Scene
         }
 
         // pass on the scene????
-        EventBus.emit('task-info-updated', taskInfo);
-        EventBus.emit('current-scene-ready', this);
+        EventBus.emit('task-info-updated', taskInfo); // for taskinfo
+        EventBus.emit('current-scene-ready', this); // for console
     }
 
     update (){

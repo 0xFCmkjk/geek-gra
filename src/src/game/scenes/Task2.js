@@ -22,7 +22,7 @@ export class Task2 extends Scene
         const taskInfo = `This time you have to use a for loop to add 5 to all the values in scene.taskData (it is an array). For loops in JS have similar syntax to C for loops.\n\nfor (executed_once; condition; executed_after_the_codeblock) {\n\tcodeblock\n}\n\nGood luck! Pass array with the answers: scene.answer(array)`;
         this.taskData = [1, 3, 5, 7, 13, 19];
 
-        this.add.image(512, 364, 'background');
+        //this.add.image(512, 364, 'background');
         this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(100, 50, 'Back', {
