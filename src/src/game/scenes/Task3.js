@@ -1,11 +1,12 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 import { typewriteText } from '../TypeWriter';
-export class Task2 extends Scene
+
+export class Task3 extends Scene
 {
     constructor ()
     {
-        super('Task2');
+        super('Task3');
     }
 
     preload ()
@@ -19,8 +20,10 @@ export class Task2 extends Scene
 
     create ()
     {
-        const taskInfo = `This time you have to use a for loop to add 5 to all the values in scene.taskData (it is an array). For loops in JS have similar syntax to C for loops.\n\nfor (executed_once; condition; executed_after_the_codeblock) {\n\tcodeblock\n}\n\nGood luck! Pass array with the answers: scene.answer(array)`;
-        this.taskData = [1, 3, 5, 7, 13, 19];
+        
+        this.years = [1970, 1600, 1636, 2024, 2020, 2100]
+        this.isLeap = [false, true, true, true, true, false]
+        const taskInfo = `Welcome to another task, you have to make a isYearLeap function which checks if the year is leap. In JavaScript functions are usually defined with a function keyword, for example:\n\nfunction abc(parameter) {\n\tlogic here\n}\n\nFunctions can use parameters that are given to them.\nHint: Years that are divisible by 4, are leap, BUT if the year is divisible by 100 it also has to be divisible by 400.\nIf you find the solution, pass function name: scene.asnwer(isYearLeap)`;
 
         this.add.image(512, 364, 'background');
         this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
@@ -76,10 +79,20 @@ export class Task2 extends Scene
         EventBus.emit('current-scene-ready', this);
     }
 
-    answer(params) {
-        const answer = [6, 8, 10, 12, 18, 24];
+    answer(ans) {
         const narratorText = `Congrats! Another task completed!`;
-        if (params.toString() == answer.toString()) {
+        var truthTable = [];
+        
+        for (let i = 0; i < this.years.length; i++) {
+            console.log("------------");
+            console.log("Year", this.years[i]);
+            console.log("Is leap? (user function): ", ans(this.years[i]));
+            truthTable[i] = ans(this.years[i]);
+        }
+
+        console.log("Your function output after a for loop:", truthTable);
+
+        if (truthTable.toString() == this.isLeap.toString()) {
             this.ziom.setVisible(true);
             this.narrator.text = typewriteText(this, narratorText, this.narrator);
             console.log("Correct answer!");
