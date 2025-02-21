@@ -94,7 +94,7 @@ function GameConsole({ gameRef, onClose }) {
                             fontFamily: '"Fira code", "Fira Mono", monospace',
                             width: '100%',
                             minHeight: '100px',
-                            borderRadius: '5px',
+                            border:'3px solid #000000',
                             fontSize: '14px',}}
                     />
                     <button className='terminalBtn' onClick={runCommand}>Run</button>

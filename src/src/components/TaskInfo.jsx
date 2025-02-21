@@ -71,8 +71,8 @@ function TaskInfo({ onClose }) {
         >
                 <button onClick={onClose} className='consoleBtn' style={{margin: `6px 0 0 0`}}></button>
                 <h3 style={{padding: `0 0 0 164px`}}>Task Info</h3>
-                <div className='output' style={{padding: '0px 0 0 0'}}>
-                    <pre>{taskInfo}</pre>
+                <div style={{padding: '0px 0 0 0'}}>
+                    <pre className='task'>{taskInfo}</pre>
                 </div>
         </div>
     );
