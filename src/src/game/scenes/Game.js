@@ -12,6 +12,8 @@ export class Game extends Scene
         this.load.setPath('assets');
         
         this.load.spritesheet('robot', 'robot.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet('server1', 'objects/server1.png', { frameWidth: 81, frameHeight: 112 });
+        this.load.spritesheet('server2', 'objects/server2.png', { frameWidth: 81, frameHeight: 112 });
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
         this.load.image('walls1', 'walls1.png');
@@ -32,9 +34,12 @@ export class Game extends Scene
         this.add.image(1000, 1000, 'objects');
         this.add.image(1000, 1000, 'walls3');
 
-        // define taskFields, colliders
+        // define taskFields, colliders, servers
         var taskFields;
         var collids;
+        var servers1;
+        var servers2; // phaser colision
+
         // define taskFields - (single objects)
         var taskField_one;
         var taskField_two;
@@ -42,11 +47,27 @@ export class Game extends Scene
         var taskField_four;
         var taskField_five;
         var taskField_six;
-        
+
         // add static groups
         taskFields = this.physics.add.staticGroup();
         collids = this.physics.add.staticGroup();
+        servers1 = this.physics.add.staticGroup();
+        servers2 = this.physics.add.staticGroup();
 
+        // servers
+        let sv1 = servers1.create(50, 76, 'server1').setOrigin(0, 0).refreshBody();
+        let sv2 = servers1.create(170, 76, 'server2').setOrigin(0, 0).refreshBody();
+        let sv3 = servers1.create(290, 76, 'server2').setOrigin(0, 0).refreshBody();
+        let sv4 = servers1.create(410, 76, 'server1').setOrigin(0, 0).refreshBody();
+        let sv5 = servers1.create(530, 76, 'server2').setOrigin(0, 0).refreshBody();
+        let sv6 = servers1.create(650, 76, 'server2').setOrigin(0, 0).refreshBody();
+        let sv7 = servers2.create(50, 265, 'server2').setOrigin(0, 0).refreshBody();
+        let sv8 = servers2.create(170, 265, 'server2').setOrigin(0, 0).refreshBody();
+        let sv9 = servers2.create(290, 265, 'server1').setOrigin(0, 0).refreshBody();
+        let sv10 = servers2.create(410, 265, 'server2').setOrigin(0, 0).refreshBody();
+        let sv11 = servers2.create(530, 265, 'server2').setOrigin(0, 0).refreshBody();
+        let sv12 = servers2.create(650, 265, 'server1').setOrigin(0, 0).refreshBody();
+       
         // Northwest wall
         collids.create(0, 401, 'ground').setOrigin(0, 0).setScale(3.04, 3.52).refreshBody().alpha = 0;
         collids.create(505, 578, 'ground').setOrigin(0, 0).setScale(1.36, 2.80).refreshBody().alpha = 0;
@@ -103,13 +124,8 @@ export class Game extends Scene
         collids.create(659, 1047, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
         collids.create(659, 850, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
 
-
-
-
-
-
-
-
+        // north servers
+        collids.create(0, 63, 'ground').setOrigin(0, 0).setScale(2.41, 1.54).refreshBody().alpha = 0;
 
 
         // add a player
@@ -120,6 +136,7 @@ export class Game extends Scene
         this.physics.world.setBounds(0, 90, 2000, 1840);
         this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, collids);
+        this.physics.add.collider(this.player, servers2);
 
         // turn gravity to 0, add drag to eliminate freaky behaviour
         this.player.body.setGravity(0, 0);
@@ -139,6 +156,21 @@ export class Game extends Scene
         // taskField_four = taskFields.create(400, 50, 'ground').setScale(0.5).refreshBody();
         // taskField_five = taskFields.create(600, 50, 'ground').setScale(0.5).refreshBody();
         // taskField_six = taskFields.create(800, 50, 'ground').setScale(0.5).refreshBody();
+
+        // add server animations
+        this.anims.create({
+            key: 'blink_s1',
+            frames: this.anims.generateFrameNumbers('server1', { start: 0, end: 2 }),
+            frameRate: 3,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'blink_s2',
+            frames: this.anims.generateFrameNumbers('server2', { start: 0, end: 2 }),
+            frameRate: 3,
+            repeat: -1
+        });
 
         // add player animations
         this.anims.create({
@@ -264,6 +296,19 @@ export class Game extends Scene
             }
         }
 
+        sv1.anims.play('blink_s1', true);
+        sv2.anims.play('blink_s2', true);
+        sv3.anims.play('blink_s2', true);
+        sv4.anims.play('blink_s1', true);
+        sv5.anims.play('blink_s2', true);
+        sv6.anims.play('blink_s2', true);
+        sv7.anims.play('blink_s2', true);
+        sv8.anims.play('blink_s2', true);
+        sv9.anims.play('blink_s1', true);
+        sv10.anims.play('blink_s2', true);
+        sv11.anims.play('blink_s2', true);
+        sv12.anims.play('blink_s1', true);
+        
         // pass on the scene????
         EventBus.emit('task-info-updated', taskInfo); // for taskinfo
         EventBus.emit('current-scene-ready', this); // for console
