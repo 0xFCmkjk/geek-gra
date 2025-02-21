@@ -14,6 +14,10 @@ export class Game extends Scene
         this.load.spritesheet('robot', 'robot.png', { frameWidth: 64, frameHeight: 64 });
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
+        this.load.image('walls1', 'walls1.png');
+        this.load.image('walls2', 'walls2.png'); // aka maxwalls
+        this.load.image('walls3', 'walls3.png'); // aka greywalls
+        this.load.image('objects', 'objects.png');
     }
 
     create ()
@@ -21,12 +25,16 @@ export class Game extends Scene
         //TODO: Make the quickstart guide
         const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with all the tasks.\nAlso check out the quickstart guide, where you will learn about basic concept crucial to beat this game. Have fun!`;
 
-        // add bg
-        this.add.image(600, 781, 'background');
+        // add bg and first walls
+        this.add.image(1000, 1000, 'background');
+        this.add.image(1000, 1000, 'walls1');
+        this.add.image(1000, 1000, 'walls2');
+        this.add.image(1000, 1000, 'objects');
+        this.add.image(1000, 1000, 'walls3');
 
-        // define platforms, taskFields (groups)
-        var platforms;
+        // define taskFields, colliders
         var taskFields;
+        var collids;
         // define taskFields - (single objects)
         var taskField_one;
         var taskField_two;
@@ -34,22 +42,103 @@ export class Game extends Scene
         var taskField_four;
         var taskField_five;
         var taskField_six;
+        
         // add static groups
-        platforms = this.physics.add.staticGroup();
         taskFields = this.physics.add.staticGroup();
-        
-        // create taskfields and the ground
-        platforms.create(500, 500, 'ground').setScale(2).refreshBody();
-        taskField_one = taskFields.create(100, 100, 'ground').setScale(0.5).refreshBody();
-        taskField_two = taskFields.create(400, 400, 'ground').setScale(0.5).refreshBody();
-        taskField_three = taskFields.create(600, 600, 'ground').setScale(0.5).refreshBody();
-        taskField_four = taskFields.create(400, 50, 'ground').setScale(0.5).refreshBody();
-        taskField_five = taskFields.create(600, 50, 'ground').setScale(0.5).refreshBody();
-        taskField_six = taskFields.create(800, 50, 'ground').setScale(0.5).refreshBody();
-        
+        collids = this.physics.add.staticGroup();
+
+        // Northwest wall
+        collids.create(0, 401, 'ground').setOrigin(0, 0).setScale(3.04, 3.52).refreshBody().alpha = 0;
+        collids.create(505, 578, 'ground').setOrigin(0, 0).setScale(1.36, 2.80).refreshBody().alpha = 0;
+        collids.create(505, 717, 'ground').setOrigin(0, 0).setScale(0.47, 3.42).refreshBody().alpha = 0;
+        collids.create(914, 401, 'ground').setOrigin(0, 0).setScale(0.01, 6.3).refreshBody().alpha = 0;
+
+        // Northeast wall
+        collids.create(1085, 401, 'ground').setOrigin(0, 0).setScale(3.04, 3.52).refreshBody().alpha = 0;
+        collids.create(1085, 578, 'ground').setOrigin(0, 0).setScale(1.36, 2.80).refreshBody().alpha = 0;
+        collids.create(1352, 717, 'ground').setOrigin(0, 0).setScale(0.47, 3.42).refreshBody().alpha = 0;
+        collids.create(1081, 401, 'ground').setOrigin(0, 0).setScale(0.01, 6.3).refreshBody().alpha = 0;
+
+        // Southwest wall
+        collids.create(0, 1360, 'ground').setOrigin(0, 0).setScale(3.04, 3.52).refreshBody().alpha = 0;
+        collids.create(506, 1221, 'ground').setOrigin(0, 0).setScale(1.35, 2.80).refreshBody().alpha = 0;
+        collids.create(505, 1049, 'ground').setOrigin(0, 0).setScale(0.47, 6).refreshBody().alpha = 0;
+        collids.create(914, 1221, 'ground').setOrigin(0, 0).setScale(0.01, 6.3).refreshBody().alpha = 0;
+
+        // Southeast wall
+        collids.create(1085, 1360, 'ground').setOrigin(0, 0).setScale(3.04, 3.52).refreshBody().alpha = 0;
+        collids.create(1085, 1221, 'ground').setOrigin(0, 0).setScale(1.35, 2.80).refreshBody().alpha = 0;
+        collids.create(1354, 1049, 'ground').setOrigin(0, 0).setScale(0.47, 8).refreshBody().alpha = 0;
+        collids.create(1085, 1221, 'ground').setOrigin(0, 0).setScale(0.01, 6.3).refreshBody().alpha = 0;
+
+        // pcs north
+        collids.create(66, 760, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(66, 675, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(66, 589, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(207, 760, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(207, 675, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(207, 589, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(350, 760, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(350, 675, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(350, 589, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+
+        // pcs south
+        collids.create(70, 1232, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0; 
+        collids.create(70, 1147, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0; 
+        collids.create(70, 1061, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0; 
+        collids.create(211, 1232, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(211, 1147, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(211, 1061, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(354, 1232, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(354, 1147, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+        collids.create(354, 1061, 'ground').setOrigin(0, 0).setScale(0.20, 0.02).refreshBody().alpha = 0;
+
+        // bushes
+        collids.create(870, 696, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(1101, 697, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(1312, 853, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(1317, 1054, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(1112, 1168, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(876, 1170, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(659, 1047, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(659, 850, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+
+
+
+
+
+
+
+
+
+
         // add a player
-        this.player = this.physics.add.sprite(450, 300, 'robot');
+        this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();
         this.player.speed = 250; // Movement speed
+
+        // set world borders and collisions
+        this.physics.world.setBounds(0, 90, 2000, 1930);
+        this.player.setCollideWorldBounds(true);
+        this.physics.add.collider(this.player, collids);
+
+        // turn gravity to 0, add drag to eliminate freaky behaviour
+        this.player.body.setGravity(0, 0);
+        this.physics.world.gravity.y = 0;
+        this.physics.world.gravity.x = 0;
+        this.player.setDamping(true);
+        this.player.setDrag(1000);
+
+        // enable camera following (background moves dynamically)
+        this.cameras.main.startFollow(this.player);
+        this.cameras.main.setLerp(0.1, 0.1);
+        this.cameras.main.setZoom(1.5, 1.5);
+
+        // taskField_one = taskFields.create(100, 100, 'ground').setScale(0.5).refreshBody();
+        // taskField_two = taskFields.create(400, 400, 'ground').setScale(0.5).refreshBody();
+        // taskField_three = taskFields.create(600, 600, 'ground').setScale(0.5).refreshBody();
+        // taskField_four = taskFields.create(400, 50, 'ground').setScale(0.5).refreshBody();
+        // taskField_five = taskFields.create(600, 50, 'ground').setScale(0.5).refreshBody();
+        // taskField_six = taskFields.create(800, 50, 'ground').setScale(0.5).refreshBody();
 
         // add player animations
         this.anims.create({
@@ -77,33 +166,11 @@ export class Game extends Scene
         });
 
         // TODO: make the robot take static position after a move
-        // this.anims.create({
-        //     key: 'staticLeftUp',
-        //     frames: [ { key: 'robot', frame: 9 } ],
-        //     frameRate: 10
-        // });
-        
-        // this.anims.create({
-        //     key: 'staticRightUp',
-        //     frames: [ { key: 'robot', frame: 6 } ],
-        //     frameRate: 10
-        // });
-
-        // this.anims.create({
-        //     key: 'staticLeftDown',
-        //     frames: [ { key: 'robot', frame: 3 } ],
-        //     frameRate: 10
-        // });
-        
-        // this.anims.create({
-        //     key: 'staticRightDown',
-        //     frames: [ { key: 'robot', frame: 0 } ],
-        //     frameRate: 10
-        // });
-        
         // TODO: fix the warning about creating anims again
-        this.sceneChanging = false;
         
+        // track if scene is already changing
+        this.sceneChanging = false;
+
         // INTERSECTIONS WITH TASKFIELDS
         this.physics.add.overlap(this.player, taskField_one, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening
@@ -170,22 +237,6 @@ export class Game extends Scene
                 });
             }
         }, null, this);
-
-        // set world borders and collisions
-        this.physics.world.setBounds(0,0,1200,1562);
-        this.player.setCollideWorldBounds(true);
-        this.physics.add.collider(this.player, platforms);
-
-        // turn gravity to 0, add drag to eliminate freaky behaviour
-        this.player.body.setGravity(0, 0);
-        this.physics.world.gravity.y = 0;
-        this.player.setDamping(true);
-        this.player.setDrag(1000);
-
-        // enable camera following (background moves dynamically)
-        this.cameras.main.startFollow(this.player);
-        this.cameras.main.setLerp(0.1, 0.1);
-        this.cameras.main.setZoom(1.5, 1.5)
         
         // create cursors for keyboard input
         this.cursors = this.input.keyboard.createCursorKeys();
