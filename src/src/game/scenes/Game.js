@@ -117,7 +117,7 @@ export class Game extends Scene
         this.player.speed = 250; // Movement speed
 
         // set world borders and collisions
-        this.physics.world.setBounds(0, 90, 2000, 1930);
+        this.physics.world.setBounds(0, 90, 2000, 1840);
         this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, collids);
 
