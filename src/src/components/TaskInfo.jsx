@@ -59,7 +59,6 @@ function TaskInfo({ onClose }) {
 
     const stopDrag = () => setIsDragging(false);
     
-    //TODO: CSS @mikolajjkrol <3
     return (
         <div 
             className='taskInfo'
