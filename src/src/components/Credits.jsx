@@ -1,7 +1,7 @@
 export default function Credits({onClose}){
     return (
         <div className="menu">
-                <h2>Credientials</h2>
+                <h2>Credentials</h2>
                 <p>Michał Bartoszcze</p>
                 <i>JavaScript, Game backend, Gameplay</i>
                 <p>Mikołaj Król</p>
