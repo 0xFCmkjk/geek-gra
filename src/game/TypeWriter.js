@@ -1,33 +1,46 @@
+import { EventBus } from './EventBus';
+
 export function typewriteText(scene, text, targetTextObject) {
     const length = text.length;
     
-    // Stop any ongoing typing effect
     if (targetTextObject.isTyping) {
         scene.time.removeEvent(targetTextObject.typingEvent);
         targetTextObject.isTyping = false;
         return;
     }
 
-    if (!targetTextObject.isTyping) {
-        targetTextObject.isTyping = true;
-        targetTextObject.text = ""; 
+    targetTextObject.isTyping = true;
+    targetTextObject.text = ""; 
+    let i = 0;
 
-        let i = 0;
+    function resumeTyping() {
         targetTextObject.typingEvent = scene.time.addEvent({
             callback: () => {
-                if (text[i] !== "~") {
+                if (i < length) {
+                    if (text[i] === "~") {
+                        EventBus.emit("show-resume-button"); // Notify to show the button
+                        scene.time.removeEvent(targetTextObject.typingEvent); // Stop typing
+                        return;
+                    } 
+                    
                     targetTextObject.text += text[i];
-                    ++i;
+                    i++;
+
                     if (i === length) {
-                        targetTextObject.isTyping = false; // Mark typing as finished inside the callback function
+                        targetTextObject.isTyping = false; 
                     }
-                } else {
-                    targetTextObject.text = "";
-                    ++i;
                 }
             },
-            repeat: length - 1,
+            repeat: length - i - 1,
             delay: 75
         });
     }
+
+    EventBus.on("resume-typing", () => {
+        i++; // Move past the "~" character
+        targetTextObject.text = "";
+        resumeTyping();
+    });
+
+    resumeTyping();
 }

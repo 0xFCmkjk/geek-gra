@@ -79,6 +79,24 @@ export class Task6 extends Scene
                 //});
             })
 
+        
+        this.resumeButton = this.add.text(400, 650, 'Continue', { 
+            fontFamily: '"Pixelon"', 
+            fontSize: '36px', 
+            color: '#ffffff', 
+            backgroundColor: '#3F414F' 
+        }).setOrigin(0.5)
+          .setInteractive()
+          .setVisible(false) // Hide at first
+          .on('pointerdown', () => {
+              EventBus.emit("resume-typing"); // Resume typing when clicked
+              this.resumeButton.setVisible(false);
+          });
+        
+        EventBus.on("show-resume-button", () => {
+            this.resumeButton.setVisible(true);
+        });
+
         // create cursors for keyboard input
         this.cursors = this.input.keyboard.createCursorKeys();
         
