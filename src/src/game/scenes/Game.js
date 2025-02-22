@@ -5,6 +5,7 @@ export class Game extends Scene
     constructor ()
     {
         super('Game');
+        this.hasRunned = false;
     }
 
     preload ()
@@ -159,55 +160,56 @@ export class Game extends Scene
         this.cameras.main.setLerp(0.1, 0.1);
         this.cameras.main.setZoom(1.5, 1.5);
 
-        // add task animations
-        this.anims.create({
-            key: 'task_move',
-            frames: this.anims.generateFrameNumbers('task', { start: 0, end: 7 }),
-            frameRate: 15,
-            repeat: -1
-        });
+        if (!this.hasRunned) {
+            // add task animations
+            this.anims.create({
+                key: 'task_move',
+                frames: this.anims.generateFrameNumbers('task', { start: 0, end: 7 }),
+                frameRate: 15,
+                repeat: -1
+            });
 
-        // add server animations
-        this.anims.create({
-            key: 'blink_s1',
-            frames: this.anims.generateFrameNumbers('server1', { start: 0, end: 2 }),
-            frameRate: 3,
-            repeat: -1
-        });
+            // add server animations
+            this.anims.create({
+                key: 'blink_s1',
+                frames: this.anims.generateFrameNumbers('server1', { start: 0, end: 2 }),
+                frameRate: 3,
+                repeat: -1
+            });
 
-        this.anims.create({
-            key: 'blink_s2',
-            frames: this.anims.generateFrameNumbers('server2', { start: 0, end: 2 }),
-            frameRate: 3,
-            repeat: -1
-        });
+            this.anims.create({
+                key: 'blink_s2',
+                frames: this.anims.generateFrameNumbers('server2', { start: 0, end: 2 }),
+                frameRate: 3,
+                repeat: -1
+            });
 
-        // add player animations
-        this.anims.create({
-            key: 'leftUp',
-            frames: this.anims.generateFrameNumbers('robot', { start: 9, end: 11 }),
-            frameRate: 10
-        });
+            // add player animations
+            this.anims.create({
+                key: 'leftUp',
+                frames: this.anims.generateFrameNumbers('robot', { start: 9, end: 11 }),
+                frameRate: 10
+            });
 
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('robot', { start: 3, end: 5 }),
-            frameRate: 10
-        });
-        
-        this.anims.create({
-            key: 'rightAndDown',
-            frames: this.anims.generateFrameNumbers('robot', { start: 0, end: 2 }),
-            frameRate: 10
-        });
+            this.anims.create({
+                key: 'left',
+                frames: this.anims.generateFrameNumbers('robot', { start: 3, end: 5 }),
+                frameRate: 10
+            });
 
-        this.anims.create({
-            key: 'up',
-            frames: this.anims.generateFrameNumbers('robot', { start: 6, end: 8 }),
-            frameRate: 10
-        });
+            this.anims.create({
+                key: 'rightAndDown',
+                frames: this.anims.generateFrameNumbers('robot', { start: 0, end: 2 }),
+                frameRate: 10
+            });
 
-        // TODO: fix the warning about creating anims again
+            this.anims.create({
+                key: 'up',
+                frames: this.anims.generateFrameNumbers('robot', { start: 6, end: 8 }),
+                frameRate: 10
+            });
+            this.hasRunned = true;
+        }
         
         // track if scene is already changing
         this.sceneChanging = false;
