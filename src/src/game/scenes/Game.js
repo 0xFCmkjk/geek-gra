@@ -128,7 +128,14 @@ export class Game extends Scene
         // north servers
         collids.create(0, 63, 'ground').setOrigin(0, 0).setScale(2.41, 1.54).refreshBody().alpha = 0;
 
-
+        // task fields should appear after the previous task had been completed
+        taskField_one = taskFields.create(18, 635, 'task').setScale(0.5).refreshBody();
+        taskField_two = taskFields.create(380, 783, 'task').setScale(0.5).refreshBody();
+        taskField_three = taskFields.create(262, 1087, 'task').setScale(0.5).refreshBody();
+        taskField_four = taskFields.create(686, 152, 'task').setScale(0.5).refreshBody();
+        taskField_five = taskFields.create(1250, 150, 'task').setScale(0.5).refreshBody();
+        taskField_six = taskFields.create(1450, 150, 'task').setScale(0.5).refreshBody();
+        
         // add a player
         this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();
         this.player.speed = 250; // Movement speed
@@ -150,14 +157,6 @@ export class Game extends Scene
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setLerp(0.1, 0.1);
         this.cameras.main.setZoom(1.5, 1.5);
-
-        // task fields should appear after the previous task had been completed
-        taskField_one = taskFields.create(18, 635, 'task').setScale(0.5).refreshBody();
-        taskField_two = taskFields.create(380, 783, 'task').setScale(0.5).refreshBody();
-        taskField_three = taskFields.create(262, 1087, 'task').setScale(0.5).refreshBody();
-        taskField_four = taskFields.create(686, 152, 'task').setScale(0.5).refreshBody();
-        taskField_five = taskFields.create(1250, 150, 'task').setScale(0.5).refreshBody();
-        taskField_six = taskFields.create(1450, 150, 'task').setScale(0.5).refreshBody();
 
         // add task animations
         this.anims.create({
