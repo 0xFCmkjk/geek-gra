@@ -16,6 +16,7 @@ export class Game extends Scene
         this.load.spritesheet('server1', 'objects/server1.png', { frameWidth: 81, frameHeight: 112 });
         this.load.spritesheet('server2', 'objects/server2.png', { frameWidth: 81, frameHeight: 112 });
         this.load.spritesheet('task', 'taskAnim.png', { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('laptop', 'objects/laptop.png', { frameWidth: 22, frameHeight: 17 });
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
         this.load.image('walls1', 'walls1.png');
@@ -41,6 +42,7 @@ export class Game extends Scene
         var collids;
         var servers1;
         var servers2; // phaser colision
+        var laptop = this.physics.add.sprite(775, 96, 'laptop');
 
         // define taskFields - (single objects)
         var taskField_one;
@@ -161,6 +163,14 @@ export class Game extends Scene
         this.cameras.main.setZoom(1.5, 1.5);
 
         if (!this.hasRunned) {
+            // add laptop animations
+            this.anims.create({
+                key: 'laptop',
+                frames: this.anims.generateFrameNumbers('laptop', { start: 0, end: 2 }),
+                frameRate: 10,
+                repeat: -1
+            });
+
             // add task animations
             this.anims.create({
                 key: 'task_move',
@@ -328,6 +338,9 @@ export class Game extends Scene
         taskField_four.anims.play('task_move', true);
         taskField_five.anims.play('task_move', true);
         taskField_six.anims.play('task_move', true);
+
+        // play laptop animations
+        laptop.anims.play('laptop', true);
 
         taskFieldTwoCollider.active = false;
         taskFieldThreeCollider.active = false;
