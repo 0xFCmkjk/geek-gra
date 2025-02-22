@@ -139,6 +139,7 @@ export class Game extends Scene
         // add a player
         this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();
         this.player.speed = 250; // Movement speed
+        this.player.facing = 'rightAndDown';
 
         // set world borders and collisions
         this.physics.world.setBounds(0, 90, 2000, 1840);
@@ -206,7 +207,6 @@ export class Game extends Scene
             frameRate: 10
         });
 
-        // TODO: make the robot take static position after a move
         // TODO: fix the warning about creating anims again
         
         // track if scene is already changing
@@ -372,42 +372,53 @@ export class Game extends Scene
             this.player.setVelocityX(-this.player.speed);
             this.player.setVelocityY(-this.player.speed);
             this.player.anims.play('leftUp', true);
+            this.player.facing = 'leftUp';
             return;
         }
         else if (this.cursors.right.isDown && this.cursors.up.isDown){
             this.player.setVelocityX(this.player.speed);
             this.player.setVelocityY(-this.player.speed);
             this.player.anims.play('up', true);
+            this.player.facing = 'up';
             return;
         }
         else if (this.cursors.right.isDown && this.cursors.down.isDown){
             this.player.setVelocityX(this.player.speed);
             this.player.setVelocityY(this.player.speed);
             this.player.anims.play('rightAndDown', true);
+            this.player.facing = 'rightAndDown';
             return;
         }
         else if (this.cursors.left.isDown && this.cursors.down.isDown){
             this.player.setVelocityX(-this.player.speed);
             this.player.setVelocityY(this.player.speed);
             this.player.anims.play('left', true);
+            this.player.facing = 'left';
             return;
         }
         
         if (this.cursors.left.isDown) {
             this.player.setVelocityX(-this.player.speed);
             this.player.anims.play('left', true);
+            this.player.facing = 'left';
         } 
         else if (this.cursors.right.isDown) {
             this.player.setVelocityX(this.player.speed);
             this.player.anims.play('rightAndDown', true);
+            this.player.facing = 'rightAndDown';
         }
         else if (this.cursors.up.isDown) {
             this.player.setVelocityY(-this.player.speed);
             this.player.anims.play('up', true);
+            this.player.facing = 'up';
         } 
         else if (this.cursors.down.isDown) {
             this.player.setVelocityY(this.player.speed);
             this.player.anims.play('rightAndDown', true);
+            this.player.facing = 'rightAndDown';
+        }
+        else {
+            this.player.anims.play(this.player.facing, false);
         }
     }
 }
