@@ -26,7 +26,7 @@ export class Game extends Scene
     create ()
     {
         //TODO: Make the quickstart guide
-        const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with all the tasks.\nAlso check out the quickstart guide, where you will learn about basic concept crucial to beat this game. Have fun!`;
+        const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with all the tasks. Also check out the quickstart guide, where you will learn about basic concept crucial to beat this game. Have fun!`;
 
         // add bg and first walls
         this.add.image(1000, 1000, 'background');
