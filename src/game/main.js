@@ -22,7 +22,7 @@ const config = {
         }
     },
     parent: 'game-container',
-    backgroundColor: '#028af8',
+    backgroundColor: '#000000',
     scene: [
         MainGame,
         Task1,
