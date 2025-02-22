@@ -20,7 +20,7 @@ export default function StartingMenu({onStart}) {
                 <h1>Welcome to the Nodebreaker game!</h1>
                 <button onClick={onStart} className='menuBtn'>{localStorage.getItem('Task1Completed') ? 'Continue' : 'Start'} Game</button>
                 <button className='menuBtn'>Instruction</button>
-                <button className='menuBtn'>GitHub Repo</button>
+                <a href="https://github.com/0xFCmkjk/geek-gra" target="_blank"><button className='menuBtn'>GitHub Repo</button></a>
                 <button onClick={()=>setOnCredits(true)} className='menuBtn'>Credientials</button>
                 <button onClick={()=>setOnReset(true)} className='menuBtn'>Reset Game</button>
             </div>)}
