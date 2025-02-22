@@ -14,6 +14,7 @@ export class Game extends Scene
         this.load.spritesheet('robot', 'robot.png', { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('server1', 'objects/server1.png', { frameWidth: 81, frameHeight: 112 });
         this.load.spritesheet('server2', 'objects/server2.png', { frameWidth: 81, frameHeight: 112 });
+        this.load.spritesheet('task', 'taskAnim.png', { frameWidth: 32, frameHeight: 32 });
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
         this.load.image('walls1', 'walls1.png');
@@ -150,12 +151,21 @@ export class Game extends Scene
         this.cameras.main.setLerp(0.1, 0.1);
         this.cameras.main.setZoom(1.5, 1.5);
 
-        // taskField_one = taskFields.create(100, 100, 'ground').setScale(0.5).refreshBody();
-        // taskField_two = taskFields.create(400, 400, 'ground').setScale(0.5).refreshBody();
-        // taskField_three = taskFields.create(600, 600, 'ground').setScale(0.5).refreshBody();
-        // taskField_four = taskFields.create(400, 50, 'ground').setScale(0.5).refreshBody();
-        // taskField_five = taskFields.create(600, 50, 'ground').setScale(0.5).refreshBody();
-        // taskField_six = taskFields.create(800, 50, 'ground').setScale(0.5).refreshBody();
+        // task fields should appear after the previous task had been completed
+        taskField_one = taskFields.create(18, 635, 'task').setScale(0.5).refreshBody();
+        taskField_two = taskFields.create(380, 783, 'task').setScale(0.5).refreshBody();
+        taskField_three = taskFields.create(262, 1087, 'task').setScale(0.5).refreshBody();
+        taskField_four = taskFields.create(686, 152, 'task').setScale(0.5).refreshBody();
+        taskField_five = taskFields.create(1250, 150, 'task').setScale(0.5).refreshBody();
+        taskField_six = taskFields.create(1450, 150, 'task').setScale(0.5).refreshBody();
+
+        // add task animations
+        this.anims.create({
+            key: 'task_move',
+            frames: this.anims.generateFrameNumbers('task', { start: 0, end: 7 }),
+            frameRate: 15,
+            repeat: -1
+        });
 
         // add server animations
         this.anims.create({
@@ -296,6 +306,7 @@ export class Game extends Scene
             }
         }
 
+        // play server animations 
         sv1.anims.play('blink_s1', true);
         sv2.anims.play('blink_s2', true);
         sv3.anims.play('blink_s2', true);
@@ -308,6 +319,14 @@ export class Game extends Scene
         sv10.anims.play('blink_s2', true);
         sv11.anims.play('blink_s2', true);
         sv12.anims.play('blink_s1', true);
+
+        // play task animations
+        taskField_one.anims.play('task_move', true);
+        taskField_two.anims.play('task_move', true);
+        taskField_three.anims.play('task_move', true);
+        taskField_four.anims.play('task_move', true);
+        taskField_five.anims.play('task_move', true);
+        taskField_six.anims.play('task_move', true);
         
         // pass on the scene????
         EventBus.emit('task-info-updated', taskInfo); // for taskinfo
