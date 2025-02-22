@@ -4,10 +4,9 @@ export default function StartingMenu({onStart}) {
         <div className="starting-menu">
             <div className="menu">
                 <h1>Welcome to the Nodebreaker game!</h1>
-                <button onClick={onStart} className='menuBtn'>Start Game</button>
+                <button onClick={onStart} className='menuBtn'>{localStorage.getItem('Task1Completed') ? 'Continue' : 'Start'} Game</button>
                 <button onClick={onStart} className='menuBtn'>Information</button>
                 <button onClick={onStart} className='menuBtn'>Credientials</button>
-                <button onClick={(localStorage.clear())} className='menuBtn'>Reset Progress</button>
             </div>
         </div>
     );
