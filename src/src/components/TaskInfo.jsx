@@ -18,7 +18,7 @@ if (!taskInfoState.setInfo) {
 }
 
 function TaskInfo({ onClose }) {
-    const [position, setPosition] = useState({ x: 600, y: 600 });
+    const [position, setPosition] = useState({ x: 1300, y: 470 });
     const [isDragging, setIsDragging] = useState(false);
     const dragRef = useRef(null);
     const [taskInfo, setTaskInfo] = useState(taskInfoState.info);

@@ -85,6 +85,7 @@ export class Task1 extends Scene
             this.ziom.setVisible(true);
             this.narrator.text = typewriteText(this, narratorText, this.narrator);
             console.log("Correct answer!");
+            localStorage.setItem('Task1Completed', 'true');
         }
         else {
             console.log("Wrong answer!");

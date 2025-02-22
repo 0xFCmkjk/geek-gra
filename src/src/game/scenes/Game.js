@@ -130,11 +130,11 @@ export class Game extends Scene
 
         // task fields should appear after the previous task had been completed
         taskField_one = taskFields.create(18, 635, 'task').setScale(0.5).refreshBody();
-        taskField_two = taskFields.create(380, 783, 'task').setScale(0.5).refreshBody();
-        taskField_three = taskFields.create(262, 1087, 'task').setScale(0.5).refreshBody();
-        taskField_four = taskFields.create(686, 152, 'task').setScale(0.5).refreshBody();
-        taskField_five = taskFields.create(1250, 150, 'task').setScale(0.5).refreshBody();
-        taskField_six = taskFields.create(1450, 150, 'task').setScale(0.5).refreshBody();
+        taskField_two = taskFields.create(380, 783, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_three = taskFields.create(262, 1087, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_four = taskFields.create(686, 152, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_five = taskFields.create(1250, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_six = taskFields.create(1450, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
         
         // add a player
         this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();
@@ -224,7 +224,7 @@ export class Game extends Scene
             }
         }, null, this);
 
-        this.physics.add.overlap(this.player, taskField_two, () => {
+        var taskFieldTwoCollider = this.physics.add.overlap(this.player, taskField_two, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
                 
@@ -235,7 +235,7 @@ export class Game extends Scene
             }
         }, null, this);
 
-        this.physics.add.overlap(this.player, taskField_three, () => {
+        var taskFieldThreeCollider = this.physics.add.overlap(this.player, taskField_three, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
                 
@@ -246,7 +246,7 @@ export class Game extends Scene
             }
         }, null, this);
 
-        this.physics.add.overlap(this.player, taskField_four, () => {
+        var taskFieldFourCollider = this.physics.add.overlap(this.player, taskField_four, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
                 
@@ -257,7 +257,7 @@ export class Game extends Scene
             }
         }, null, this);
 
-        this.physics.add.overlap(this.player, taskField_five, () => {
+        var taskFieldFiveCollider = this.physics.add.overlap(this.player, taskField_five, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
                 
@@ -268,7 +268,7 @@ export class Game extends Scene
             }
         }, null, this);
         
-        this.physics.add.overlap(this.player, taskField_six, () => {
+        var taskFieldSixCollider = this.physics.add.overlap(this.player, taskField_six, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
                 
@@ -326,6 +326,35 @@ export class Game extends Scene
         taskField_four.anims.play('task_move', true);
         taskField_five.anims.play('task_move', true);
         taskField_six.anims.play('task_move', true);
+
+        taskFieldTwoCollider.active = false;
+        taskFieldThreeCollider.active = false;
+        taskFieldFourCollider.active = false;
+        taskFieldFiveCollider.active = false;
+        taskFieldSixCollider.active = false;
+
+        if (localStorage.getItem('Task1Completed') === 'true') {
+            taskField_two.setVisible(true);
+            taskFieldTwoCollider.active = true;
+        }
+        if (localStorage.getItem('Task2Completed') === 'true') {
+            taskField_three.setVisible(true);
+            taskFieldThreeCollider.active = true;
+        }
+        if (localStorage.getItem('Task3Completed') === 'true') {
+            taskField_four.setVisible(true);
+            taskFieldFourCollider.active = true;
+        }
+        if (localStorage.getItem('Task4Completed') === 'true') {
+            taskField_five.setVisible(true);
+            taskFieldFiveCollider.active = true;
+        }
+        if (localStorage.getItem('Task5Completed') === 'true') {
+            taskField_six.setVisible(true);
+            taskFieldSixCollider.active = true;
+        }
+        
+        //localStorage.removeItem('Task1Completed');
         
         // pass on the scene????
         EventBus.emit('task-info-updated', taskInfo); // for taskinfo
