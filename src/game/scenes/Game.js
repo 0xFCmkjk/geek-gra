@@ -128,9 +128,44 @@ export class Game extends Scene
         collids.create(876, 1170, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
         collids.create(659, 1047, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
         collids.create(659, 850, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(1095, 345, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(876, 343, 'ground').setOrigin(0, 0).setScale(0.08, 0.6).refreshBody().alpha = 0;
+        collids.create(467, 608, 'ground').setOrigin(0, 0).setScale(0.08, 0.3).refreshBody().alpha = 0;
+        collids.create(455, 1296, 'ground').setOrigin(0, 0).setScale(0.08, 0.3).refreshBody().alpha = 0;
 
         // north servers
         collids.create(0, 63, 'ground').setOrigin(0, 0).setScale(2.41, 1.54).refreshBody().alpha = 0;
+
+        // bookshelfs
+        collids.create(1527, 581, 'ground').setOrigin(0, 0).setScale(0.9, 1).refreshBody().alpha = 0;
+        collids.create(1527, 786, 'ground').setOrigin(0, 0).setScale(0.95, 1.17).refreshBody().alpha = 0;
+        collids.create(1527, 1056, 'ground').setOrigin(0, 0).setScale(0.95, 1.17).refreshBody().alpha = 0;
+        collids.create(1527, 1261, 'ground').setOrigin(0, 0).setScale(0.95, 1.17).refreshBody().alpha = 0;
+        collids.create(1832, 604, 'ground').setOrigin(0, 0).setScale(0.25, 0.24).refreshBody().alpha = 0; // laptop
+
+        // south crates
+        collids.create(1153, 1555, 'ground').setOrigin(0, 0).setScale(1, 1.7).refreshBody().alpha = 0;
+        collids.create(1250, 1680, 'ground').setOrigin(0, 0).setScale(1, 1).refreshBody().alpha = 0;
+        collids.create(1273, 1757, 'ground').setOrigin(0, 0).setScale(1, 1).refreshBody().alpha = 0;
+        collids.create(1266, 1809, 'ground').setOrigin(0, 0).setScale(1, 4).refreshBody().alpha = 0;
+        collids.create(607, 1540, 'ground').setOrigin(0, 0).setScale(0.35, 2.5).refreshBody().alpha = 0;
+        collids.create(714, 1624, 'ground').setOrigin(0, 0).setScale(0.18, 0.45).refreshBody().alpha = 0;
+        collids.create(573, 1574, 'ground').setOrigin(0, 0).setScale(0.18, 0.2).refreshBody().alpha = 0;
+        collids.create(409, 1808, 'ground').setOrigin(0, 0).setScale(0.37, 3).refreshBody().alpha = 0;
+        collids.create(521, 1872, 'ground').setOrigin(0, 0).setScale(0.18, 1).refreshBody().alpha = 0;
+        collids.create(13, 1873, 'ground').setOrigin(0, 0).setScale(0.18, 1).refreshBody().alpha = 0;
+        collids.create(13, 1873, 'ground').setOrigin(0, 0).setScale(0.18, 1).refreshBody().alpha = 0;
+        collids.create(42, 1581, 'ground').setOrigin(0, 0).setScale(0.18, 0.3).refreshBody().alpha = 0;
+        collids.create(117, 1647, 'ground').setOrigin(0, 0).setScale(0.47, 3.1).refreshBody().alpha = 0;
+
+        // north crates
+        collids.create(1191, 79, 'ground').setOrigin(0, 0).setScale(1.23, 1.14).refreshBody().alpha = 0;
+        collids.create(1515, 353, 'ground').setOrigin(0, 0).setScale(0.1, 1.14).refreshBody().alpha = 0;
+        collids.create(1575, 117, 'ground').setOrigin(0, 0).setScale(0.18, 0.45).refreshBody().alpha = 0;
+        collids.create(1765, 299, 'ground').setOrigin(0, 0).setScale(0.35, 3).refreshBody().alpha = 0;
+        collids.create(1884, 370, 'ground').setOrigin(0, 0).setScale(0.1, 1).refreshBody().alpha = 0;
+        collids.create(1764, 112, 'ground').setOrigin(0, 0).setScale(0.1, 0.01).refreshBody().alpha = 0;
+        collids.create(1867, 123, 'ground').setOrigin(0, 0).setScale(0.20, 0.01).refreshBody().alpha = 0;
 
         // task fields should appear after the previous task had been completed
         taskField_one = taskFields.create(18, 635, 'task').setScale(0.5).refreshBody();
@@ -141,7 +176,8 @@ export class Game extends Scene
         taskField_six = taskFields.create(1450, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
         
         // add a player
-        this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();
+        // this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();
+        this.player = this.physics.add.sprite(1400, 300, 'robot').refreshBody();
         this.player.speed = 250; // Movement speed
         this.player.facing = 'rightAndDown';
 
