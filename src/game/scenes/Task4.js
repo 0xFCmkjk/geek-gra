@@ -24,7 +24,7 @@ export class Task4 extends Scene
         const taskInfo = `This time you have a opportunity to play the role of a hacker. You have to reach the top, but your character doesn't jump high enough. Change proper parameter. Remember that you can use Phaser Documentation and API Reference. Hint: Which physical phenomenon attracts bodies to the ground? Change it to 0, but only for the player.\nAs usually, you have to reference Phaser.Scene as scene, also you can reference the player object with scene.player.`;
 
         this.add.image(512, 364, 'background').setScale(2, 1);
-        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
+        var ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         var platforms;
         platforms = this.physics.add.staticGroup();
@@ -127,6 +127,8 @@ export class Task4 extends Scene
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
+        ziom.setVisible(true);
+        typewriteText(this, "Check Task Info!~", this.narrator, ziom);
     }
 
     update (){

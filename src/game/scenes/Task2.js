@@ -23,7 +23,8 @@ export class Task2 extends Scene
         this.taskData = [1, 3, 5, 7, 13, 19];
 
         //this.add.image(512, 364, 'background');
-        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
+        var ziom;
+        ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(100, 50, 'Back', {
             fontFamily: '"Pixelon"',
@@ -92,14 +93,16 @@ export class Task2 extends Scene
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
+        ziom.setVisible(true);
+        typewriteText(this, "Check Task Info!~", this.narrator, ziom);
     }
 
     answer(params) {
         const answer = [6, 8, 10, 12, 18, 24];
         const narratorText = `Congrats! Another task completed!`;
         if (params.toString() == answer.toString()) {
-            this.ziom.setVisible(true);
-            this.narrator.text = typewriteText(this, narratorText, this.narrator);
+            ziom.setVisible(true);
+            this.narrator.text = typewriteText(this, narratorText, this.narrator, ziom);
             console.log("Correct answer!");
         }
         else {

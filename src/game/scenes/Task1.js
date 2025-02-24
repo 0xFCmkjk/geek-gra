@@ -12,7 +12,7 @@ export class Task1 extends Scene
     {
         this.load.setPath('assets');
         
-        this.load.image('background', 'bg.png');
+        this.load.image('task1', 'task1.png');
         this.load.image('ground', 'ground.png');
         this.load.image('ziom', 'ziom.png');
     }
@@ -21,18 +21,19 @@ export class Task1 extends Scene
     {
         const taskInfo = `Welcome to the first task of this game! In this task you have to find out name of the texture used to render the narrator.\n\nHint: In the Phaser API reference you should check "Phaser.Scene.Children", also you can access the scene object via "scene" variable in the console, eg.: "console.log(scene.children)". Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command, eg.: "scene.answer("TEXTURE NAME")".`;
         
-        //this.add.image(512, 364, 'background');
+        this.add.image(850, 425, 'task1');
 
         // add the narrator as an image
-        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
+        var ziom;
+        ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
-        this.add.text(100, 50, 'Back', {
+        this.add.text(390, 108, 'Back', {
             fontFamily: '"Pixelon"',
             fontSize: '36px',
             color: '#ffffff',
             align: 'center',
             backgroundColor: '#3F414F'
-        }).setOrigin(0.5)
+        }).setOrigin(0, 0)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 this.cameras.main.fadeOut(500, 0, 0, 0);
@@ -93,14 +94,16 @@ export class Task1 extends Scene
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
+        ziom.setVisible(true);
+        typewriteText(this, "Check Task Info!~", this.narrator, ziom);
     }
 
     answer(params) {
         const answer = "ziom";
         const narratorText = `Congrats! Task completed!\nGo back to the main menu\nwith the "Back" button.`;
         if (params.toString() == answer) {
-            this.ziom.setVisible(true);
-            this.narrator.text = typewriteText(this, narratorText, this.narrator);
+            ziom.setVisible(true);
+            this.narrator.text = typewriteText(this, narratorText, this.narrator, ziom);
             console.log("Correct answer!");
             localStorage.setItem('Task1Completed', 'true');
         }

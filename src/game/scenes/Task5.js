@@ -36,7 +36,7 @@ export class Task5 extends Scene
         // taskMeta
         this.taskMeta = this.physics.add.sprite(512, 170, 'taskMeta');
         // narrator
-        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
+        var ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         // player
         this.player = this.physics.add.sprite(300, 500, 'robot')
         this.player.speed = 200;
@@ -130,6 +130,8 @@ export class Task5 extends Scene
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
+        ziom.setVisible(true);
+        typewriteText(this, "Check Task Info!~", this.narrator, ziom);
     }
 
     update (){

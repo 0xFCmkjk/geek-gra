@@ -29,7 +29,7 @@ export class Game extends Scene
     create ()
     {
         //TODO: Make the quickstart guide
-        const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with all the tasks. Also check out the quickstart guide, where you will learn about basic concept crucial to beat this game. Have fun!`;
+        const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with the map. Also check out the quickstart guide, where you will learn about basic concepts crucial to beat this game. Have fun!`;
 
         // add bg and first walls
         this.add.image(1000, 1000, 'background');
@@ -43,7 +43,7 @@ export class Game extends Scene
         var collids;
         var servers1;
         var servers2; // phaser colision
-        var laptop = this.physics.add.sprite(775, 96, 'laptop');
+        var laptop = this.physics.add.sprite(787, 118, 'laptop');
 
         // define taskFields - (single objects)
         var taskField_one;
@@ -170,14 +170,13 @@ export class Game extends Scene
         // task fields should appear after the previous task had been completed
         taskField_one = taskFields.create(18, 635, 'task').setScale(0.5).refreshBody();
         taskField_two = taskFields.create(380, 783, 'task').setScale(0.5).refreshBody().setVisible(false);
-        taskField_three = taskFields.create(262, 1087, 'task').setScale(0.5).refreshBody().setVisible(false);
-        taskField_four = taskFields.create(686, 152, 'task').setScale(0.5).refreshBody().setVisible(false);
-        taskField_five = taskFields.create(1250, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
-        taskField_six = taskFields.create(1450, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_three = taskFields.create(310, 1550, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_four = taskFields.create(804, 118, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_five = taskFields.create(80, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_six = taskFields.create(1640, 870, 'task').setScale(0.5).refreshBody().setVisible(false);
         
         // add a player
-        // this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();
-        this.player = this.physics.add.sprite(1400, 300, 'robot').refreshBody();
+        this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();
         this.player.speed = 250; // Movement speed
         this.player.facing = 'rightAndDown';
 
@@ -376,6 +375,9 @@ export class Game extends Scene
         sv11.anims.play('blink_s2', true);
         sv12.anims.play('blink_s1', true);
 
+        // play laptop animations
+        laptop.anims.play('laptop', true);
+
         // play task animations
         taskField_one.anims.play('task_move', true);
         taskField_two.anims.play('task_move', true);
@@ -383,9 +385,6 @@ export class Game extends Scene
         taskField_four.anims.play('task_move', true);
         taskField_five.anims.play('task_move', true);
         taskField_six.anims.play('task_move', true);
-
-        // play laptop animations
-        laptop.anims.play('laptop', true);
 
         taskFieldTwoCollider.active = false;
         taskFieldThreeCollider.active = false;
@@ -413,8 +412,6 @@ export class Game extends Scene
             taskField_six.setVisible(true);
             taskFieldSixCollider.active = true;
         }
-        
-        //localStorage.removeItem('Task1Completed');
         
         // pass on the scene????
         EventBus.emit('task-info-updated', taskInfo); // for taskinfo

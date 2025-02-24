@@ -26,7 +26,8 @@ export class Task3 extends Scene
         const taskInfo = `Welcome to another task, you have to make a isYearLeap function which checks if the year is leap. In JavaScript functions are usually defined with a function keyword, for example:\n\nfunction abc(parameter) {\n\tlogic here\n}\n\nFunctions can use parameters that are given to them.\nHint: Years that are divisible by 4, are leap, BUT if the year is divisible by 100 it also has to be divisible by 400.\nIf you find the solution, pass function name: scene.asnwer(isYearLeap)`;
 
         //this.add.image(512, 364, 'background');
-        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
+        var ziom;
+        ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(100, 50, 'Back', {
             fontFamily: '"Pixelon"',
@@ -95,6 +96,8 @@ export class Task3 extends Scene
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
+        ziom.setVisible(true);
+        typewriteText(this, "Check Task Info!~", this.narrator, ziom);
     }
 
     answer(ans) {
@@ -111,8 +114,8 @@ export class Task3 extends Scene
         console.log("Your function output after a for loop:", truthTable);
 
         if (truthTable.toString() == this.isLeap.toString()) {
-            this.ziom.setVisible(true);
-            this.narrator.text = typewriteText(this, narratorText, this.narrator);
+            ziom.setVisible(true);
+            this.narrator.text = typewriteText(this, narratorText, this.narrator, ziom);
             console.log("Correct answer!");
         }
         else {

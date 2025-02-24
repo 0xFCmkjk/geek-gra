@@ -1,6 +1,6 @@
 import { EventBus } from './EventBus';
 
-export function typewriteText(scene, text, targetTextObject) {
+export function typewriteText(scene, text, targetTextObject, narratorObject) {
     const length = text.length;
     
     if (targetTextObject.isTyping) {
@@ -37,6 +37,9 @@ export function typewriteText(scene, text, targetTextObject) {
     }
 
     EventBus.on("resume-typing", () => {
+        if (i == length-1) {
+            narratorObject.setVisible(false);
+        }
         i++; // Move past the "~" character
         targetTextObject.text = "";
         resumeTyping();
