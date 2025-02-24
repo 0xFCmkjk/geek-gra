@@ -17,6 +17,7 @@ export class Game extends Scene
         this.load.spritesheet('server2', 'objects/server2.png', { frameWidth: 81, frameHeight: 112 });
         this.load.spritesheet('task', 'taskAnim.png', { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet('laptop', 'objects/laptop.png', { frameWidth: 22, frameHeight: 17 });
+        this.load.spritesheet('taskMeta', 'taskcompleted.png', { frameWidth: 64, frameHeight: 64 });
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
         this.load.image('walls1', 'walls1.png');
@@ -163,6 +164,14 @@ export class Game extends Scene
         this.cameras.main.setZoom(1.5, 1.5);
 
         if (!this.hasRunned) {
+            // add taskMeta animations
+            this.anims.create({
+                key: 'taskMeta_move',
+                frames: this.anims.generateFrameNumbers('taskMeta', { start: 0, end: 11 }),
+                frameRate: 15,
+                repeat: -1
+            });
+
             // add laptop animations
             this.anims.create({
                 key: 'laptop',

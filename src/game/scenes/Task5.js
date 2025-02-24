@@ -14,6 +14,7 @@ export class Task5 extends Scene
         
         this.load.image('background', 'bg.png');
         this.load.spritesheet('robot', 'robot.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet('taskMeta', 'taskcompleted.png', { frameWidth: 64, frameHeight: 64 });
         this.load.image('star', 'star.png');
         this.load.image('ground', 'ground.png');
         this.load.image('ziom', 'ziom.png');
@@ -21,7 +22,7 @@ export class Task5 extends Scene
 
     create ()
     {
-        const taskInfo = `This time, you have to get past this wall. Your objective is to disable it (so you can move past it), and grab the star. Good luck!`;
+        const taskInfo = `This time, you have to get past this wall. Your objective is to disable it (so you can move past it). Good luck!`;
 
         this.add.image(512, 364, 'background').setScale(2, 1);
         
@@ -32,18 +33,18 @@ export class Task5 extends Scene
         this.wall = platforms.create(500, 400, "ground").setScale(6, 1).refreshBody();
         this.wall.name = "wall";
 
-        // star
-        this.star = this.physics.add.image(512, 170, 'star');
+        // taskMeta
+        this.taskMeta = this.physics.add.sprite(512, 170, 'taskMeta');
         // narrator
         this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         // player
         this.player = this.physics.add.sprite(300, 500, 'robot')
         this.player.speed = 200;
         // physics settings
-        this.physics.world.setBounds(0, 0);
+        this.physics.world.setBounds(0, 0, 1000, 850);
         this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, platforms);
-        this.physics.add.collider(this.star, platforms);
+        this.physics.add.collider(this.taskMeta, platforms);
         this.player.body.setGravity(0, 0);
         this.physics.world.gravity.y = 0;
         this.player.setDamping(true);
@@ -52,7 +53,7 @@ export class Task5 extends Scene
         this.cameras.main.setZoom(1.3);
         this.cameras.main.setScroll(-330, 0);
         
-        this.physics.add.overlap(this.player, this.star, () => {
+        this.physics.add.overlap(this.player, this.taskMeta, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening
                 this.sceneChanging = true; // Set flag to prevent multiple triggers
                 //this.cameras.main.fadeOut(500, 0, 0, 0);
@@ -123,6 +124,8 @@ export class Task5 extends Scene
                 event.stopPropagation(); // Stop Phaser from capturing the event
             }
         }
+
+        this.taskMeta.anims.play('taskMeta_move', true);
 
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
