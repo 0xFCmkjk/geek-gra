@@ -107,14 +107,4 @@ pre{
     text-align: left;
 }
 
-.console ::-moz-selection { /* Code for Firefox */
-    color: none;
-    background: none;
-}
-  
-.console ::selection {
-    color: none;
-    background: none;
-}
-
 .editor{text-align: left;}
