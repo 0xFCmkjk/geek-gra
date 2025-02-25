@@ -40,6 +40,7 @@ export function typewriteText(scene, text, targetTextObject, narratorObject) {
             narratorObject.setVisible(false);
             targetTextObject.text = "";
             targetTextObject.isTyping = false;
+            EventBus.emit('end-of-text');
         }
         i++; // Move past the "~" character
         targetTextObject.text = "";

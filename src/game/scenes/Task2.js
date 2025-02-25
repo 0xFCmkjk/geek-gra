@@ -57,7 +57,7 @@ export class Task2 extends Scene
         }).setOrigin(0.5)
           .setInteractive()
           .setVisible(false)
-          .on('pointerdown', () => {
+          .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
               EventBus.emit("resume-typing");
               this.resumeButton.setVisible(false);
           });

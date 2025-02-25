@@ -173,7 +173,7 @@ export class Game extends Scene
         taskField_three = taskFields.create(310, 1550, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_four = taskFields.create(804, 118, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_five = taskFields.create(80, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
-        taskField_six = taskFields.create(1640, 870, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_six = taskFields.create(1872, 615, 'task').setScale(0.5).refreshBody().setVisible(false);
         
         // add a player
         this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();

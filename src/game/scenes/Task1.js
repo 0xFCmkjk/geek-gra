@@ -60,7 +60,7 @@ export class Task1 extends Scene
         }).setOrigin(0.5)
           .setInteractive()
           .setVisible(false) // Hide at first
-          .on('pointerdown', () => {
+          .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
               EventBus.emit("resume-typing"); // Resume typing when clicked (listener is in the TypeWriter.js file)
               this.resumeButton.setVisible(false); // button hides itself
           });
