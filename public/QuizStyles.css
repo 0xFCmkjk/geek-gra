@@ -28,7 +28,7 @@
     font-size: 40px;
     color: #000;
 }
-h3{
+.quiz h3{
     font-size: 25px;
     color: #000;
 }
@@ -39,7 +39,7 @@ h3{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: grey;
+    background-color: rgb(160, 160, 160);
     border: 5px solid #000;
     font-size: 25px;
     text-align: center;
@@ -62,4 +62,8 @@ h3{
     width: 45%;
     min-height: 80px;
     font-family: Pixelon, Helvetica, sans-serif;
+    transition: 0.5s;
+}
+.quizBtn:hover{
+    background-color: #d3d3d393;
 }
