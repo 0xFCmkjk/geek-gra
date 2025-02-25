@@ -32,7 +32,7 @@
     width: 900px;
     height: 800px;
 }
-h1{
+.menu h1, .menu h2{
   font-size: 80px;
   text-shadow: 1px 7px 0px #21659d;
 }
