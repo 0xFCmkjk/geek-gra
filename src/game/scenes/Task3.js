@@ -13,8 +13,7 @@ export class Task3 extends Scene
     {
         this.load.setPath('assets');
         
-        this.load.image('background', 'bg.png');
-        this.load.image('ground', 'ground.png');
+        this.load.image('storageTask', 'task3.png');
         this.load.image('ziom', 'ziom.png');
     }
 
@@ -23,11 +22,10 @@ export class Task3 extends Scene
         
         this.years = [1970, 1600, 1636, 2024, 2020, 2100]
         this.isLeap = [false, true, true, true, true, false]
-        const taskInfo = `Welcome to another task, you have to make a isYearLeap function which checks if the year is leap. In JavaScript functions are usually defined with a function keyword, for example:\n\nfunction abc(parameter) {\n\tlogic here\n}\n\nFunctions can use parameters that are given to them.\nHint: Years that are divisible by 4, are leap, BUT if the year is divisible by 100 it also has to be divisible by 400.\nIf you find the solution, pass function name: scene.asnwer(isYearLeap)`;
+        const taskInfo = `Welcome to another task, you have to make a isYearLeap function which checks if the year is leap. In JavaScript functions are usually defined with a function keyword, for example:\n\nfunction abc(parameter) {\n\tlogic here\n}\n\nFunctions can use parameters that are given to them, also they can return things.\nHint: Years that are divisible by 4, are leap, BUT if the year is divisible by 100 it also has to be divisible by 400.\nIf you find the solution, pass function name: scene.asnwer(isYearLeap)`;
 
-        //this.add.image(512, 364, 'background');
-        var ziom;
-        ziom = this.add.image(256, 594, 'ziom').setVisible(false);
+        this.add.image(850, 425, 'storageTask');
+        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(100, 50, 'Back', {
             fontFamily: '"Pixelon"',
@@ -40,11 +38,9 @@ export class Task3 extends Scene
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
-                    // App.jsx listens to this event, when emited it closes the console, so when the character gets back to the main map 
-                    // it can walk etc. (physics are resumed)
                     EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
-                    this.scene.stop('Task1');
+                    this.scene.stop('Task3');
                 });
             })
         
@@ -63,9 +59,9 @@ export class Task3 extends Scene
             backgroundColor: '#3F414F' 
         }).setOrigin(0.5)
           .setInteractive()
-          .setVisible(false) // Hide at first
+          .setVisible(false) 
           .on('pointerdown', () => {
-              EventBus.emit("resume-typing"); // Resume typing when clicked
+              EventBus.emit("resume-typing"); 
               this.resumeButton.setVisible(false);
           });
         
@@ -73,7 +69,6 @@ export class Task3 extends Scene
             this.resumeButton.setVisible(true);
         });
         
-        // CONSOLE ARROWS FIX
         this.events.on('toggle-pause', (shouldPause) => {
             if (shouldPause) {
                 this.physics.pause();
@@ -87,17 +82,15 @@ export class Task3 extends Scene
         });
 
         function preventPhaserInput(event) {
-            // Allow these keys inside the console
             if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Enter', ' '].includes(event.key)) {
-                event.stopPropagation(); // Stop Phaser from capturing the event
+                event.stopPropagation(); 
             }
         }
 
-        // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
-        ziom.setVisible(true);
-        typewriteText(this, "Check Task Info!~", this.narrator, ziom);
+        this.ziom.setVisible(true);
+        typewriteText(this, "Check Task Info!~", this.narrator, this.ziom);
     }
 
     answer(ans) {
@@ -114,9 +107,10 @@ export class Task3 extends Scene
         console.log("Your function output after a for loop:", truthTable);
 
         if (truthTable.toString() == this.isLeap.toString()) {
-            ziom.setVisible(true);
-            this.narrator.text = typewriteText(this, narratorText, this.narrator, ziom);
+            this.ziom.setVisible(true);
+            this.narrator.text = typewriteText(this, narratorText, this.narrator, this.ziom);
             console.log("Correct answer!");
+            localStorage.setItem('Task3Completed', 'true');
         }
         else {
             console.log("Wrong answer!");

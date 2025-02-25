@@ -28,7 +28,7 @@ export class Game extends Scene
 
     create ()
     {
-        //TODO: Make the quickstart guide
+        //TODO: Make the quickstart guide,  translate everything to polish, task backgrounds, quizes, overall editing
         const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with the map. Also check out the quickstart guide, where you will learn about basic concepts crucial to beat this game. Have fun!`;
 
         // add bg and first walls

@@ -13,19 +13,17 @@ export class Task1 extends Scene
         this.load.setPath('assets');
         
         this.load.image('task1', 'task1.png');
-        this.load.image('ground', 'ground.png');
         this.load.image('ziom', 'ziom.png');
     }
 
     create ()
     {
-        const taskInfo = `Welcome to the first task of this game! In this task you have to find out name of the texture used to render the narrator.\n\nHint: In the Phaser API reference you should check "Phaser.Scene.Children", also you can access the scene object via "scene" variable in the console, eg.: "console.log(scene.children)". Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command, eg.: "scene.answer("TEXTURE NAME")".`;
+        const taskInfo = `Welcome to the first task of this game! In this task you have to find out name of the texture used to render the narrator.\n\nHint: In the Phaser API reference you should check "Phaser.Scene.Children", also you can access the scene object via "scene" variable in the console, eg.: "console.log(scene.children)". Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command, eg.: "scene.answer("TEXTURE NAME")". Also open up the developer console, it will be useful.`;
         
         this.add.image(850, 425, 'task1');
 
         // add the narrator as an image
-        var ziom;
-        ziom = this.add.image(256, 594, 'ziom').setVisible(false);
+        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(390, 108, 'Back', {
             fontFamily: '"Pixelon"',
@@ -63,12 +61,12 @@ export class Task1 extends Scene
           .setInteractive()
           .setVisible(false) // Hide at first
           .on('pointerdown', () => {
-              EventBus.emit("resume-typing"); // Resume typing when clicked
-              this.resumeButton.setVisible(false);
+              EventBus.emit("resume-typing"); // Resume typing when clicked (listener is in the TypeWriter.js file)
+              this.resumeButton.setVisible(false); // button hides itself
           });
         
         EventBus.on("show-resume-button", () => {
-            this.resumeButton.setVisible(true);
+            this.resumeButton.setVisible(true); // TypeWriter.js emits this event after reaching ~ sign in given text
         });
         
         // CONSOLE ARROWS FIX
@@ -91,21 +89,26 @@ export class Task1 extends Scene
             }
         }
 
-        // pass on the scene, emit an event that taskInfo has been updated
+        // pass on the scene to the console, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
-        ziom.setVisible(true);
-        typewriteText(this, "Check Task Info!~", this.narrator, ziom);
+        this.ziom.setVisible(true);
+        typewriteText(this, "Check Task Info!~", this.narrator, this.ziom); 
+        // this - to manipulate the events
+        // "text" - text to display
+        // this.narrator - target text object
+        // this.ziom - so the function can hide the narrator after reaching end of the string (but it only displays the continue button if
+        // "~" is the last sign of the string)
     }
 
     answer(params) {
         const answer = "ziom";
         const narratorText = `Congrats! Task completed!\nGo back to the main menu\nwith the "Back" button.`;
         if (params.toString() == answer) {
-            ziom.setVisible(true);
-            this.narrator.text = typewriteText(this, narratorText, this.narrator, ziom);
+            this.ziom.setVisible(true);
+            this.narrator.text = typewriteText(this, narratorText, this.narrator, this.ziom);
             console.log("Correct answer!");
-            localStorage.setItem('Task1Completed', 'true');
+            localStorage.setItem('Task1Completed', 'true'); // saves completed tasks in local storage
         }
         else {
             console.log("Wrong answer!");

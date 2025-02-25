@@ -39,6 +39,8 @@ export function typewriteText(scene, text, targetTextObject, narratorObject) {
     EventBus.on("resume-typing", () => {
         if (i == length-1) {
             narratorObject.setVisible(false);
+            targetTextObject.text = "";
+            targetTextObject.isTyping = false;
         }
         i++; // Move past the "~" character
         targetTextObject.text = "";
