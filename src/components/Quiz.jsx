@@ -37,9 +37,9 @@ export default function Quiz({quizNum}){
 
     return (
         <div className="quiz">
-            <h1>Quiz</h1>
+            <h1>{question}</h1>
             <div className='quizContainer'>
-                <h3>{question}</h3>
+                <h3>Question {currentQuestion+1}/{quiz[quizNumber].data.length}</h3>
                 <div className='quizBtnContainer'>
                         <button className='quizBtn' onClick={()=>handleAnswer('A')}>A. {answerA}</button>
                         <button className='quizBtn' onClick={()=>handleAnswer('B')}>B. {answerB}</button>
