@@ -41,10 +41,10 @@ export default function Quiz({quizNum}){
             <div className='quizContainer'>
                 <h3>{question}</h3>
                 <div className='quizBtnContainer'>
-                <button className='quizBtn' onClick={()=>handleAnswer('A')}>A. {answerA}</button>
-                <button className='quizBtn' onClick={()=>handleAnswer('B')}>B. {answerB}</button>
-                <button className='quizBtn' onClick={()=>handleAnswer('C')}>C. {answerC}</button>
-                <button className='quizBtn' onClick={()=>handleAnswer('D')}>D. {answerD}</button>
+                        <button className='quizBtn' onClick={()=>handleAnswer('A')}>A. {answerA}</button>
+                        <button className='quizBtn' onClick={()=>handleAnswer('B')}>B. {answerB}</button>
+                        <button className='quizBtn' onClick={()=>handleAnswer('C')}>C. {answerC}</button>
+                        <button className='quizBtn' onClick={()=>handleAnswer('D')}>D. {answerD}</button>
                 </div>
             </div>
         </div>
