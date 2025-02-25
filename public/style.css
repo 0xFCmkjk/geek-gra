@@ -30,28 +30,24 @@ body {
     display: inline-block;
     vertical-align: top;
     font-family: 'Pixelon';
-    width: 140px;
-    margin: 10px;
-    padding: 10px;
+    width: 170px;
+    margin: 15px;
+    padding: 15px;
     background-color: #000000;
     color: rgba(255, 255, 255, 0.87);
-    border: 1px solid rgba(255, 255, 255, 0.87);
+    border: 2px solid rgba(255, 255, 255, 0.87);
     cursor: pointer;
     transition: all 0.3s;
+    font-size: 20px;
 
     &:hover {
-        border: 1px solid #0ec3c9;
-        color: #0ec3c9;
+        color: rgba(165, 165, 165, 0.826);
+        border-color: rgba(165, 165, 165, 0.826);
     }
-
-    &:active {
-        background-color: #0ec3c9;
-    }
-
     /* Disabled styles */
     &:disabled {
         cursor: not-allowed;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(165, 165, 165, 0.826);
+        color: rgba(165, 165, 165, 0.826);
     }
 }
