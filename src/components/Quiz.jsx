@@ -1,10 +1,10 @@
 import { quiz } from '../game/quizData.js';
 import { useState, useEffect } from 'react';
 
-export default function Quiz(){
+export default function Quiz({quizNum}){
     const [score, setScore] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    let quizNumber = 0;
+    let quizNumber = quizNum;
     const [answerA , setAnswerA] = useState(quiz[quizNumber].data[currentQuestion].ansA);
     const [answerB , setAnswerB] = useState(quiz[quizNumber].data[currentQuestion].ansB);
     const [answerC , setAnswerC] = useState(quiz[quizNumber].data[currentQuestion].ansC);
@@ -38,11 +38,15 @@ export default function Quiz(){
     return (
         <div className="quiz">
             <h1>Quiz</h1>
-            <h3>{question}</h3>
-            <button className='quizBtn' onClick={()=>handleAnswer('A')}>A. {answerA}</button>
-            <button className='quizBtn' onClick={()=>handleAnswer('B')}>B. {answerB}</button>
-            <button className='quizBtn' onClick={()=>handleAnswer('C')}>C. {answerC}</button>
-            <button className='quizBtn' onClick={()=>handleAnswer('D')}>D. {answerD}</button>
+            <div className='quizContainer'>
+                <h3>{question}</h3>
+                <div className='quizBtnContainer'>
+                <button className='quizBtn' onClick={()=>handleAnswer('A')}>A. {answerA}</button>
+                <button className='quizBtn' onClick={()=>handleAnswer('B')}>B. {answerB}</button>
+                <button className='quizBtn' onClick={()=>handleAnswer('C')}>C. {answerC}</button>
+                <button className='quizBtn' onClick={()=>handleAnswer('D')}>D. {answerD}</button>
+                </div>
+            </div>
         </div>
     )
 }
