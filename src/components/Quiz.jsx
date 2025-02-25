@@ -1,28 +1,48 @@
 import { quiz } from '../game/quizData.js';
+import { useState, useEffect } from 'react';
 
 export default function Quiz(){
+    const [score, setScore] = useState(0);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
     let quizNumber = 0;
-    let score = 0;
-    let currentQuestion = 0;
-    
-    function getAnswer(e){
-        if(e === quiz[quizNumber].data[currentQuestion].goodAns){
-            score++;
+    const [answerA , setAnswerA] = useState(quiz[quizNumber].data[currentQuestion].ansA);
+    const [answerB , setAnswerB] = useState(quiz[quizNumber].data[currentQuestion].ansB);
+    const [answerC , setAnswerC] = useState(quiz[quizNumber].data[currentQuestion].ansC);
+    const [answerD , setAnswerD] = useState(quiz[quizNumber].data[currentQuestion].ansD);
+    const [question , setQuestion] = useState(quiz[quizNumber].data[currentQuestion].question);
+
+    useEffect(() => {
+        setAnswerA(quiz[quizNumber].data[currentQuestion].ansA);
+        setAnswerB(quiz[quizNumber].data[currentQuestion].ansB);
+        setAnswerC(quiz[quizNumber].data[currentQuestion].ansC);
+        setAnswerD(quiz[quizNumber].data[currentQuestion].ansD);
+        setQuestion(quiz[quizNumber].data[currentQuestion].question);
+    }, [currentQuestion]);
+
+    function handleAnswer(answer){
+        if(answer == quiz[quizNumber].data[currentQuestion].goodAns){
+            setScore(score + 1);
+            console.log(score);
         }
-        if(currentQuestion < quiz[quizNumber].data.length - 1){
-            currentQuestion++;
-        } else {
-            alert(`Your score is ${score}/${quiz[quizNumber].data.length}`);
-        }
+        setCurrentQuestion(prevQuestion => {
+            const nextQuestion = prevQuestion + 1;
+            if(nextQuestion < quiz[quizNumber].data.length){
+                return nextQuestion;
+            } else {
+                console.log('Quiz ended');
+                return prevQuestion;
+            }
+        });
     }
+
     return (
         <div className="quiz">
             <h1>Quiz</h1>
-            <h3>{quiz[quizNumber].data[currentQuestion].question}</h3>
-            <button className='quizBtn' onClick={getAnswer('A')}>A. {quiz[quizNumber].data[currentQuestion].ansA}</button>
-            <button className='quizBtn' onClick={getAnswer('B')}>A. {quiz[quizNumber].data[currentQuestion].ansA}</button>
-            <button className='quizBtn' onClick={getAnswer('C')}>A. {quiz[quizNumber].data[currentQuestion].ansA}</button>
-            <button className='quizBtn' onClick={getAnswer('D')}>A. {quiz[quizNumber].data[currentQuestion].ansA}</button>
+            <h3>{question}</h3>
+            <button className='quizBtn' onClick={()=>handleAnswer('A')}>A. {answerA}</button>
+            <button className='quizBtn' onClick={()=>handleAnswer('B')}>B. {answerB}</button>
+            <button className='quizBtn' onClick={()=>handleAnswer('C')}>C. {answerC}</button>
+            <button className='quizBtn' onClick={()=>handleAnswer('D')}>D. {answerD}</button>
         </div>
     )
 }
