@@ -101,6 +101,7 @@ export class Task3 extends Scene
             console.log("------------");
             console.log("Year", this.years[i]);
             console.log("Is leap? (user function): ", ans(this.years[i]));
+            console.log("Is leap? (task's table): ", this.isLeap[i]);
             truthTable[i] = ans(this.years[i]);
         }
 
