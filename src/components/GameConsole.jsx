@@ -8,7 +8,7 @@ import 'prismjs/themes/prism.css';
 function GameConsole({ gameRef, onClose }) {
     const [command, setCommand] = useState('Your code goes here');
     const [output, setOutput] = useState('');
-    const [position, setPosition] = useState({ x: 1300, y: 20 });
+    const [position, setPosition] = useState({ x: 910, y: 400 });
     const [isDragging, setIsDragging] = useState(false);
     const dragRef = useRef(null);
     const textAreaRef = useRef(null);
@@ -82,7 +82,7 @@ function GameConsole({ gameRef, onClose }) {
                 <button onClick={onClose} className='consoleBtn'></button>
                 
                 <div className='terminal'>
-                    <h3>Runtime editor</h3>
+                    <h3>Runtime Editor</h3>
                     <Editor
                         ref={textAreaRef}
                         value={command}

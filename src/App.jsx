@@ -23,7 +23,7 @@ function App ()
         <div id="app">
             {showMenu && <StartingMenu onStart={()=>setShowMenu(false)}/>}
             {!showMenu && <PhaserGame ref={phaserRef} isConsoleOpen={showConsole} />}
-            <div>
+            {<div>
                 <button className="button" onClick={() => setShowConsole(prev => !prev)}>
                     Code Editor
                 </button>
@@ -33,7 +33,7 @@ function App ()
                 <button className="button" onClick={() => window.open(phaserDocsUrl, '_blank').focus()}>
                     Phaser Docs
                 </button>
-            </div>
+            </div>}
             {showConsole && <GameConsole gameRef={phaserRef} onClose={() => setShowConsole(false)} />}
             {showInfo && <TaskInfo onClose={() => setShowInfo(false)} />}
         </div>
