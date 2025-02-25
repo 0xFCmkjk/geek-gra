@@ -18,7 +18,7 @@ export class Task1 extends Scene
 
     create ()
     {
-        const taskInfo = `Welcome to the first task of this game! In this task you have to find out name of the texture used to render the narrator.\n\nHint: In the Phaser API reference you should check "Phaser.Scene.Children", also you can access the scene object via "scene" variable in the console, eg.: "console.log(scene.children)". Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command, eg.: "scene.answer("TEXTURE NAME")". Also open up the developer console, it will be useful.`;
+        const taskInfo = `Welcome to the first task of this game! In this task you have to find out key of the texture used to render the narrator.\n\nHint: In the Phaser API reference you should check "Phaser.Scene" and its property "children" (try logging it into the console), also you can access the scene object via "scene" variable in the console, eg.: "console.log(scene.children)". Good Luck!\n\nAfter finding the solution, pass it through scene.answer() command, eg.: "scene.answer("TEXTURE NAME")". Also open up the developer console, it will be useful.`;
         
         this.add.image(850, 425, 'task1');
 

@@ -13,7 +13,7 @@ function App ()
     const [showConsole, setShowConsole] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
     const [showMenu, setShowMenu] = useState(true);
-    const phaserDocsUrl = "https://docs.phaser.io/phaser/getting-started/what-is-phaser";
+    const phaserDocsUrl = "https://docs.phaser.io/api-documentation/api-documentation";
 
     EventBus.on("back-button-pressed", () => {
         setShowConsole(false);
