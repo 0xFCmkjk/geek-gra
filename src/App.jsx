@@ -24,7 +24,7 @@ function App ()
         setShowConsole(false);
     })
 
-    EventBus.on('quiz-start',(e)=>{
+    EventBus.on('start-quiz',(e)=>{
         setShowQuiz(true);
         quizNum = e;
     })
