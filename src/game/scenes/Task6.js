@@ -31,7 +31,7 @@ export class Task6 extends Scene
         }).setOrigin(0.5)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                EventBus.emit('start-quiz', 1);
+                EventBus.emit('start-quiz', 0);
             })
         this.quizText.setVisible(false);
 
