@@ -22,7 +22,7 @@ export class Task3 extends Scene
         
         this.years = [1970, 1600, 1636, 2024, 2020, 2100]
         this.isLeap = [false, true, true, true, true, false]
-        const taskInfo = `Welcome to another task, you have to make a isYearLeap function which checks if the year is leap. In JavaScript functions are usually defined with a function keyword, for example:\n\nfunction abc(parameter) {\n\tlogic here\n}\n\nFunctions can use parameters that are given to them, also they can return things.\nHint: Years that are divisible by 4, are leap, BUT if the year is divisible by 100 it also has to be divisible by 400.\nIf you find the solution, pass function name: scene.asnwer(isYearLeap)`;
+        const taskInfo = `Welcome to another task, you have to make a isYearLeap function which checks if the year is leap. In JavaScript functions are usually defined with a function keyword, for example:\n\nfunction abc(parameter) {\n\tlogic here\n}\n\nFunctions can use parameters that are given to them, also they can return things.\nHint: Years that are divisible by 4, are leap, BUT if the year is divisible by 100 it also has to be divisible by 400.\n Check developer console for debugging info. If you find the solution, pass function name: scene.asnwer(isYearLeap)`;
 
         this.add.image(850, 425, 'storageTask');
         this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);

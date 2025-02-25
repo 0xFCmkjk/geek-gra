@@ -21,7 +21,7 @@ export class Task4 extends Scene
 
     create ()
     {
-        const taskInfo = `This time you have a opportunity to play the role of a hacker. You have to reach the top, but your character doesn't jump high enough. Change proper parameter. Remember that you can use Phaser Documentation and API Reference. Hint: Which physical phenomenon attracts bodies to the ground? Change it to 0, but only for the player body.\nAs usually, you have to reference Phaser.Scene as scene, also you can reference the player object with scene.player.`;
+        const taskInfo = `This time you have a opportunity to play the role of a hacker. You have to reach the top, but your character doesn't jump high enough. Change proper parameter. Remember that you can use Phaser Documentation and API Reference. Hint: Which physical phenomenon attracts bodies to the ground? Change it to 0, but only for the player body and Y axis.\nAs usually, you have to reference Phaser.Scene as scene, also you can reference the player object with scene.player.`;
 
         this.add.image(850, 425, 'task4');
         

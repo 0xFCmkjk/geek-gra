@@ -12,10 +12,9 @@ export class Task5 extends Scene
     {
         this.load.setPath('assets');
         
-        this.load.image('background', 'bg.png');
+        this.load.image('task5', 'task5.png');
         this.load.spritesheet('robot', 'robot.png', { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('taskMeta', 'taskcompleted.png', { frameWidth: 64, frameHeight: 64 });
-        this.load.image('star', 'star.png');
         this.load.image('ground', 'ground.png');
         this.load.image('ziom', 'ziom.png');
     }
@@ -24,24 +23,24 @@ export class Task5 extends Scene
     {
         const taskInfo = `This time, you have to get past this wall. Your objective is to disable it (so you can move past it). Good luck!`;
 
-        this.add.image(512, 364, 'background').setScale(2, 1);
+        this.add.image(0, 0, 'task5').setOrigin(0, 0);
         
         var platforms;
         platforms = this.physics.add.staticGroup();
-        platforms.create(300, 728, "ground").setScale(6, 1).refreshBody();
+        platforms.create(349, 776, "ground").setOrigin(0, 0).setScale(3.57, 0.5).refreshBody();
         // the wall that you have to delete (it is in the platforms group)
-        this.wall = platforms.create(500, 400, "ground").setScale(6, 1).refreshBody();
+        this.wall = platforms.create(349, 400, "ground").setOrigin(0, 0).setScale(3.57, 0.5).refreshBody();
         this.wall.name = "wall";
 
         // taskMeta
-        this.taskMeta = this.physics.add.sprite(512, 170, 'taskMeta');
+        this.taskMeta = this.physics.add.sprite(850, 220, 'taskMeta');
         // narrator
-        var ziom = this.add.image(256, 594, 'ziom').setVisible(false);
+        this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         // player
-        this.player = this.physics.add.sprite(300, 500, 'robot')
+        this.player = this.physics.add.sprite(850, 680, 'robot').setVisible(false);
         this.player.speed = 200;
         // physics settings
-        this.physics.world.setBounds(0, 0, 1000, 850);
+        this.physics.world.setBounds(349, 66, 1071, 732);
         this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, platforms);
         this.physics.add.collider(this.taskMeta, platforms);
@@ -49,19 +48,17 @@ export class Task5 extends Scene
         this.physics.world.gravity.y = 0;
         this.player.setDamping(true);
         this.player.setDrag(1000);
-        // camera settings
-        this.cameras.main.setZoom(1.3);
-        this.cameras.main.setScroll(-330, 0);
         
         this.physics.add.overlap(this.player, this.taskMeta, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening
                 this.sceneChanging = true; // Set flag to prevent multiple triggers
-                //this.cameras.main.fadeOut(500, 0, 0, 0);
-                //this.time.delayedCall(500, () => {
+                this.cameras.main.fadeOut(500, 0, 0, 0);
+                this.time.delayedCall(500, () => {
                     EventBus.emit('back-button-pressed');
+                    localStorage.setItem('Task5Completed', 'true');
                     this.scene.start('Game');
-                    this.scene.stop('Task1');
-                //});
+                    this.scene.stop('Task5');
+                });
             }
         }, null, this);
 
@@ -74,17 +71,14 @@ export class Task5 extends Scene
         }).setOrigin(0.5)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                //this.cameras.main.fadeOut(500, 0, 0, 0);
-                //this.time.delayedCall(500, () => {
-                    // App.jsx listens to this event, when emited it closes the console, so when the character gets back to the main map 
-                    // it can walk etc. (physics are resumed)
+                this.cameras.main.fadeOut(500, 0, 0, 0);
+                this.time.delayedCall(500, () => {
                     EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
-                    this.scene.stop('Task1');
-                //});
+                    this.scene.stop('Task5');
+                });
             })
 
-        
         this.resumeButton = this.add.text(400, 650, 'Continue', { 
             fontFamily: '"Pixelon"', 
             fontSize: '36px', 
@@ -93,10 +87,18 @@ export class Task5 extends Scene
         }).setOrigin(0.5)
           .setInteractive()
           .setVisible(false) // Hide at first
-          .on('pointerdown', () => {
-              EventBus.emit("resume-typing"); // Resume typing when clicked
-              this.resumeButton.setVisible(false);
+          .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                this.player.setVisible(true);
+                EventBus.emit("resume-typing"); // Resume typing when clicked
+                this.resumeButton.setVisible(false);
           });
+
+        this.narrator = this.add.text(260, 480, '', {
+            fontFamily: '"Pixelon"',
+            fontSize: '28px',
+            color: '#000000',
+            align: 'center'
+        }).setOrigin(0.5).setInteractive()
         
         EventBus.on("show-resume-button", () => {
             this.resumeButton.setVisible(true);
@@ -130,8 +132,8 @@ export class Task5 extends Scene
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
-        ziom.setVisible(true);
-        typewriteText(this, "Check Task Info!~", this.narrator, ziom);
+        this.ziom.setVisible(true);
+        typewriteText(this, "Check Task Info!~", this.narrator, this.ziom);
     }
 
     update (){

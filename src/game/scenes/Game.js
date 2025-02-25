@@ -28,7 +28,7 @@ export class Game extends Scene
 
     create ()
     {
-        //TODO: Make the quickstart guide,  translate everything to polish, task backgrounds, quizes, overall editing
+        //TODO: Make the quickstart guide,  translate everything to polish, task backgrounds, quizes, overall editing, after task complete green thing, narrator on game start
         const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with the map. Also check out the quickstart guide, where you will learn about basic concepts crucial to beat this game. Have fun!`;
 
         // add bg and first walls
@@ -395,22 +395,27 @@ export class Game extends Scene
         if (localStorage.getItem('Task1Completed') === 'true') {
             taskField_two.setVisible(true);
             taskFieldTwoCollider.active = true;
+            taskField_one.anims.play('taskMeta_move', true);
         }
         if (localStorage.getItem('Task2Completed') === 'true') {
             taskField_three.setVisible(true);
             taskFieldThreeCollider.active = true;
+            taskField_two.anims.play('taskMeta_move', true);
         }
         if (localStorage.getItem('Task3Completed') === 'true') {
             taskField_four.setVisible(true);
             taskFieldFourCollider.active = true;
+            taskField_three.anims.play('taskMeta_move', true);
         }
         if (localStorage.getItem('Task4Completed') === 'true') {
             taskField_five.setVisible(true);
             taskFieldFiveCollider.active = true;
+            taskField_four.anims.play('taskMeta_move', true);
         }
         if (localStorage.getItem('Task5Completed') === 'true') {
             taskField_six.setVisible(true);
             taskFieldSixCollider.active = true;
+            taskField_five.anims.play('taskMeta_move', true);
         }
         
         // pass on the scene????
