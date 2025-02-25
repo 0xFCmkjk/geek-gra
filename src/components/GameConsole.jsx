@@ -96,6 +96,7 @@ function GameConsole({ gameRef, onClose }) {
                             minHeight: '100px',
                             border:'3px solid #000000',
                             fontSize: '14px',}}
+                        preClassName='editor'
                     />
                     <button className='terminalBtn' onClick={runCommand}>Run</button>
                 
