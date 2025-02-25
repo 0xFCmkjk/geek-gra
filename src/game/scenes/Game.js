@@ -483,4 +483,8 @@ export class Game extends Scene
             this.player.anims.play(this.player.facing, false);
         }
     }
+
+    quizBackdoor (num) {
+        EventBus.emit('start-quiz', num);
+    }
 }
