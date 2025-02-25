@@ -5,6 +5,7 @@ import GameConsole from './components/GameConsole';
 import StartingMenu from './components/StartingMenu';
 import TaskInfo from './components/TaskInfo';
 import { EventBus } from './game/EventBus';
+import Quiz from './components/Quiz';
 
 function App ()
 {
@@ -21,6 +22,7 @@ function App ()
 
     return (
         <div id="app">
+            <Quiz />
             {showMenu && <StartingMenu onStart={()=>setShowMenu(false)}/>}
             {!showMenu && <PhaserGame ref={phaserRef} isConsoleOpen={showConsole} />}
             {<div>
