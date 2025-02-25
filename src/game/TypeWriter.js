@@ -6,7 +6,6 @@ export function typewriteText(scene, text, targetTextObject, narratorObject) {
     if (targetTextObject.isTyping) {
         scene.time.removeEvent(targetTextObject.typingEvent);
         targetTextObject.isTyping = false;
-        return;
     }
 
     targetTextObject.isTyping = true;

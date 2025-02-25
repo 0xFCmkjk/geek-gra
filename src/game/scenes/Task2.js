@@ -18,7 +18,7 @@ export class Task2 extends Scene
 
     create ()
     {
-        const taskInfo = `This time you have to use a for loop to add 5 to all the values in scene.taskData (it is an array). For example, scene.taskData: [1,2,4], so output array should look like this: [6,7,9]. For loops in JS have similar syntax to C for loops.\n\nfor (executed_once; condition; after_codeblock) {\n\tcodeblock\n}\n\nGood luck! Pass array with the answers: scene.answer(array)`;
+        const taskInfo = `This time you have to use a for loop to add 5 to all the values in scene.taskData (it is an array, so if you change its values, you have to reload the task). For example, scene.taskData: [1,2,4], so output array should look like this: [6,7,9]. For loops in JS have similar syntax to C for loops.\n\nfor (executed_once; condition; after_codeblock) {\n\tcodeblock\n}\n\nGood luck! Pass array with the answers: scene.answer(array)`;
         this.taskData = [1, 3, 5, 7, 13, 19];
 
         this.add.image(850, 425, 'task1');
