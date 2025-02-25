@@ -31,7 +31,6 @@ function App ()
 
     return (
         <div id="app">
-            <Quiz quizNum={1}/>
             {showQuiz ? <Quiz quizNum={quizNum}/> : null}
             {showMenu && <StartingMenu onStart={()=>setShowMenu(false)}/>}
             {!showMenu && <PhaserGame ref={phaserRef} isConsoleOpen={showConsole} />}
