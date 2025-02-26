@@ -1,6 +1,7 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 import { typewriteText } from '../TypeWriter';
+import { disableNarrator } from '../DisableNarrator';
 export class Task4 extends Scene
 {
     constructor ()
@@ -50,6 +51,7 @@ export class Task4 extends Scene
                 this.sceneChanging = true; // Set flag to prevent multiple triggers
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
+                    disableNarrator(this);
                     EventBus.emit('back-button-pressed');
                     localStorage.setItem('Task4Completed', 'true');
                     this.scene.start('Game');
@@ -69,6 +71,7 @@ export class Task4 extends Scene
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
+                    disableNarrator(this);
                     EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
                     this.scene.stop('Task4');

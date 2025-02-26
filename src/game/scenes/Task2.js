@@ -1,6 +1,7 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 import { typewriteText } from '../TypeWriter';
+import { disableNarrator } from '../DisableNarrator';
 export class Task2 extends Scene
 {
     constructor ()
@@ -35,6 +36,7 @@ export class Task2 extends Scene
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
+                    disableNarrator(this);
                     EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
                     this.scene.stop('Task2');

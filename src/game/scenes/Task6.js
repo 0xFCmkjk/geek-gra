@@ -1,6 +1,7 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 import { typewriteText } from '../TypeWriter';
+import { disableNarrator } from '../DisableNarrator';
 export class Task6 extends Scene
 {
     constructor ()
@@ -46,6 +47,7 @@ export class Task6 extends Scene
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
+                    disableNarrator(this);
                     EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
                     this.scene.stop('Task1');
@@ -98,6 +100,12 @@ export class Task6 extends Scene
                 event.stopPropagation();
             }
         }
+        
+        EventBus.on('quiz-end', (score) => {
+            if (score > 80) {
+                localStorage.setItem('Task6Completed', 'true');
+            }
+        });
 
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);

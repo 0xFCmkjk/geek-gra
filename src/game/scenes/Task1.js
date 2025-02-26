@@ -1,6 +1,7 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 import { typewriteText } from '../TypeWriter';
+import { disableNarrator } from '../DisableNarrator';
 export class Task1 extends Scene
 {
     constructor ()
@@ -38,6 +39,7 @@ export class Task1 extends Scene
                 this.time.delayedCall(500, () => {
                     // App.jsx listens to this event, when emited it closes the console, so when the character gets back to the main map 
                     // it can walk etc. (physics are resumed)
+                    disableNarrator(this);
                     EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
                     this.scene.stop('Task1');

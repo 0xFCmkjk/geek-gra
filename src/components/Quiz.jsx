@@ -5,6 +5,7 @@ import { EventBus } from '../game/EventBus';
 export default function Quiz({quizNum}){
     const [score, setScore] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [showQuiz, setShowQuiz] = useState(true);
     const [showEnd, setShowEnd] = useState(false);
     let quizNumber = quizNum;
     const [answerA , setAnswerA] = useState(quiz[quizNumber].data[currentQuestion].ansA);
@@ -12,6 +13,22 @@ export default function Quiz({quizNum}){
     const [answerC , setAnswerC] = useState(quiz[quizNumber].data[currentQuestion].ansC);
     const [answerD , setAnswerD] = useState(quiz[quizNumber].data[currentQuestion].ansD);
     const [question , setQuestion] = useState(quiz[quizNumber].data[currentQuestion].question);
+    //FIXME hide everything after a back-button-pressed event
+    useEffect(() => {
+        const backButtonListener = () => {
+            setShowEnd(false);  // Reset the quiz end state
+            setCurrentQuestion(0);  // Optionally reset the question
+            setShowQuiz(false);  // Hide the quiz component
+        };
+
+        // Subscribe to back-button-pressed event
+        EventBus.on('back-button-pressed', backButtonListener);
+
+        // Cleanup the listener when the component is unmounted
+        return () => {
+            EventBus.off('back-button-pressed', backButtonListener);
+        };
+    }, []);
 
     useEffect(() => {
         setAnswerA(quiz[quizNumber].data[currentQuestion].ansA);
@@ -33,7 +50,7 @@ export default function Quiz({quizNum}){
             } else {
                 console.log('Quiz ended');
                 setShowEnd(true)
-                EventBus.emit('quiz-end', score);
+                EventBus.emit('quiz-end', Math.round(score / quiz[quizNumber].data.length * 100));
                 return prevQuestion;
             }
         });
@@ -41,26 +58,31 @@ export default function Quiz({quizNum}){
 
     return (
         <div className="quiz">
-            {showEnd ? 
-            <>
-                <h1>Quiz ended!</h1>
-                <div className='quizContainer'>
-                    <h2>Congratulations! Your score is {score}/{quiz[quizNumber].data.length} ({Math.round(score / quiz[quizNumber].data.length * 100)}%)</h2>
-                </div>
-            </>
-            : 
-            <>
-                <h1>{question}</h1>
-                <div className='quizContainer'>
-                    <h3>Question {currentQuestion+1}/{quiz[quizNumber].data.length}</h3>
-                    <div className='quizBtnContainer'>
-                            <button className='quizBtn' onClick={()=>handleAnswer('A')}>A. {answerA}</button>
-                            <button className='quizBtn' onClick={()=>handleAnswer('B')}>B. {answerB}</button>
-                            <button className='quizBtn' onClick={()=>handleAnswer('C')}>C. {answerC}</button>
-                            <button className='quizBtn' onClick={()=>handleAnswer('D')}>D. {answerD}</button>
-                    </div>
-                </div>
-            </>}
+            {showQuiz && (
+                <>
+                    {showEnd ? 
+                    <>
+                        <h1>Quiz ended!</h1>
+                        <div className='quizContainer'>
+                            <h2>Congratulations! Your score is {score}/{quiz[quizNumber].data.length} ({Math.round(score / quiz[quizNumber].data.length * 100)}%)</h2>
+                        </div>
+                    </>
+                    : 
+                    <>
+                        <h1>{question}</h1>
+                        <div className='quizContainer'>
+                            <h3>Question {currentQuestion+1}/{quiz[quizNumber].data.length}</h3>
+                            <div className='quizBtnContainer'>
+                                <button className='quizBtn' onClick={()=>handleAnswer('A')}>A. {answerA}</button>
+                                <button className='quizBtn' onClick={()=>handleAnswer('B')}>B. {answerB}</button>
+                                <button className='quizBtn' onClick={()=>handleAnswer('C')}>C. {answerC}</button>
+                                <button className='quizBtn' onClick={()=>handleAnswer('D')}>D. {answerD}</button>
+                            </div>
+                        </div>
+                    </>
+                    }
+                </>
+            )}
         </div>
-    )
+    );
 }

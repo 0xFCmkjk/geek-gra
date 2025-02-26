@@ -1,5 +1,7 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
+import { typewriteText } from '../TypeWriter';
+import { disableNarrator } from '../DisableNarrator';
 export class Game extends Scene
 {
     constructor ()
@@ -18,6 +20,7 @@ export class Game extends Scene
         this.load.spritesheet('task', 'taskAnim.png', { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet('laptop', 'objects/laptop.png', { frameWidth: 22, frameHeight: 17 });
         this.load.spritesheet('taskMeta', 'taskcompleted.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.image('ziom', 'ziom.png');
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
         this.load.image('walls1', 'walls1.png');
@@ -28,7 +31,7 @@ export class Game extends Scene
 
     create ()
     {
-        //TODO: Make the quickstart guide,  translate everything to polish, task backgrounds, quizes, overall editing, after task complete green thing, narrator on game start
+        //TODO: Make the quickstart guide
         const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with the map. Also check out the quickstart guide, where you will learn about basic concepts crucial to beat this game. Have fun!`;
 
         // add bg and first walls
@@ -44,6 +47,35 @@ export class Game extends Scene
         var servers1;
         var servers2; // phaser colision
         var laptop = this.physics.add.sprite(787, 118, 'laptop');
+
+        // narrator
+        this.ziom = this.add.image(475, 518, 'ziom').setScale(0.75, 0.75).setScrollFactor(0).setVisible(false);
+
+        this.narrator = this.add.text(308, 400, '', {
+            fontFamily: '"Pixelon"',
+            fontSize: '12px',
+            color: '#000000',
+            align: 'center'
+        }).setInteractive().setScrollFactor(0)
+        this.narrator.text = '';
+
+        this.resumeButton = this.add.text(550, 560, 'Continue', { 
+            fontFamily: '"Pixelon"', 
+            fontSize: '20px', 
+            color: '#ffffff', 
+            backgroundColor: '#3F414F' 
+        }).setOrigin(0.5)
+          .setScrollFactor(0)
+          .setInteractive()
+          .setVisible(false) // Hide at first
+          .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+              EventBus.emit("resume-typing"); // Resume typing when clicked (listener is in the TypeWriter.js file)
+              this.resumeButton.setVisible(false); // button hides itself
+          });
+
+        EventBus.on("show-resume-button", () => {
+            this.resumeButton.setVisible(true); // TypeWriter.js emits this event after reaching ~ sign in given text
+        });
 
         // define taskFields - (single objects)
         var taskField_one;
@@ -268,11 +300,16 @@ export class Game extends Scene
         // track if scene is already changing
         this.sceneChanging = false;
 
+        this.events.on('shutdown', () => {
+            EventBus.off("resume-typing");
+            EventBus.off("show-resume-button");
+        });
+
         // INTERSECTIONS WITH TASKFIELDS
         this.physics.add.overlap(this.player, taskField_one, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening
                 this.sceneChanging = true; // Set flag to prevent multiple triggers
-                
+                disableNarrator(this);
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     this.scene.start('Task1');
@@ -283,7 +320,7 @@ export class Game extends Scene
         var taskFieldTwoCollider = this.physics.add.overlap(this.player, taskField_two, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
-                
+                disableNarrator(this);
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     this.scene.start('Task2');
@@ -294,7 +331,7 @@ export class Game extends Scene
         var taskFieldThreeCollider = this.physics.add.overlap(this.player, taskField_three, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
-                
+                disableNarrator(this);
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     this.scene.start('Task3');
@@ -305,7 +342,8 @@ export class Game extends Scene
         var taskFieldFourCollider = this.physics.add.overlap(this.player, taskField_four, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
-                
+                disableNarrator(this);
+                this.time.removeEvent(this.narrator.typingEvent);
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     this.scene.start('Task4');
@@ -316,7 +354,7 @@ export class Game extends Scene
         var taskFieldFiveCollider = this.physics.add.overlap(this.player, taskField_five, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
-                
+                disableNarrator(this);
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     this.scene.start('Task5');
@@ -327,7 +365,7 @@ export class Game extends Scene
         var taskFieldSixCollider = this.physics.add.overlap(this.player, taskField_six, () => {
             if (!this.sceneChanging) {  
                 this.sceneChanging = true; 
-                
+                disableNarrator(this);
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     this.scene.start('Task6');
@@ -417,10 +455,24 @@ export class Game extends Scene
             taskFieldSixCollider.active = true;
             taskField_five.anims.play('taskMeta_move', true);
         }
-        
-        // pass on the scene????
+
+        this.ziom.setToTop();
+        this.narrator.setToTop();
+        this.resumeButton.setToTop();
+        //TODO game map
         EventBus.emit('task-info-updated', taskInfo); // for taskinfo
         EventBus.emit('current-scene-ready', this); // for console
+        if (!localStorage.getItem('first-run')) {
+            this.ziom.setVisible(true);
+            typewriteText(this, 
+`Welcome! We are happy you've decided to give our game
+a go! Always check task info and use debugging console to
+your advantage while working on the tasks.
+Some of them are pretty hard, so be prepared
+for quite a challenge! Also, check out
+the map next to the clock.~`, this.narrator, this.ziom);
+            localStorage.setItem('first-run', 'false');
+        } 
     }
 
     update (){
