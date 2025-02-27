@@ -104,7 +104,7 @@ export class Task8 extends Scene
         
         EventBus.on('quiz-end', (score) => {
             if (score > 80) {
-                localStorage.setItem('Task6Completed', 'true');
+                localStorage.setItem('Task8Completed', 'true');
             }
         });
 
