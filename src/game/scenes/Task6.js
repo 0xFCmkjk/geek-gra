@@ -21,7 +21,7 @@ export class Task6 extends Scene
     {
         const taskInfo = `quiz`;
         this.add.image(0, 0, 'task6').setOrigin(0, 0);
-        this.ziom = this.add.image(850, 474, 'ziom').setScale(1.25, 1.25).setVisible(false);
+        this.ziom = this.add.image(451, 474, 'ziom').setScale(1.25, 1.25).setVisible(false);
            
         this.quizText = this.add.text(850, 425, 'Start Quiz', {
             fontFamily: '"Pixelon"',
@@ -45,6 +45,7 @@ export class Task6 extends Scene
         }).setOrigin(0, 0)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                EventBus.emit('exit-quiz');
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     disableNarrator(this);
@@ -54,7 +55,7 @@ export class Task6 extends Scene
                 });
             })
 
-        this.resumeButton = this.add.text(960, 650, 'Continue', { 
+        this.resumeButton = this.add.text(560, 650, 'Continue', { 
             fontFamily: '"Pixelon"', 
             fontSize: '36px', 
             color: '#ffffff', 
@@ -67,7 +68,7 @@ export class Task6 extends Scene
               this.resumeButton.setVisible(false);
           });
 
-        this.narrator = this.add.text(850, 335, '', {
+        this.narrator = this.add.text(451, 335, '', {
             fontFamily: '"Pixelon"',
             fontSize: '18px',
             color: '#000000',

@@ -15,8 +15,7 @@ function App ()
     const [showInfo, setShowInfo] = useState(false);
     const [showMenu, setShowMenu] = useState(true);
     const [showQuiz, setShowQuiz] = useState(false);
-
-    let quizNum = 0;
+    const [quizNumber, setQuizNumber] = useState(0);
 
     const phaserDocsUrl = "https://docs.phaser.io/api-documentation/api-documentation";
 
@@ -26,12 +25,15 @@ function App ()
 
     EventBus.on('start-quiz',(e)=>{
         setShowQuiz(true);
-        quizNum = e;
+        setQuizNumber(e);
+    })
+    EventBus.on('exit-quiz',()=>{
+        setShowQuiz(false);
     })
 
     return (
         <div id="app">
-            {showQuiz ? <Quiz quizNum={quizNum}/> : null}
+            {showQuiz ? <Quiz quizNum={quizNumber}/> : null}
             {showMenu && <StartingMenu onStart={()=>setShowMenu(false)}/>}
             {!showMenu && <PhaserGame ref={phaserRef} isConsoleOpen={showConsole} />}
             <div>
