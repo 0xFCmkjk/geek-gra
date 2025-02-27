@@ -212,7 +212,7 @@ export class Game extends Scene
         taskField_five = taskFields.create(80, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_six = taskFields.create(1872, 615, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_seven = taskFields.create(388, 1070, 'task').setScale(0.5).refreshBody().setVisible(false);
-        taskField_eight = taskFields.create(110, 1250, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_eight = taskFields.create(120, 1300, 'task').setScale(0.5).refreshBody().setVisible(false);
 
         //map field
         mapField = taskFields.create(813, 730, '').setScale(0).refreshBody();
@@ -323,7 +323,7 @@ export class Game extends Scene
         });
 
         EventBus.on("resume-game", () => {
-            this.isPaused = false;
+            this.physics.resume();
         });
 
         // INTERSECTIONS WITH TASKFIELDS
@@ -421,7 +421,7 @@ export class Game extends Scene
             EventBus.emit('map');
             this.player.body.setVelocity(0,0);
             this.player.body.y= 740;
-            this.isPaused = true;
+            this.physics.pause();
             }, null, this);
 
         // create cursors for keyboard input
