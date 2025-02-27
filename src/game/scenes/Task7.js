@@ -21,7 +21,7 @@ export class Task7 extends Scene
     {
         const taskInfo = `Quick lesson about social engineering in cybersecurity and a adorable quiz.`;
         this.add.image(0, 0, 'task1').setOrigin(0, 0);
-        this.ziom = this.add.image(451, 474, 'ziom').setScale(1.25, 1.25).setVisible(false);
+        this.ziom = this.add.image(320, 530, 'ziom').setScale(1.25, 1.25).setVisible(false);
            
         this.quizText = this.add.text(850, 425, 'Start Quiz', {
             fontFamily: '"Pixelon"',
@@ -32,11 +32,11 @@ export class Task7 extends Scene
         }).setOrigin(0.5)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                EventBus.emit('start-quiz', 0);
+                EventBus.emit('start-quiz', 1);
             })
         this.quizText.setVisible(false);
 
-        this.add.text(137, 64, 'Back', {
+        this.add.text(390, 108, 'Back', {
             fontFamily: '"Pixelon"',
             fontSize: '36px',
             color: '#ffffff',
@@ -55,7 +55,7 @@ export class Task7 extends Scene
                 });
             })
 
-        this.resumeButton = this.add.text(560, 650, 'Continue', { 
+        this.resumeButton = this.add.text(500, 650, 'Continue', { 
             fontFamily: '"Pixelon"', 
             fontSize: '36px', 
             color: '#ffffff', 
@@ -68,7 +68,7 @@ export class Task7 extends Scene
               this.resumeButton.setVisible(false);
           });
 
-        this.skipButton = this.add.text(560, 600, 'Skip', { 
+        this.skipButton = this.add.text(500, 600, 'Skip', { 
             fontFamily: '"Pixelon"', 
             fontSize: '36px', 
             color: '#ffffff', 
@@ -84,7 +84,7 @@ export class Task7 extends Scene
               disableNarrator(this);
         });
 
-        this.narrator = this.add.text(451, 335, '', {
+        this.narrator = this.add.text(320, 400, '', {
             fontFamily: '"Pixelon"',
             fontSize: '18px',
             color: '#000000',
@@ -135,7 +135,7 @@ export class Task7 extends Scene
         this.ziom.setVisible(true);
         typewriteText(this, 
 `What are the requirements for a strong password?
-Don't use related sequences of characters. Use special
+Don't use related sequences of characters.~ Use special
 characters, lowercase and uppercase letters. Good luck!~`, 
         this.narrator, this.ziom); 
     }
