@@ -85,6 +85,7 @@ export class Game extends Scene
         var taskField_four;
         var taskField_five;
         var taskField_six;
+        var mapField;
 
         // add static groups
         taskFields = this.physics.add.staticGroup();
@@ -207,6 +208,7 @@ export class Game extends Scene
         taskField_four = taskFields.create(804, 118, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_five = taskFields.create(80, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_six = taskFields.create(1872, 615, 'task').setScale(0.5).refreshBody().setVisible(false);
+        mapField = taskFields.create(813, 730, '').setScale(0).refreshBody();
         
         // add a player
         this.player = this.physics.add.sprite(1000, 1000, 'robot').refreshBody();
@@ -381,6 +383,11 @@ export class Game extends Scene
             }
         }, null, this);
         
+        this.physics.add.overlap(this.player, mapField, () => {
+            EventBus.emit('map');
+            this.player.body.y= 740;
+            }, null, this);
+
         // create cursors for keyboard input
         this.cursors = this.input.keyboard.createCursorKeys();
         

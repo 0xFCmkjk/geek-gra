@@ -25,7 +25,6 @@ function App ()
         setShowConsole(false);
         setShowInfo(false);
     })
-
     EventBus.on('start-quiz',(e)=>{
         setShowQuiz(true);
         setQuizNumber(e);
@@ -55,7 +54,7 @@ function App ()
             </div>
             {showConsole && <GameConsole gameRef={phaserRef} onClose={() => setShowConsole(false)} />}
             {showInfo && <TaskInfo onClose={() => setShowInfo(false)} />}
-            {showMap && <Map onClick={()=>{setShowMap(false)}}/>}
+            {showMap && <Map onSelect={()=>{setShowMap(false)}}/>}
         </div>
     );
 }
