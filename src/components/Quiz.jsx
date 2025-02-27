@@ -13,7 +13,7 @@ export default function Quiz({quizNum}){
     const [answerC , setAnswerC] = useState(quiz[quizNumber].data[currentQuestion].ansC);
     const [answerD , setAnswerD] = useState(quiz[quizNumber].data[currentQuestion].ansD);
     const [question , setQuestion] = useState(quiz[quizNumber].data[currentQuestion].question);
-    //FIXME hide everything after a back-button-pressed event
+
     useEffect(() => {
         const backButtonListener = () => {
             setShowEnd(false);  // Reset the quiz end state

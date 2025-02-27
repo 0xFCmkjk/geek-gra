@@ -33,6 +33,8 @@ export class Game extends Scene
     create ()
     {
         //TODO: Make the quickstart guide
+        //TODO: narrator tylko za pierwsztm urchomieniem teaska quiz potem tez ale ze skip button
+        //TODO: task 7,8
         const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with the map. Also check out the quickstart guide, where you will learn about basic concepts crucial to beat this game. Have fun!`;
 
         // add bg and first walls
@@ -317,6 +319,10 @@ export class Game extends Scene
             EventBus.off("show-resume-button");
         });
 
+        EventBus.on("resume-game", () => {
+            this.isPaused = false;
+        });
+
         // INTERSECTIONS WITH TASKFIELDS
         this.physics.add.overlap(this.player, taskField_one, () => {
             if (!this.sceneChanging) {  // Check if transition is already happening
@@ -387,7 +393,9 @@ export class Game extends Scene
         
         this.physics.add.overlap(this.player, mapField, () => {
             EventBus.emit('map');
+            this.player.body.setVelocity(0,0);
             this.player.body.y= 740;
+            this.isPaused = true;
             }, null, this);
 
         // create cursors for keyboard input
@@ -481,7 +489,7 @@ export class Game extends Scene
         this.ziom.setToTop();
         this.narrator.setToTop();
         this.resumeButton.setToTop();
-        //TODO game map
+
         EventBus.emit('task-info-updated', taskInfo); // for taskinfo
         EventBus.emit('current-scene-ready', this); // for console
         if (!localStorage.getItem('first-run')) {

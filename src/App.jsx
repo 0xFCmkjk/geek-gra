@@ -21,6 +21,11 @@ function App ()
 
     const phaserDocsUrl = "https://docs.phaser.io/api-documentation/api-documentation";
 
+    function resumeGame() {
+        EventBus.emit("resume-game");
+        setShowMap(false);
+    }
+
     EventBus.on("back-button-pressed", () => {
         setShowConsole(false);
         setShowInfo(false);
@@ -54,7 +59,7 @@ function App ()
             </div>
             {showConsole && <GameConsole gameRef={phaserRef} onClose={() => setShowConsole(false)} />}
             {showInfo && <TaskInfo onClose={() => setShowInfo(false)} />}
-            {showMap && <Map onSelect={()=>{setShowMap(false)}}/>}
+            {showMap && <Map onSelect={resumeGame}/>}
         </div>
     );
 }
