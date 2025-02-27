@@ -38,19 +38,23 @@ export default function Quiz({quizNum}){
         setQuestion(quiz[quizNumber].data[currentQuestion].question);
     }, [currentQuestion]);
 
-    function handleAnswer(answer){
-        if(answer == quiz[quizNumber].data[currentQuestion].goodAns){
-            setScore(score + 1);
-            console.log(score);
+    function handleAnswer(answer) {
+        if (answer === quiz[quizNumber].data[currentQuestion].goodAns) {
+            setScore(prevScore => prevScore + 1);
         }
         setCurrentQuestion(prevQuestion => {
             const nextQuestion = prevQuestion + 1;
-            if(nextQuestion < quiz[quizNumber].data.length){
+            if (nextQuestion < quiz[quizNumber].data.length) {
                 return nextQuestion;
             } else {
+                const finalScore = answer === quiz[quizNumber].data[currentQuestion].goodAns ? score + 1 : score;
+                let scorePercentage = Math.round(finalScore / quiz[quizNumber].data.length * 100);
                 console.log('Quiz ended');
-                setShowEnd(true)
-                EventBus.emit('quiz-end', Math.round(score / quiz[quizNumber].data.length * 100));
+                console.log(scorePercentage);
+                console.log(finalScore);
+                console.log(quiz[quizNumber].data.length);
+                EventBus.emit('quiz-end', scorePercentage);
+                setShowEnd(true);
                 return prevQuestion;
             }
         });

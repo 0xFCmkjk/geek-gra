@@ -87,6 +87,8 @@ export class Game extends Scene
         var taskField_four;
         var taskField_five;
         var taskField_six;
+        var taskField_seven;
+        var taskField_eight;
         var mapField;
 
         // add static groups
@@ -210,6 +212,8 @@ export class Game extends Scene
         taskField_four = taskFields.create(804, 118, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_five = taskFields.create(80, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_six = taskFields.create(1872, 615, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_seven = taskFields.create(388, 1070, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_eight = taskFields.create(120, 1300, 'task').setScale(0.5).refreshBody().setVisible(false);
 
         //map field
         mapField = taskFields.create(813, 730, '').setScale(0).refreshBody();
@@ -390,7 +394,30 @@ export class Game extends Scene
                 });
             }
         }, null, this);
-        
+
+        var taskFieldSevenCollider = this.physics.add.overlap(this.player, taskField_seven, () => {
+            if (!this.sceneChanging) {  
+                this.sceneChanging = true; 
+                disableNarrator(this);
+                this.cameras.main.fadeOut(500, 0, 0, 0);
+                this.time.delayedCall(500, () => {
+                    this.scene.start('Task7');
+                });
+            }
+        }, null, this);
+
+        var taskFieldEightCollider = this.physics.add.overlap(this.player, taskField_eight, () => {
+            if (!this.sceneChanging) {  
+                this.sceneChanging = true; 
+                disableNarrator(this);
+                this.cameras.main.fadeOut(500, 0, 0, 0);
+                this.time.delayedCall(500, () => {
+                    this.scene.start('Task8');
+                });
+            }
+        }, null, this);
+
+        // map overlap
         this.physics.add.overlap(this.player, mapField, () => {
             EventBus.emit('map');
             this.player.body.setVelocity(0,0);
@@ -448,12 +475,16 @@ export class Game extends Scene
         taskField_four.anims.play('task_move', true);
         taskField_five.anims.play('task_move', true);
         taskField_six.anims.play('task_move', true);
+        taskField_seven.anims.play('task_move', true);
+        taskField_eight.anims.play('task_move', true);
 
         taskFieldTwoCollider.active = false;
         taskFieldThreeCollider.active = false;
         taskFieldFourCollider.active = false;
         taskFieldFiveCollider.active = false;
         taskFieldSixCollider.active = false;
+        taskFieldSevenCollider.active = false;
+        taskFieldEightCollider.active = false;
 
         if (localStorage.getItem('Task1Completed') === 'true') {
             taskField_two.setVisible(true);
@@ -481,9 +512,19 @@ export class Game extends Scene
             taskField_five.anims.play('taskMetaMini_move', true);
         }
         if (localStorage.getItem('Task6Completed') === 'true') {
-            taskField_six.setVisible(true);
-            taskFieldSixCollider.active = true;
-            taskField_five.anims.play('taskMetaMini_move', true);
+            taskField_seven.setVisible(true);
+            taskFieldSevenCollider.active = true;
+            taskField_six.anims.play('taskMetaMini_move', true);
+        }
+        if (localStorage.getItem('Task7Completed') === 'true') {
+            taskField_eight.setVisible(true);
+            taskFieldEightCollider.active = true;
+            taskField_seven.anims.play('taskMetaMini_move', true);
+        }
+        if (localStorage.getItem('Task8Completed') === 'true') {
+            taskField_eight.setVisible(true);
+            taskFieldEightCollider.active = true;
+            taskField_eight.anims.play('taskMetaMini_move', true);
         }
 
         this.ziom.setToTop();

@@ -5,6 +5,8 @@ import { Task3 } from './scenes/Task3';
 import { Task4 } from './scenes/Task4';
 import { Task5 } from './scenes/Task5';
 import { Task6 } from './scenes/Task6';
+import { Task7 } from './scenes/Task7';
+import { Task8 } from './scenes/Task8';
 import { AUTO, Game } from 'phaser';
 
 //  Find out more information about the Game Config at:
@@ -30,7 +32,9 @@ const config = {
         Task3,
         Task4,
         Task5,
-        Task6
+        Task6,
+        Task7,
+        Task8
     ]
 };
 
