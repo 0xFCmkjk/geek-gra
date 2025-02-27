@@ -25,7 +25,7 @@ export class Task2 extends Scene
         this.add.image(850, 425, 'task1');
         this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
-        this.add.text(100, 50, 'Back', {
+        this.add.text(430, 130, 'Back', {
             fontFamily: '"Pixelon"',
             fontSize: '36px',
             color: '#ffffff',

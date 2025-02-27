@@ -212,7 +212,7 @@ export class Game extends Scene
         taskField_five = taskFields.create(80, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_six = taskFields.create(1872, 615, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_seven = taskFields.create(388, 1070, 'task').setScale(0.5).refreshBody().setVisible(false);
-        taskField_eight = taskFields.create(120, 1300, 'task').setScale(0.5).refreshBody().setVisible(false);
+        taskField_eight = taskFields.create(110, 1250, 'task').setScale(0.5).refreshBody().setVisible(false);
 
         //map field
         mapField = taskFields.create(813, 730, '').setScale(0).refreshBody();

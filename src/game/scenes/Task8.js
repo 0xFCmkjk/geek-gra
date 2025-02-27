@@ -13,15 +13,15 @@ export class Task8 extends Scene
     {
         this.load.setPath('assets');
         
-        this.load.image('task8', 'task1.png');
+        this.load.image('task1', 'task1.png');
         this.load.image('ziom', 'ziom.png');
     }
 
     create ()
     {
-        const taskInfo = `quiz`;
-        this.add.image(0, 0, 'task8').setOrigin(0, 0);
-        this.ziom = this.add.image(451, 474, 'ziom').setScale(1.25, 1.25).setVisible(false);
+        const taskInfo = `Quick lesson about social engineering in cybersecurity and a adorable quiz.`;
+        this.add.image(0, 0, 'task1').setOrigin(0, 0);
+        this.ziom = this.add.image(320, 530, 'ziom').setScale(1.25, 1.25).setVisible(false);
            
         this.quizText = this.add.text(850, 425, 'Start Quiz', {
             fontFamily: '"Pixelon"',
@@ -36,7 +36,7 @@ export class Task8 extends Scene
             })
         this.quizText.setVisible(false);
 
-        this.add.text(137, 64, 'Back', {
+        this.add.text(390, 108, 'Back', {
             fontFamily: '"Pixelon"',
             fontSize: '36px',
             color: '#ffffff',
@@ -51,11 +51,11 @@ export class Task8 extends Scene
                 this.time.delayedCall(500, () => {
                     disableNarrator(this);
                     this.scene.start('Game');
-                    this.scene.stop('Task1');
+                    this.scene.stop('Task8');
                 });
             })
 
-        this.resumeButton = this.add.text(560, 650, 'Continue', { 
+        this.resumeButton = this.add.text(500, 650, 'Continue', { 
             fontFamily: '"Pixelon"', 
             fontSize: '36px', 
             color: '#ffffff', 
@@ -68,7 +68,23 @@ export class Task8 extends Scene
               this.resumeButton.setVisible(false);
           });
 
-        this.narrator = this.add.text(451, 335, '', {
+        this.skipButton = this.add.text(500, 600, 'Skip', { 
+            fontFamily: '"Pixelon"', 
+            fontSize: '36px', 
+            color: '#ffffff', 
+            backgroundColor: '#3F414F' 
+        }).setOrigin(0.5)
+          .setInteractive()
+          .setVisible(true)
+          .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+              typewriteText(this, "~" , this.narrator, this.ziom);
+              this.narrator.setVisible(false);
+              this.quizText.setVisible(true);
+              this.skipButton.setVisible(false);
+              disableNarrator(this);
+        });
+
+        this.narrator = this.add.text(320, 400, '', {
             fontFamily: '"Pixelon"',
             fontSize: '18px',
             color: '#000000',
@@ -108,28 +124,19 @@ export class Task8 extends Scene
             }
         });
 
+        if (!localStorage.getItem('task8-first-run')) {
+            this.skipButton.setVisible(false);
+            localStorage.setItem('task8-first-run', 'false');
+        }
+
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
         this.ziom.setVisible(true);
-        typewriteText(this, `What are the requirements for a strong password?
-I'm sure you know that. But imagine a situation in which
-Ms. Ania from the local office has a strong password that
-complies with all the requirements, but it is written on a small
-innocent piece of paper placed next to her coffee mug.~
-What if the system is secured by the book,
-the antivirus works, the system is always updated, but when
-Ms. Ania goes out to fill her cup she does not lock the screen.
-And when a “colleague from another department” calls,
-she gives him the sensitive data he asked about without
-a second thought.~
-Keep in mind that hardware security is very important,
-but when you let a thief into your home yourself,
-you should not be surprised that you have been robbed.
-This also applies to cracked software.~
-Even these days, some people trust crackers.~
-You are now in for a quick quiz to test your knowledge 
-of the basics of everyday cyber security. 
-A score above 80% counts the task as done. Good luck!~`, this.narrator, this.ziom); 
+        typewriteText(this, 
+`What are the requirements for a strong password?
+Don't use related sequences of characters. Use special
+characters, lowercase and uppercase letters. ~`, 
+        this.narrator, this.ziom); 
     }
 }
