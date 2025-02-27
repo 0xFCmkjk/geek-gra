@@ -136,25 +136,7 @@ export class Task7 extends Scene
         typewriteText(this, 
 `What are the requirements for a strong password?
 Don't use related sequences of characters. Use special
-characters, lowercase and uppercase letters.~
-I'm sure you know that. But imagine a situation in which
-Ms. Ania from the local office has a strong password that
-complies with all the requirements, but it is written on a small
-innocent piece of paper placed next to her coffee mug.~
-What if the system is secured by the book,
-the antivirus works, the system is always updated, but when
-Ms. Ania goes out to fill her cup she does not lock the screen.
-And when a “colleague from another department” calls,
-she gives him the sensitive data he asked about without
-a second thought.~
-Keep in mind that hardware security is very important,
-but when you let a thief into your home yourself,
-you should not be surprised that you have been robbed.
-This also applies to cracked software.~
-Even these days, some people trust crackers.~
-You are now in for a quick quiz to test your knowledge 
-of the basics of everyday cyber security. 
-A score above 80% counts the task as done. Good luck!~`, 
+characters, lowercase and uppercase letters. Good luck!~`, 
         this.narrator, this.ziom); 
     }
 }
