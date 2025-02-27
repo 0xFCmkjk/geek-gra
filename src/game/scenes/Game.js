@@ -208,6 +208,8 @@ export class Game extends Scene
         taskField_four = taskFields.create(804, 118, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_five = taskFields.create(80, 150, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_six = taskFields.create(1872, 615, 'task').setScale(0.5).refreshBody().setVisible(false);
+
+        //map field
         mapField = taskFields.create(813, 730, '').setScale(0).refreshBody();
         
         // add a player
