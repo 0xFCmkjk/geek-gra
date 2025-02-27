@@ -20,6 +20,7 @@ export class Game extends Scene
         this.load.spritesheet('task', 'taskAnim.png', { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet('laptop', 'objects/laptop.png', { frameWidth: 22, frameHeight: 17 });
         this.load.spritesheet('taskMeta', 'taskcompleted.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet('taskMetaMini', 'taskcompletedmini.png', { frameWidth: 36, frameHeight: 37 });
         this.load.image('ziom', 'ziom.png');
         this.load.image('background', 'bg.png');
         this.load.image('ground', 'ground.png');
@@ -238,6 +239,13 @@ export class Game extends Scene
                 frameRate: 15,
                 repeat: -1
             });
+            //add taskMetaMini animations
+            this.anims.create({
+                key: 'taskMetaMini_move',
+                frames: this.anims.generateFrameNumbers('taskMetaMini', { start: 0, end: 11 }),
+                frameRate: 15,
+                repeat: -1
+            });
 
             // add laptop animations
             this.anims.create({
@@ -433,27 +441,32 @@ export class Game extends Scene
         if (localStorage.getItem('Task1Completed') === 'true') {
             taskField_two.setVisible(true);
             taskFieldTwoCollider.active = true;
-            taskField_one.anims.play('taskMeta_move', true);
+            taskField_one.anims.play('taskMetaMini_move', true);
         }
         if (localStorage.getItem('Task2Completed') === 'true') {
             taskField_three.setVisible(true);
             taskFieldThreeCollider.active = true;
-            taskField_two.anims.play('taskMeta_move', true);
+            taskField_two.anims.play('taskMetaMini_move', true);
         }
         if (localStorage.getItem('Task3Completed') === 'true') {
             taskField_four.setVisible(true);
             taskFieldFourCollider.active = true;
-            taskField_three.anims.play('taskMeta_move', true);
+            taskField_three.anims.play('taskMetaMini_move', true);
         }
         if (localStorage.getItem('Task4Completed') === 'true') {
             taskField_five.setVisible(true);
             taskFieldFiveCollider.active = true;
-            taskField_four.anims.play('taskMeta_move', true);
+            taskField_four.anims.play('taskMetaMini_move', true);
         }
         if (localStorage.getItem('Task5Completed') === 'true') {
             taskField_six.setVisible(true);
             taskFieldSixCollider.active = true;
-            taskField_five.anims.play('taskMeta_move', true);
+            taskField_five.anims.play('taskMetaMini_move', true);
+        }
+        if (localStorage.getItem('Task6Completed') === 'true') {
+            taskField_six.setVisible(true);
+            taskFieldSixCollider.active = true;
+            taskField_five.anims.play('taskMetaMini_move', true);
         }
 
         this.ziom.setToTop();
