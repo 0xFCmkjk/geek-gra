@@ -11,8 +11,8 @@ import { AUTO, Game } from 'phaser';
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
     type: AUTO,
-    width: 1700,
-    height: 850,
+    width: window.innerWidth,
+    height: window.innerHeight,
     physics: {
         default: 'arcade',
         arcade: {
