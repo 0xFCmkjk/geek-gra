@@ -2,25 +2,25 @@ import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 import { typewriteText } from '../TypeWriter';
 import { disableNarrator } from '../DisableNarrator';
-export class Task6 extends Scene
+export class Task8 extends Scene
 {
     constructor ()
     {
-        super('Task6');
+        super('Task8');
     }
 
     preload ()
     {
         this.load.setPath('assets');
         
-        this.load.image('task6', 'task6.png');
+        this.load.image('task8', 'task1.png');
         this.load.image('ziom', 'ziom.png');
     }
 
     create ()
     {
         const taskInfo = `quiz`;
-        this.add.image(0, 0, 'task6').setOrigin(0, 0);
+        this.add.image(0, 0, 'task8').setOrigin(0, 0);
         this.ziom = this.add.image(451, 474, 'ziom').setScale(1.25, 1.25).setVisible(false);
            
         this.quizText = this.add.text(850, 425, 'Start Quiz', {
@@ -32,7 +32,7 @@ export class Task6 extends Scene
         }).setOrigin(0.5)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                EventBus.emit('start-quiz', 0);
+                EventBus.emit('start-quiz', 2);
             })
         this.quizText.setVisible(false);
 
@@ -51,7 +51,7 @@ export class Task6 extends Scene
                 this.time.delayedCall(500, () => {
                     disableNarrator(this);
                     this.scene.start('Game');
-                    this.scene.stop('Task6');
+                    this.scene.stop('Task1');
                 });
             })
 
