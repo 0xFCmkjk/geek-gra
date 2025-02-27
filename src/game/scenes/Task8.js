@@ -97,6 +97,7 @@ export class Task8 extends Scene
 
         EventBus.on('end-of-text', () => {
             this.quizText.setVisible(true);
+            this.skipButton.setVisible(false);
         })
 
         this.isPaused = false;
@@ -134,9 +135,7 @@ export class Task8 extends Scene
         EventBus.emit('current-scene-ready', this);
         this.ziom.setVisible(true);
         typewriteText(this, 
-`What are the requirements for a strong password?
-Don't use related sequences of characters. Use special
-characters, lowercase and uppercase letters. ~`, 
+`~`, 
         this.narrator, this.ziom); 
     }
 }

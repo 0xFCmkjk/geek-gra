@@ -97,7 +97,7 @@ export class Task6 extends Scene
 
         EventBus.on('end-of-text', () => {
             this.quizText.setVisible(true);
-            this.skipButton.setVisible(false); // TO DODAJ
+            this.skipButton.setVisible(false);
         })
 
         this.isPaused = false;

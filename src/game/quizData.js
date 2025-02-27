@@ -56,29 +56,46 @@ export const quiz = [
         task: '7',
         data: [
             {
-                question: "What is the capital of Japan?",
-                ansA: "Tokyo",
-                ansB: "London",
-                ansC: "Berlin",
-                ansD: "Madrid",
+                question: "What is social engineering?",
+                ansA: "Set of techniques used to capture confidential information, etc.",
+                ansB: "Something that everyone uses daily",
+                ansC: "Design of community spaces (theaters, schools, etc.)",
+                ansD: "Road traffic engineering",
                 goodAns: 'A'
             },
             {
-                question: "What is the capital of Canada?",
-                ansA: "Paris",
-                ansB: "Ottawa",
-                ansC: "Berlin",
-                ansD: "Madrid",
+                question: "What a potential threat actor could do to achieve their goals?",
+                ansA: "Exert time pressure",
+                ansB: "Impersonate an high-profile person",
+                ansC: "Abuse your empathy, say that they need help",
+                ansD: "All the above",
+                goodAns: 'D'
+            },
+            {
+                question: "In work enviroment, how would you check the authenticity of a caller?",
+                ansA: "Ask them if they are real",
+                ansB: "Contact your manager and his manager, check if that person even exists",
+                ansC: "Check the phone number",
+                ansD: "Trust them, what could go wrong",
                 goodAns: 'B'
             },
             {
-                question: "What is the capital of Australia?",
-                ansA: "Paris",
-                ansB: "London",
-                ansC: "Canberra",
-                ansD: "Madrid",
-                goodAns: 'C'
-            }
+                question: "How woud you deal with a computer virus in your workplace?",
+                ansA: "Restart the PC",
+                ansB: "Update the antivirus",
+                ansC: "Try to remove the threat yourself",
+                ansD: "Contact the administrator immediately",
+                goodAns: 'D'
+            },
+            {
+                question: "How to recognize a phishing website?",
+                ansA: "Check if the connection is secured (look for the padlock next to the url)",
+                ansB: "Check if the website has the logo of the company",
+                ansC: "Try to log in, if it suceeds that means it is a safe website",
+                ansD: "Check web address",
+                goodAns: 'A'
+            },
+
         ]
     },
     {   

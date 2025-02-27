@@ -97,6 +97,7 @@ export class Task7 extends Scene
 
         EventBus.on('end-of-text', () => {
             this.quizText.setVisible(true);
+            this.skipButton.setVisible(false);
         })
 
         this.isPaused = false;
@@ -134,9 +135,36 @@ export class Task7 extends Scene
         EventBus.emit('current-scene-ready', this);
         this.ziom.setVisible(true);
         typewriteText(this, 
-`What are the requirements for a strong password?
-Don't use related sequences of characters.~ Use special
-characters, lowercase and uppercase letters. Good luck!~`, 
+`Now let's take a closer look at the situation with the 
+previously mentioned “colleague.” The set of techniques 
+that serves to achieve the goals of such a person is 
+called social engineering.~ We are exposed to marketing
+every day, every company wants to convince us to buy its product 
+or service. However, social engineering science is more on
+the dark side.~ 
+An example is Kevin Mitnick, whose fantastic book on 
+the subject is titled “The Art of Deception. Controlling 
+the Human Element of Security”.~ He describes (also from 
+his own experience) how criminals e.g.: only by means
+of phone calls gained access to sensitive information. 
+They often took advantage of: human empathy, 
+the hierarchical structure of the company, 
+time pressure or when it came to live meetings: 
+elegance and confidence.~ The conclusion? Don't trust
+messages asking for sensitive data or logging in 
+to some site. We can very easily fall victim to so-called 
+phishing (always look for the padlock next to the URL).~
+Have you ever received a message from a friend requesting
+eg. to vote for him in a contest, but when you click the
+link the facebook login page looks somewhat suspicious?
+Your friend probably didn't look for the padlock.~
+Going forward, let's confirm information with 
+several sources. If a colleague, through a message, 
+asked you to transfer funds along with a promise to give it 
+back to you, call and ask if it's definitely them.~
+A half-minute conversation is not much, and can save 
+you nerves and money. Now as before you are faced with
+a quiz. The rules are also familiar to you. Good luck!~`, 
         this.narrator, this.ziom); 
     }
 }
