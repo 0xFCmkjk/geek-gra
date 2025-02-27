@@ -21,6 +21,7 @@ function App ()
 
     EventBus.on("back-button-pressed", () => {
         setShowConsole(false);
+        setShowInfo(false);
     })
 
     EventBus.on('start-quiz',(e)=>{

@@ -8,7 +8,7 @@ import 'prismjs/themes/prism.css';
 function GameConsole({ gameRef, onClose }) {
     const [command, setCommand] = useState('Your code goes here');
     const [output, setOutput] = useState('');
-    const [position, setPosition] = useState({ x: 910, y: 400 });
+    const [position, setPosition] = useState({ x: 810, y: 400 });
     const [isDragging, setIsDragging] = useState(false);
     const dragRef = useRef(null);
     const textAreaRef = useRef(null);

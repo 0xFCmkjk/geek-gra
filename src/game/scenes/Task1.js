@@ -35,12 +35,12 @@ export class Task1 extends Scene
         }).setOrigin(0, 0)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                EventBus.emit('back-button-pressed');
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     // App.jsx listens to this event, when emited it closes the console, so when the character gets back to the main map 
                     // it can walk etc. (physics are resumed)
                     disableNarrator(this);
-                    EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
                     this.scene.stop('Task1');
                 });

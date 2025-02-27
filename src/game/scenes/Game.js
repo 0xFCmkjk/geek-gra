@@ -479,11 +479,16 @@ export class Game extends Scene
             this.ziom.setVisible(true);
             typewriteText(this, 
 `Welcome! We are happy you've decided to give our game
-a go! Always check task info and use debugging console to
-your advantage while working on the tasks.
-Some of them are pretty hard, so be prepared
-for quite a challenge! Also, check out
-the map next to the clock.~`, this.narrator, this.ziom);
+a go! It's untypical game since it will show you how 
+cybersecurity really works in an unusual way. It's way
+harder than other games, because you will have to search 
+for information on diffrent sites and use it to solve tasks.~
+Always check task info and use debugging console to
+your advantage while working on the tasks 
+(Hint: work smart, not hard). Some of them are pretty hard, 
+so be prepared for quite a challenge! Also, check out
+the map next to the clock, it will help 
+you to get to the tasks quicker.~`, this.narrator, this.ziom);
             localStorage.setItem('first-run', 'false');
         } 
     }
