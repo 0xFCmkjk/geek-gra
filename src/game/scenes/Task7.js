@@ -13,14 +13,14 @@ export class Task7 extends Scene
     {
         this.load.setPath('assets');
         
-        this.load.image('task7', 'task1.png');
+        this.load.image('task1', 'task1.png');
         this.load.image('ziom', 'ziom.png');
     }
 
     create ()
     {
-        const taskInfo = `quiz`;
-        this.add.image(0, 0, 'task7').setOrigin(0, 0);
+        const taskInfo = `Quick lesson about social engineering in cybersecurity and a adorable quiz.`;
+        this.add.image(0, 0, 'task1').setOrigin(0, 0);
         this.ziom = this.add.image(451, 474, 'ziom').setScale(1.25, 1.25).setVisible(false);
            
         this.quizText = this.add.text(850, 425, 'Start Quiz', {
@@ -32,7 +32,7 @@ export class Task7 extends Scene
         }).setOrigin(0.5)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                EventBus.emit('start-quiz', 1);
+                EventBus.emit('start-quiz', 0);
             })
         this.quizText.setVisible(false);
 
@@ -51,7 +51,7 @@ export class Task7 extends Scene
                 this.time.delayedCall(500, () => {
                     disableNarrator(this);
                     this.scene.start('Game');
-                    this.scene.stop('Task1');
+                    this.scene.stop('Task7');
                 });
             })
 
@@ -67,6 +67,22 @@ export class Task7 extends Scene
               EventBus.emit("resume-typing");
               this.resumeButton.setVisible(false);
           });
+
+        this.skipButton = this.add.text(560, 600, 'Skip', { 
+            fontFamily: '"Pixelon"', 
+            fontSize: '36px', 
+            color: '#ffffff', 
+            backgroundColor: '#3F414F' 
+        }).setOrigin(0.5)
+          .setInteractive()
+          .setVisible(true)
+          .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+              typewriteText(this, "~" , this.narrator, this.ziom);
+              this.narrator.setVisible(false);
+              this.quizText.setVisible(true);
+              this.skipButton.setVisible(false);
+              disableNarrator(this);
+        });
 
         this.narrator = this.add.text(451, 335, '', {
             fontFamily: '"Pixelon"',
@@ -108,11 +124,19 @@ export class Task7 extends Scene
             }
         });
 
+        if (!localStorage.getItem('task7-first-run')) {
+            this.skipButton.setVisible(false);
+            localStorage.setItem('task7-first-run', 'false');
+        }
+
         // pass on the scene, emit an event that taskInfo has been updated
         EventBus.emit('task-info-updated', taskInfo);
         EventBus.emit('current-scene-ready', this);
         this.ziom.setVisible(true);
-        typewriteText(this, `What are the requirements for a strong password?
+        typewriteText(this, 
+`What are the requirements for a strong password?
+Don't use related sequences of characters. Use special
+characters, lowercase and uppercase letters.~
 I'm sure you know that. But imagine a situation in which
 Ms. Ania from the local office has a strong password that
 complies with all the requirements, but it is written on a small
@@ -130,6 +154,7 @@ This also applies to cracked software.~
 Even these days, some people trust crackers.~
 You are now in for a quick quiz to test your knowledge 
 of the basics of everyday cyber security. 
-A score above 80% counts the task as done. Good luck!~`, this.narrator, this.ziom); 
+A score above 80% counts the task as done. Good luck!~`, 
+        this.narrator, this.ziom); 
     }
 }
