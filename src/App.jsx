@@ -6,6 +6,7 @@ import StartingMenu from './components/StartingMenu';
 import TaskInfo from './components/TaskInfo';
 import { EventBus } from './game/EventBus';
 import Quiz from './components/Quiz';
+import Map from './components/Map';
 
 function App ()
 {
@@ -16,19 +17,23 @@ function App ()
     const [showMenu, setShowMenu] = useState(true);
     const [showQuiz, setShowQuiz] = useState(false);
     const [quizNumber, setQuizNumber] = useState(0);
+    const [showMap, setShowMap] = useState(false);
 
     const phaserDocsUrl = "https://docs.phaser.io/api-documentation/api-documentation";
 
     EventBus.on("back-button-pressed", () => {
         setShowConsole(false);
+        setShowInfo(false);
     })
-
     EventBus.on('start-quiz',(e)=>{
         setShowQuiz(true);
         setQuizNumber(e);
     })
     EventBus.on('exit-quiz',()=>{
         setShowQuiz(false);
+    })
+    EventBus.on('map',()=>{
+        setShowMap(true);
     })
 
     return (
@@ -49,6 +54,7 @@ function App ()
             </div>
             {showConsole && <GameConsole gameRef={phaserRef} onClose={() => setShowConsole(false)} />}
             {showInfo && <TaskInfo onClose={() => setShowInfo(false)} />}
+            {showMap && <Map onSelect={()=>{setShowMap(false)}}/>}
         </div>
     );
 }

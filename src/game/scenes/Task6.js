@@ -46,10 +46,10 @@ export class Task6 extends Scene
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 EventBus.emit('exit-quiz');
+                EventBus.emit('back-button-pressed');
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.time.delayedCall(500, () => {
                     disableNarrator(this);
-                    EventBus.emit('back-button-pressed');
                     this.scene.start('Game');
                     this.scene.stop('Task1');
                 });
