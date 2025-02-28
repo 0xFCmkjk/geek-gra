@@ -550,7 +550,7 @@ are pretty hard, so be prepared for quite a challenge!
 Also, check out the map next to the clock, it will help
 you to get to the tasks quicker. Your first task waits
 for you in the office!~`,
- this.narrator, this.ziom);
+            this.narrator, this.ziom);
             localStorage.setItem('first-run', 'false');
         } 
         else if(!localStorage.getItem('task1CompletedNarrator') && localStorage.getItem('Task1Completed')=== 'true'){

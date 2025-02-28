@@ -11,7 +11,6 @@ export default function StartingMenu({onStart}) {
         localStorage.clear();
     }
     return (
-        // @mikolajjkrol reset progress button zrobic tak aby bylo potwierzenie cyz napewno
         <div className="starting-menu">
             {onReset ? <ResetGame onYes={restart} onNo={()=>setOnReset(false)}/> : null}
             {onCredits ? <Credits onClose={()=>setOnCredits(false)}/> : null}
