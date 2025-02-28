@@ -20,7 +20,6 @@ LINK TO YT
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Development](#development)
 - [Contribute](#contribute)
 - [License](#license)
 
