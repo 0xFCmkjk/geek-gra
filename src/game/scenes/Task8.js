@@ -144,7 +144,7 @@ the two-step authentication method, the best tool will
 be the “Authy” phone app.~ If you have spare funds, you may
 also be interested in a physical 2FA key.~ Going further,
 a password manager - “Bitwarden” or “KeePass” will work best
-and are free.~ A matter worth noting is also “dirty” accounts in
+and are free.~ A matter worth nothing is also “dirty” accounts in
 various services (email, etc.). If, for example, you need to
 log on to email at school or the library, it is best to have a
 dedicated account for these situations.~ Losing such an account

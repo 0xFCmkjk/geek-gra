@@ -102,28 +102,84 @@ export const quiz = [
         task: '8',
         data: [
             {
-                question: "What is the capital of Brazil?",
-                ansA: "Paris",
-                ansB: "London",
-                ansC: "Berlin",
-                ansD: "Brasilia",
-                goodAns: 'D'
+                question: "What is a brute-force attack in cybersecurity?",
+                ansA: "A hacker physically breaking into a server room.",
+                ansB: "An attack where multiple password guesses are attempted until the correct one is found.",
+                ansC: "A phishing attempt that tricks users into revealing credentials.",
+                ansD: "A malware attack that locks users out of their accounts.",
+                goodAns: 'B'
             },
             {
-                question: "What is the capital of Russia?",
-                ansA: "Moscow",
-                ansB: "London",
-                ansC: "Berlin",
-                ansD: "Madrid",
+                question: "What is the purpose of multi-factor authentication (MFA)?",
+                ansA: "To make the login process slower.",
+                ansB: "To require multiple passwords for each login attempt.",
+                ansC: "To add an extra layer of security by requiring multiple forms of verification.",
+                ansD: "To replace the need for strong passwords.",
+                goodAns: 'C'
+            },
+            {
+                question: "Why is having a 'dirty' account for public logins a good idea?",
+                ansA: "It prevents your main email from being compromised in case of security breaches.",
+                ansB: "It allows you to hack into other people's accounts more easily.",
+                ansC: "It lets you share login credentials with multiple users.",
+                ansD: "It makes it harder to remember your real login details.",
                 goodAns: 'A'
             },
             {
-                question: "What is the capital of India?",
-                ansA: "Paris",
-                ansB: "London",
-                ansC: "New Delhi",
-                ansD: "Madrid",
-                goodAns: 'C'
+                question: "Which authentication method is recommended as the best security measure?",
+                ansA: "SMS-based authentication",
+                ansB: "Two-step authentication with an app like Authy",
+                ansC: "Using the same password for all accounts",
+                ansD: "Logging in only from personal devices",
+                goodAns: 'B'
+            },
+            {
+                question: "What is the biggest weakness of SMS-based two-factor authentication?",
+                ansA: "It is the most secure method available.",
+                ansB: "It can be intercepted through SIM swapping or phishing.",
+                ansC: "It requires an internet connection to work.",
+                ansD: "It generates passwords that never expire.",
+                goodAns: 'B'
+            },
+            {
+                question: "Which of the following is considered the strongest type of authentication?",
+                ansA: "Username and password only",
+                ansB: "Biometrics combined with a physical security key",
+                ansC: "A simple four-digit PIN",
+                ansD: "Answering security questions based on personal information",
+                goodAns: 'B'
+            },
+            {
+                question: "Why is intuition important in cybersecurity?",
+                ansA: "It helps in recognizing phishing attempts and suspicious activities.",
+                ansB: "It replaces the need for security tools.",
+                ansC: "It allows you to predict hacker attacks with 100% accuracy.",
+                ansD: "It is only useful for professional hackers.",
+                goodAns: 'A'
+            },
+            {
+                question: "Why should you avoid using personal information in security questions?",
+                ansA: "Hackers can often find this information through social media or public records.",
+                ansB: "It makes it easier to remember your answers.",
+                ansC: "It is required by most services for verification.",
+                ansD: "It strengthens the security of your account.",
+                goodAns: 'A'
+            },
+            {
+                question: "Which of the following is a physical form of two-factor authentication?",
+                ansA: "A printed list of passwords",
+                ansB: "A USB security key",
+                ansC: "A backup email address",
+                ansD: "A fingerprint scanner on a phone",
+                goodAns: 'B'
+            },
+            {
+                question: "What is the main benefit of using a password manager like Bitwarden or KeePass?",
+                ansA: "It automatically changes passwords every day.",
+                ansB: "It remembers and stores strong, unique passwords for different accounts.",
+                ansC: "It connects all accounts into one easy login.",
+                ansD: "It removes the need for passwords entirely.",
+                goodAns: 'B'
             }
         ]
     }
