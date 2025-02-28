@@ -84,7 +84,7 @@ export class Task7 extends Scene
               disableNarrator(this);
         });
 
-        this.narrator = this.add.text(320, 400, '', {
+        this.narrator = this.add.text(320, 380, '', {
             fontFamily: '"Pixelon"',
             fontSize: '18px',
             color: '#000000',

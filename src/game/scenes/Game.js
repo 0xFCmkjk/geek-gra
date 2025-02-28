@@ -541,22 +541,22 @@ export class Game extends Scene
             this.ziom.setVisible(true);
             typewriteText(this, 
 `Welcome! We are happy you've decided to give our game
-a go! It's untypical game since it will show you how 
-cybersecurity really works in an unusual way. It's way
-harder than other games, because you will have to 
-search for information on diffrent sites 
-and use it to solve tasks.~
-Always check task info and use debugging console to
-your advantage while working on the tasks 
-(Hint: work smart, not hard). Some of them are pretty hard, 
-so be prepared for quite a challenge! Also, check out
-the map next to the clock, it will help 
-you to get to the tasks quicker. Your first task waits 
-for you in the office!~`, this.narrator, this.ziom);
+a go! It's untypical game since it will allow you to be
+the hacker. It's way harder than other games, because you
+will have to search for information on diffrent sites and
+use it to solve tasks.~Always check task info and use debugging console to
+your advantage while working on the tasks. Some of them
+are pretty hard, so be prepared for quite a challenge!
+Also, check out the map next to the clock, it will help
+you to get to the tasks quicker. Your first task waits
+for you in the office!~`,
+ this.narrator, this.ziom);
             localStorage.setItem('first-run', 'false');
         } 
         else if(!localStorage.getItem('task1CompletedNarrator') && localStorage.getItem('Task1Completed')=== 'true'){
             this.ziom.setVisible(true);
+            this.narrator.setX(this.narrator.x + 50);
+            this.narrator.setY(this.narrator.y + 20);
             typewriteText(this, 
 `Great! You've finished your first task! 
 Another one showed up next to it!~`, this.narrator, this.ziom);
@@ -565,28 +565,30 @@ Another one showed up next to it!~`, this.narrator, this.ziom);
         else if(!localStorage.getItem('task2CompletedNarrator') && localStorage.getItem('Task2Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-`You are getting better at this. 
-Now let's try something harder. 
-It awaits for you in the storage room!~`, this.narrator, this.ziom);
+`You are getting better at this. Now let's try something
+harder. It awaits for you in the storage room!~`, this.narrator, this.ziom);
             localStorage.setItem('task2CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task3CompletedNarrator') && localStorage.getItem('Task3Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-`Now you are ready to understand the basics of 
-cybertechnology and it's time for you to "hack" 
-something in the server room.~`, this.narrator, this.ziom);
+`Now you are ready to test your knowledge in practice.
+It's time for you to "hack" something in the server room.~`, this.narrator, this.ziom);
             localStorage.setItem('task3CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task4CompletedNarrator') && localStorage.getItem('Task4Completed')=== 'true'){
             this.ziom.setVisible(true);
+            this.narrator.setX(this.narrator.x + 50);
+            this.narrator.setY(this.narrator.y + 20);
             typewriteText(this, 
 `Awesome. Now try the last hacking task. 
-It's avaible on one of the servers. ~`, this.narrator, this.ziom);
+It's avaible on one of the servers.~`, this.narrator, this.ziom);
             localStorage.setItem('task4CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task5CompletedNarrator') && localStorage.getItem('Task5Completed')=== 'true'){
             this.ziom.setVisible(true);
+            this.narrator.setX(this.narrator.x + 50);
+            this.narrator.setY(this.narrator.y + 20);
             typewriteText(this, 
 `Okay. You got the practice. 
 Now it's time for some theory. 
@@ -595,13 +597,17 @@ Go to the library for more info.~`, this.narrator, this.ziom);
         }
         else if(!localStorage.getItem('task6CompletedNarrator') && localStorage.getItem('Task6Completed')=== 'true'){
             this.ziom.setVisible(true);
-            typewriteText(this, 
+            this.narrator.setX(this.narrator.x + 50);
+            this.narrator.setY(this.narrator.y + 20);
+            typewriteText(this,
 `You thought that is your first and last quiz?
-I've got more for you in the office :D ~`, this.narrator, this.ziom);
+I've got more for you in the office :D~`, this.narrator, this.ziom);
             localStorage.setItem('task6CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task7CompletedNarrator') && localStorage.getItem('Task7Completed')=== 'true'){
             this.ziom.setVisible(true);
+            this.narrator.setX(this.narrator.x + 50);
+            this.narrator.setY(this.narrator.y + 20);
             typewriteText(this, 
 `Alright... now this will be your LAST quiz. 
 I promise. It's in the office too.~`, this.narrator, this.ziom);
@@ -610,8 +616,9 @@ I promise. It's in the office too.~`, this.narrator, this.ziom);
         else if(!localStorage.getItem('task8CompletedNarrator') && localStorage.getItem('Task8Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-`You have managed to make it! 
-I hope you enjoyed our game!~`, this.narrator, this.ziom);
+`You have managed to make it! I hope you enjoyed our game!
+As I've mentioned before, stay with us for more
+updates on the game!~`, this.narrator, this.ziom);
             localStorage.setItem('task8CompletedNarrator', 'false');
         } else {
             disableNarrator(this);
