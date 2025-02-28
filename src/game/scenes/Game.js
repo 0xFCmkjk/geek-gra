@@ -53,7 +53,7 @@ export class Game extends Scene
         this.ziom = this.add.image(475, 518, 'ziom').setScale(0.75, 0.75).setScrollFactor(0).setVisible(false);
 
         this.narrator = this.add.text(308, 400, '', {
-            fontFamily: '"Pixelon"',
+            fontFamily: '"Pixelify Sans"',
             fontSize: '12px',
             color: '#000000',
             align: 'center'
@@ -61,7 +61,7 @@ export class Game extends Scene
         this.narrator.text = '';
 
         this.resumeButton = this.add.text(550, 560, 'Continue', { 
-            fontFamily: '"Pixelon"', 
+            fontFamily: '"Pixelify Sans"', 
             fontSize: '20px', 
             color: '#ffffff', 
             backgroundColor: '#3F414F' 

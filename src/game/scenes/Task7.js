@@ -24,7 +24,7 @@ export class Task7 extends Scene
         this.ziom = this.add.image(320, 530, 'ziom').setScale(1.25, 1.25).setVisible(false);
            
         this.quizText = this.add.text(850, 425, 'Start Quiz', {
-            fontFamily: '"Pixelon"',
+            fontFamily: '"Pixelify Sans"',
             fontSize: '36px',
             color: '#ffffff',
             align: 'center',
@@ -37,7 +37,7 @@ export class Task7 extends Scene
         this.quizText.setVisible(false);
 
         this.add.text(390, 108, 'Back', {
-            fontFamily: '"Pixelon"',
+            fontFamily: '"Pixelify Sans"',
             fontSize: '36px',
             color: '#ffffff',
             align: 'center',
@@ -56,7 +56,7 @@ export class Task7 extends Scene
             })
 
         this.resumeButton = this.add.text(500, 650, 'Continue', { 
-            fontFamily: '"Pixelon"', 
+            fontFamily: '"Pixelify Sans"', 
             fontSize: '36px', 
             color: '#ffffff', 
             backgroundColor: '#3F414F' 
@@ -69,7 +69,7 @@ export class Task7 extends Scene
           });
 
         this.skipButton = this.add.text(500, 600, 'Skip', { 
-            fontFamily: '"Pixelon"', 
+            fontFamily: '"Pixelify Sans"', 
             fontSize: '36px', 
             color: '#ffffff', 
             backgroundColor: '#3F414F' 
@@ -85,7 +85,7 @@ export class Task7 extends Scene
         });
 
         this.narrator = this.add.text(320, 380, '', {
-            fontFamily: '"Pixelon"',
+            fontFamily: '"Pixelify Sans"',
             fontSize: '18px',
             color: '#000000',
             align: 'center'

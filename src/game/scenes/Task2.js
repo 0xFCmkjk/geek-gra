@@ -26,7 +26,7 @@ export class Task2 extends Scene
         this.ziom = this.add.image(256, 594, 'ziom').setVisible(false);
         
         this.add.text(430, 130, 'Back', {
-            fontFamily: '"Pixelon"',
+            fontFamily: '"Pixelify Sans"',
             fontSize: '36px',
             color: '#ffffff',
             align: 'center',
@@ -44,7 +44,7 @@ export class Task2 extends Scene
             })
         
         this.narrator = this.add.text(260, 480, '', {
-            fontFamily: '"Pixelon"',
+            fontFamily: '"Pixelify Sans"',
             fontSize: '28px',
             color: '#000000',
             align: 'center'
@@ -52,7 +52,7 @@ export class Task2 extends Scene
 
         
         this.resumeButton = this.add.text(400, 650, 'Continue', { 
-            fontFamily: '"Pixelon"', 
+            fontFamily: '"Pixelify Sans"', 
             fontSize: '36px', 
             color: '#ffffff', 
             backgroundColor: '#3F414F' 
