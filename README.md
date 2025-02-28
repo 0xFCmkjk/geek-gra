@@ -12,7 +12,7 @@ You are on a spaceship. You play the role of a hacker. In order to complete the 
 
 # Quick Start Demo
 
-LINK TO YT
+[Youtube video](https://youtu.be/uGy7qFqGUx0 "Youtube video")
 
 # Table of Contents
 - [Quick Start Demo](#quick-start-demo)
@@ -25,8 +25,7 @@ LINK TO YT
 
 # Installation
 
-> **Note**: These instructions are for development purposes. If you just want to play the game, use the website instead:
-URL TO WEBSITE
+> **Note**: These instructions are for development purposes. If you just want to play the game, use the [website](https://0xfcmkjk.github.io/nodebreaker-game/ "website") instead.
 
 First of all, you need to install Node.js v22 or newer with npm as a package manager.
 Then, you can clone the repo:
