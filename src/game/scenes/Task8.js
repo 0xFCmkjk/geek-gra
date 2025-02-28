@@ -154,7 +154,8 @@ decreases as we begin to use security and have our eyes open.~
 This is the last module of this game, thank you for letting me
 guide you through this wonderful adventure. Be sure to look at
 our repository on github from time to time, as it is very likely
-that the game will be updated and maintained. Enjoy the technology safely!~`, 
+that the game will be updated and maintained. 
+Enjoy the technology safely!~`, 
         this.narrator, this.ziom); 
     }
 }
