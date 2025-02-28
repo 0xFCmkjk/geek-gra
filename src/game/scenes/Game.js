@@ -558,60 +558,60 @@ for you in the office!~`, this.narrator, this.ziom);
         else if(!localStorage.getItem('task1CompletedNarrator') && localStorage.getItem('Task1Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-            `Great! You've finished your first task! 
-            Another one showed up next to it!~`, this.narrator, this.ziom);
+`Great! You've finished your first task! 
+Another one showed up next to it!~`, this.narrator, this.ziom);
             localStorage.setItem('task1CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task2CompletedNarrator') && localStorage.getItem('Task2Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-            `You are getting better at this. 
-            Now let's try something harder. 
-            It awaits for you in the storage room!~`, this.narrator, this.ziom);
+`You are getting better at this. 
+Now let's try something harder. 
+It awaits for you in the storage room!~`, this.narrator, this.ziom);
             localStorage.setItem('task2CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task3CompletedNarrator') && localStorage.getItem('Task3Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-            `Now you are ready to understand the basics of 
-            cybertechnology and it's time for you to "hack" 
-            something in the server room.~`, this.narrator, this.ziom);
+`Now you are ready to understand the basics of 
+cybertechnology and it's time for you to "hack" 
+something in the server room.~`, this.narrator, this.ziom);
             localStorage.setItem('task3CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task4CompletedNarrator') && localStorage.getItem('Task4Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-            `Awesome. Now try the last hacking task. 
-            It's avaible on one of the servers. ~`, this.narrator, this.ziom);
+`Awesome. Now try the last hacking task. 
+It's avaible on one of the servers. ~`, this.narrator, this.ziom);
             localStorage.setItem('task4CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task5CompletedNarrator') && localStorage.getItem('Task5Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-            `Okay. You got the practice. 
-            Now it's time for some theory. 
-            Go to the library for more info.~`, this.narrator, this.ziom);
+`Okay. You got the practice. 
+Now it's time for some theory. 
+Go to the library for more info.~`, this.narrator, this.ziom);
             localStorage.setItem('task5CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task6CompletedNarrator') && localStorage.getItem('Task6Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-            `You thought that is your first and last quiz?
-            I've got more for you in the office :D ~`, this.narrator, this.ziom);
+`You thought that is your first and last quiz?
+I've got more for you in the office :D ~`, this.narrator, this.ziom);
             localStorage.setItem('task6CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task7CompletedNarrator') && localStorage.getItem('Task7Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-            `Alright... now this will be your LAST quiz. 
-            I promise. It's in the office too.~`, this.narrator, this.ziom);
+`Alright... now this will be your LAST quiz. 
+I promise. It's in the office too.~`, this.narrator, this.ziom);
             localStorage.setItem('task7CompletedNarrator', 'false');
         }
         else if(!localStorage.getItem('task8CompletedNarrator') && localStorage.getItem('Task8Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-            `You have managed to make it! 
-            I hope you enjoyed my game!~`, this.narrator, this.ziom);
+`You have managed to make it! 
+I hope you enjoyed our game!~`, this.narrator, this.ziom);
             localStorage.setItem('task8CompletedNarrator', 'false');
         } else {
             disableNarrator(this);
