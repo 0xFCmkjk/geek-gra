@@ -107,6 +107,7 @@ export class Task1 extends Scene
         const answer = "ziom";
         const narratorText = `Congrats! Task completed!\nGo back to the main menu\nwith the "Back" button.`;
         if (params.toString() == answer) {
+            this.resumeButton.setVisible(false);
             this.ziom.setVisible(true);
             this.narrator.text = typewriteText(this, narratorText, this.narrator, this.ziom);
             console.log("Correct answer!");

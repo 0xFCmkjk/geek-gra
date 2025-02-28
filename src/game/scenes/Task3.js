@@ -110,6 +110,7 @@ export class Task3 extends Scene
         console.log("Your function output after a for loop:", truthTable);
 
         if (truthTable.toString() == this.isLeap.toString()) {
+            this.resumeButton.setVisible(false);
             this.ziom.setVisible(true);
             this.narrator.text = typewriteText(this, narratorText, this.narrator, this.ziom);
             console.log("Correct answer!");

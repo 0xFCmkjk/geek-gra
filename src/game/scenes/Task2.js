@@ -96,6 +96,7 @@ export class Task2 extends Scene
         const answer = [6, 8, 10, 12, 18, 24];
         const narratorText = `Congrats! Another task completed!`;
         if (params.toString() == answer.toString()) {
+            this.resumeButton.setVisible(false);
             this.ziom.setVisible(true);
             this.narrator.text = typewriteText(this, narratorText, this.narrator, this.ziom);
             console.log("Correct answer!");
