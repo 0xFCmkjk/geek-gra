@@ -15,7 +15,6 @@ You are on a spaceship. You play the role of a hacker. In order to complete the 
 LINK TO YT
 
 # Table of Contents
-- [Project Title](#project-title)
 - [Quick Start Demo](#quick-start-demo)
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
