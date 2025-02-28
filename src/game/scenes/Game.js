@@ -34,6 +34,7 @@ export class Game extends Scene
     {
         //TODO: Make the quickstart guide
         //TODO: task 7,8
+        //TODO: local storage player cords
         const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with the map. Also check out the quickstart guide, where you will learn about basic concepts crucial to beat this game. Have fun!`;
 
         // add bg and first walls

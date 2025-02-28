@@ -135,7 +135,26 @@ export class Task8 extends Scene
         EventBus.emit('current-scene-ready', this);
         this.ziom.setVisible(true);
         typewriteText(this, 
-`~`, 
+`The time has come for action in practice. The previous two
+tasks were designed to make you aware of existing threats,
+but now it was time to look your opponent in the eye.~
+Let's start with the most important thing: wide-open
+eyes - no tool can replace your intuition. Secondly,
+the two-step authentication method, the best tool will
+be the “Authy” phone app.~ If you have spare funds, you may
+also be interested in a physical 2FA key.~ Going further,
+a password manager - “Bitwarden” or “KeePass” will work best
+and are free.~ A matter worth noting is also “dirty” accounts in
+various services (email, etc.). If, for example, you need to
+log on to email at school or the library, it is best to have a
+dedicated account for these situations.~ Losing such an account
+certainly hurts less than the head mailbox to which we have all
+our services and social networks hooked up. Of course, the risk
+decreases as we begin to use security and have our eyes open.~
+This is the last module of this game, thank you for letting me
+guide you through this wonderful adventure. Be sure to look at
+our repository on github from time to time, as it is very likely
+that the game will be updated and maintained. Enjoy the technology safely!~`, 
         this.narrator, this.ziom); 
     }
 }
