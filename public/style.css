@@ -69,7 +69,7 @@ body {
 
 .map{
     position: absolute;
-    background-image: url('/public/assets/minimap.png');
+    background-image: url('assets/minimap.png');
     background-size: contain;
     background-repeat: no-repeat;
     top: 47%;
