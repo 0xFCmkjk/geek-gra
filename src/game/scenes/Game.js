@@ -564,6 +564,7 @@ Another one showed up next to it!~`, this.narrator, this.ziom);
         }
         else if(!localStorage.getItem('task2CompletedNarrator') && localStorage.getItem('Task2Completed')=== 'true'){
             this.ziom.setVisible(true);
+            this.narrator.setY(this.narrator.y + 20);
             typewriteText(this, 
 `You are getting better at this. Now let's try something
 harder. It awaits for you in the storage room!~`, this.narrator, this.ziom);
@@ -571,6 +572,7 @@ harder. It awaits for you in the storage room!~`, this.narrator, this.ziom);
         }
         else if(!localStorage.getItem('task3CompletedNarrator') && localStorage.getItem('Task3Completed')=== 'true'){
             this.ziom.setVisible(true);
+            this.narrator.setY(this.narrator.y + 25);
             typewriteText(this, 
 `Now you are ready to test your knowledge in practice.
 It's time for you to "hack" something in the server room.~`, this.narrator, this.ziom);
@@ -587,8 +589,8 @@ It's avaible on one of the servers.~`, this.narrator, this.ziom);
         }
         else if(!localStorage.getItem('task5CompletedNarrator') && localStorage.getItem('Task5Completed')=== 'true'){
             this.ziom.setVisible(true);
-            this.narrator.setX(this.narrator.x + 50);
-            this.narrator.setY(this.narrator.y + 20);
+            this.narrator.setX(this.narrator.x + 70);
+            this.narrator.setY(this.narrator.y + 15);
             typewriteText(this, 
 `Okay. You got the practice. 
 Now it's time for some theory. 
@@ -616,10 +618,12 @@ I promise. It's in the office too.~`, this.narrator, this.ziom);
         else if(!localStorage.getItem('task8CompletedNarrator') && localStorage.getItem('Task8Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-`You have managed to make it! This is the last module of this game, 
-thank you for letting me guide you through this wonderful adventure.
-Be sure to look at our repository on github from time to time, 
-as it is very likely that the game will be updated and maintained. 
+`You have managed to make it! This is the last 
+module of this game, thank you for letting me 
+guide you through this wonderful adventure. 
+Be sure to look at our repository on github 
+from time to time, as it is very likely that 
+the game will be updated and maintained. 
 Enjoy the technology safely!~`, this.narrator, this.ziom);
             localStorage.setItem('task8CompletedNarrator', 'false');
         } else {
