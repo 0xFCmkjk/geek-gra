@@ -22,8 +22,10 @@ function App ()
     const phaserDocsUrl = "https://docs.phaser.io/api-documentation/api-documentation";
 
     function resumeGame() {
-        EventBus.emit("resume-game");
-        setShowMap(false);
+        if (phaserRef.current && phaserRef.current.scene && phaserRef.current.scene.physics.world) {
+            EventBus.emit("resume-game");
+            setShowMap(false);
+        }
     }
 
     EventBus.on("back-button-pressed", () => {

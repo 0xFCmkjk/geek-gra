@@ -33,7 +33,6 @@ export class Game extends Scene
     create ()
     {
         //TODO: Make the quickstart guide
-        //TODO: task 7,8
         //TODO: local storage player cords
         const taskInfo = `Welcome to Nodebreaker, we recommend you walk around and get familiar with the map. Also check out the quickstart guide, where you will learn about basic concepts crucial to beat this game. Have fun!`;
 
@@ -215,7 +214,7 @@ export class Game extends Scene
         taskField_seven = taskFields.create(388, 1070, 'task').setScale(0.5).refreshBody().setVisible(false);
         taskField_eight = taskFields.create(100, 1250, 'task').setScale(0.5).refreshBody().setVisible(false);
 
-        //map field
+        // map field
         mapField = taskFields.create(813, 730, '').setScale(0).refreshBody();
         
         // add a player
@@ -324,7 +323,9 @@ export class Game extends Scene
         });
 
         EventBus.on("resume-game", () => {
-            this.physics.resume();
+            if (this.physics.world) {
+                this.physics.resume();
+            }
         });
 
         // INTERSECTIONS WITH TASKFIELDS
@@ -433,14 +434,16 @@ export class Game extends Scene
 
         // Listen for the pause event from the console
         this.events.on('toggle-pause', (shouldPause) => {
-            if (shouldPause) {
-                this.physics.pause();
-                this.input.keyboard.enabled = false;
-                window.addEventListener('keydown', preventPhaserInput, true);
-            } else {
-                this.physics.resume();
-                this.input.keyboard.enabled = true;
-                window.removeEventListener('keydown', preventPhaserInput, true);
+            if (this.physics.world) {
+                if (shouldPause) {
+                    this.physics.pause();
+                    this.input.keyboard.enabled = false;
+                    window.addEventListener('keydown', preventPhaserInput, true);
+                } else {
+                    this.physics.resume();
+                    this.input.keyboard.enabled = true;
+                    window.removeEventListener('keydown', preventPhaserInput, true);
+                }
             }
         });
 
