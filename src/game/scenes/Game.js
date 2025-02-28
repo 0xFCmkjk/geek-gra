@@ -617,6 +617,7 @@ I promise. It's in the office too.~`, this.narrator, this.ziom);
         }
         else if(!localStorage.getItem('task8CompletedNarrator') && localStorage.getItem('Task8Completed')=== 'true'){
             this.ziom.setVisible(true);
+            this.narrator.setX(this.narrator.x + 35);
             typewriteText(this, 
 `You have managed to make it! This is the last 
 module of this game, thank you for letting me 
