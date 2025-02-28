@@ -60,7 +60,7 @@
     cursor: pointer;
     font-size: 20px;
     width: 45%;
-    font-family: Pixelon, Helvetica, sans-serif;
+    font-family: var(--our-font-family);
     transition: 0.5s;
 }
 .quizBtn:hover{

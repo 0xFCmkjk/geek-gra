@@ -1,11 +1,29 @@
-@import url(https://db.onlinewebfonts.com/c/fbc2833bec27d0fba9ea369cae2bbeaf?family=Pixelon); 
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
+.pixelify-sans-aa {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 420;
+    font-style: normal;
+  }
+
+.jersey-15-regular {
+    font-family: "Jersey 15", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root{
+    --our-font-family: 'Pixelify Sans', sans-serif;
+}
+  
 body {
     margin: 0;
     padding: 0;
     color: rgba(255, 255, 255, 0.87);
     background-color: #000000; 
-    font-family: Pixelon, Helvetica, sans-serif;
+    font-family: var(--our-font-family);
 }
 
 #app {
@@ -26,7 +44,7 @@ body {
 .button {
     display: inline-block;
     vertical-align: top;
-    font-family: 'Pixelon';
+    font-family: var(--our-font-family);
     width: 170px;
     margin: 15px;
     padding: 15px;
