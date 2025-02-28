@@ -33,7 +33,7 @@ body {
     width: 170px;
     margin: 15px;
     padding: 15px;
-    background-color: #000000;
+    background-color: transparent;
     color: rgba(255, 255, 255, 0.87);
     border: 2px solid rgba(255, 255, 255, 0.87);
     cursor: pointer;
