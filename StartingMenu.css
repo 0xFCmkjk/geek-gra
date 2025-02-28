@@ -1,0 +1,62 @@
+.starting-menu{
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    height:200vh;
+    background-image: url('assets/menu-bg.png');
+    font-size: 40px;
+    animation: move-bg-vertical 30s linear infinite;   
+}
+
+@keyframes move-bg-vertical {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 900px;
+    height: 800px;
+}
+.menu h1, .menu h2{
+  font-size: 80px;
+  text-shadow: 1px 7px 0px #21659d;
+}
+.menuBtn{
+  width: 400px;
+  height: 80px;
+  transition: 0.5s;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: none;
+  font-family: Pixelon, Helvetica, sans-serif;
+  font-size: 40px;
+  text-shadow: 1px 3px 0px #21659d;
+}
+.menuBtn:hover{
+    color: #ffffff5d;
+    cursor: pointer;
+}
+.menu ::-moz-selection { /* Code for Firefox */
+  color: none;
+  background: none;
+}
+
+.menu ::selection {
+  color: none;
+  background: none;
+}
