@@ -616,9 +616,11 @@ I promise. It's in the office too.~`, this.narrator, this.ziom);
         else if(!localStorage.getItem('task8CompletedNarrator') && localStorage.getItem('Task8Completed')=== 'true'){
             this.ziom.setVisible(true);
             typewriteText(this, 
-`You have managed to make it! I hope you enjoyed our game!
-As I've mentioned before, stay with us for more
-updates on the game!~`, this.narrator, this.ziom);
+`You have managed to make it! This is the last module of this game, 
+thank you for letting me guide you through this wonderful adventure.
+Be sure to look at our repository on github from time to time, 
+as it is very likely that the game will be updated and maintained. 
+Enjoy the technology safely!~`, this.narrator, this.ziom);
             localStorage.setItem('task8CompletedNarrator', 'false');
         } else {
             disableNarrator(this);
