@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Pixelon';
-    src: url('/assets/fonts/Pixelon-OGALo.ttf') format('truetype');
+    src: url('/public/assets/fonts/Pixelon-OGALo.ttf') format('truetype');
 }
 
 body {
