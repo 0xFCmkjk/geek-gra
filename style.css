@@ -1,6 +1,11 @@
 @font-face {
     font-family: 'Pixelon';
-    src: url('/fonts/Pixelon-OGALo.ttf') format('truetype');
+    src: url("https://db.onlinewebfonts.com/t/fbc2833bec27d0fba9ea369cae2bbeaf.eot");
+    src: url("https://db.onlinewebfonts.com/t/fbc2833bec27d0fba9ea369cae2bbeaf.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/fbc2833bec27d0fba9ea369cae2bbeaf.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/fbc2833bec27d0fba9ea369cae2bbeaf.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/fbc2833bec27d0fba9ea369cae2bbeaf.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/fbc2833bec27d0fba9ea369cae2bbeaf.svg#Pixelon")format("svg");
 }
 
 body {
